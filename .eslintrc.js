@@ -6,6 +6,8 @@ module.exports = {
     node: true,
   },
   rules: {
+    'global-require': 'off',
+    'import/no-dynamic-require': 'off',
     'prettier/prettier': ['error', { trailingComma: 'es5', singleQuote: true }],
   },
 };
