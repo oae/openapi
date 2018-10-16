@@ -1,8 +1,8 @@
 module.exports = {
   Query: {
-    pokemons: () =>
+    series: (obj, { query = 'Series' } = {}, context, info) =>
       Array.from({ length: 10 }).map((_, index) => ({
-        name: `Pokemon #${index}`,
+        name: `${query} #${index + 1}`,
       })),
   },
 };

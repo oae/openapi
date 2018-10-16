@@ -1,8 +1,0 @@
-type Pokemon {
-  name: String
-  weight: Int
-}
-
-type Query {
-  pokemons: [Pokemon]
-}

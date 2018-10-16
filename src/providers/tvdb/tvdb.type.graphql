@@ -1,0 +1,7 @@
+type Query {
+  series(query: String): [Series]
+}
+
+type Series {
+  name: String
+}
