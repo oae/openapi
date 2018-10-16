@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "nodemon --inspect src/index.js",
+    "start": "node src/index.js",
     "lint": "eslint src/"
   },
   "husky": {
