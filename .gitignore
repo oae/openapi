@@ -1,10 +1,5 @@
-# Created by https://www.gitignore.io/api/node,code,macos,linux,windows,webstorm
 
-### Code ###
-# Visual Studio Code - https://code.visualstudio.com/
-.settings/
-tsconfig.json
-jsconfig.json
+# Created by https://www.gitignore.io/api/node,visualstudiocode,macos,linux,windows,webstorm
 
 ### Linux ###
 *~
@@ -124,6 +119,13 @@ typings/
 # Serverless directories
 .serverless
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
@@ -229,7 +231,7 @@ $RECYCLE.BIN/
 *.lnk
 
 
-# End of https://www.gitignore.io/api/node,code,macos,linux,windows,webstorm
+# End of https://www.gitignore.io/api/node,visualstudiocode,macos,linux,windows,webstorm
 
 build
 *.env
