@@ -9,6 +9,6 @@ module.exports = {
     'global-require': 'off',
     'import/no-dynamic-require': 'off',
     'no-unused-vars': ['error', { args: 'none' }],
-    'prettier/prettier': ['error', { trailingComma: 'es5', singleQuote: true }],
+    'prettier/prettier': ['error', { trailingComma: 'es5', singleQuote: true, printWidth: 100 }],
   },
 };

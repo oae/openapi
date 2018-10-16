@@ -1,11 +1,7 @@
 /* eslint-disable global-require, import/no-dynamic-require */
 
 const { GraphQLServer } = require('graphql-yoga');
-const {
-  fileLoader,
-  mergeTypes,
-  mergeResolvers,
-} = require('merge-graphql-schemas');
+const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 const path = require('path');
 
 const PROVIDER_PATH = path.resolve(__dirname, './providers');
