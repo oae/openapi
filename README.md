@@ -1,5 +1,10 @@
 # Open API GraphQL
 
+- This project is under heavy development. 
+- Things may or may not work. 
+- There might be some things that aren't even implemented yet. 
+- Things may be added/deleted in the future.
+
 ## Development
 
 ### Requirements:
