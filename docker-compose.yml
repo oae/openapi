@@ -1,0 +1,19 @@
+version: "3"
+
+volumes:
+  redis:
+
+services:
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis:/data
+
+  api:
+    build: .
+    depends_on:
+      - redis
+    environment:
+      OA_REDIS_URL: redis://redis:6379/0
+    env_file:
+      - ./.secrets.env

@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  redis:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+      
+  api:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
