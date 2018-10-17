@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "yarn docd run --rm --service-ports api",
-    "watch": "nodemon --delay 250ms -x 'kill-port 9229 && node --inspect=0.0.0.0:9229 src/index.js'",
+    "watch": "nodemon --delay 250ms -e js,graphql -x 'kill-port 9229 && node --inspect=0.0.0.0:9229 src/index.js'",
     "start": "node src/index.js",
     "lint": "eslint src/",
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml"
