@@ -10,7 +10,10 @@
       "name": "Debug",
       "address": "localhost",
       "port": 9229,
-      "timeout": 60000
+      "timeout": 60000,
+      "restart": true,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app"
     }
   ]
 }
