@@ -125,6 +125,7 @@ typings/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/sftp.json
 
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
