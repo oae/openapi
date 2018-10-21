@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2018-10-20T20:19:25.043Z",
+	"__export_date": "2018-10-21T19:30:16.756Z",
 	"__export_source": "insomnia.desktop.app:v6.0.2",
 	"resources": [
 		{
@@ -22,7 +22,7 @@
 			},
 			"isPrivate": false,
 			"metaSortKey": 1539709455616,
-			"modified": 1539709473958,
+			"modified": 1540150191784,
 			"name": "New Environment",
 			"parentId": "wrk_ab570e84972847b8bca1c9f7bdb27343",
 			"_type": "environment"
@@ -42,7 +42,7 @@
 			"description": "",
 			"environment": {},
 			"metaSortKey": -1539709485201,
-			"modified": 1539716451932,
+			"modified": 1540129495272,
 			"name": "openapi",
 			"parentId": "wrk_ab570e84972847b8bca1c9f7bdb27343",
 			"_type": "request_group"
@@ -53,10 +53,24 @@
 			"description": "",
 			"environment": {},
 			"metaSortKey": -1539716443270,
-			"modified": 1539716443270,
+			"modified": 1540129499560,
 			"name": "openlibrary",
 			"parentId": "wrk_ab570e84972847b8bca1c9f7bdb27343",
 			"_type": "request_group"
+		},
+		{
+			"_id": "env_eced048ffc7848cf8574867fac38470a",
+			"color": null,
+			"created": 1540129506755,
+			"data": {
+				"api": "http://localhost:4000/"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1540129506755,
+			"modified": 1540129517080,
+			"name": "local",
+			"parentId": "env_5f3e2e918e5a4a57a8729a795387bb02",
+			"_type": "environment"
 		},
 		{
 			"_id": "req_d4ffcb2e18e042c38a76cca2f385c2e7",
@@ -77,7 +91,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539709498273,
 			"method": "POST",
-			"modified": 1540066652613,
+			"modified": 1540137073582,
 			"name": "Search Series",
 			"parameters": [],
 			"parentId": "fld_c9437220ba7f430090d72ac50eac559f",
@@ -91,13 +105,13 @@
 			"_type": "request"
 		},
 		{
-			"_id": "req_a816b5a41d6d44c8a692516e9f107240",
+			"_id": "req_3cfc44f3e6804f8f9de2cbf0f0c6b370",
 			"authentication": {},
 			"body": {
 				"mimeType": "application/graphql",
-				"text": "{\"query\":\"{\\n  books(title: \\\"Harry Potter\\\") {\\n    title\\n\\t\\tisbn10\\n\\t\\tisbn13\\n\\t\\tsubjects\\n\\t\\tpublishDate\\n  }\\n}\\n\"}"
+				"text": "{\"query\":\"{\\n  books(title: \\\"Harry Potter and Sorcerer\\\", limit: 1) {\\n# \\t\\ttitle\\n# \\t\\tdescription\\n# \\t\\tcreatedAt\\n# \\t\\tlastModifiedAt\\n# \\t\\tcovers {\\n# \\t\\t\\tsmall\\n# \\t\\t\\tmedium\\n# \\t\\t\\tlarge\\n# \\t\\t}\\n# \\t\\tsubjectPlaces\\n# \\t\\tsubjectPeople\\n# \\t\\tsubjects\\n\\t\\teditions(limit: 2) {\\n\\t\\t\\ttitle\\n\\t\\t\\tisbn10\\n\\t\\t\\tisbn13\\n\\t\\t\\tpublishers\\n\\t\\t\\tpublishDate\\n\\t\\t\\tauthors {\\n\\t\\t\\t\\tname\\n\\t\\t\\t}\\n\\t\\t}\\n\\t\\tauthors(limit: 2) {\\n\\t\\t\\tname\\n\\t\\t\\tcreatedAt\\n\\t\\t\\tlastModifiedAt\\n\\t\\t\\tbirthDate\\n\\t\\t\\tdeathDate\\n\\t\\t\\taltNames\\n\\t\\t\\tpersonalName\\n\\t\\t}\\n\\t}\\n}\\n\"}"
 			},
-			"created": 1539717189440,
+			"created": 1540137076263,
 			"description": "",
 			"headers": [
 				{
@@ -109,7 +123,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539352577425.5,
 			"method": "POST",
-			"modified": 1540066654127,
+			"modified": 1540150160175,
 			"name": "Search Books",
 			"parameters": [],
 			"parentId": "fld_c9437220ba7f430090d72ac50eac559f",
@@ -121,6 +135,28 @@
 			"settingStoreCookies": true,
 			"url": "{{api}}",
 			"_type": "request"
+		},
+		{
+			"_id": "fld_90abb3332dd24275af373ad4f8c3038c",
+			"created": 1540136076766,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540136076766,
+			"modified": 1540136076766,
+			"name": "restful",
+			"parentId": "fld_8da6dc76acf7492588e53315e5b1d5bf",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_838a373655884f1bb02a7fdfda338897",
+			"created": 1540136123696,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1540136123696,
+			"modified": 1540136123696,
+			"name": "read",
+			"parentId": "fld_8da6dc76acf7492588e53315e5b1d5bf",
+			"_type": "request_group"
 		},
 		{
 			"_id": "req_3e99f5fd7bc64ed996417091d240637f",
@@ -173,7 +209,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1539716879169,
 			"method": "GET",
-			"modified": 1539717084539,
+			"modified": 1540150198744,
 			"name": "Search books",
 			"parameters": [
 				{
@@ -184,10 +220,15 @@
 				{
 					"id": "pair_4309094801dd448897cefa18b27a720e",
 					"name": "title",
-					"value": "Silmarillion"
+					"value": "Harry Potter"
+				},
+				{
+					"id": "pair_5f9865500c054856bf1f2c0daa98297f",
+					"name": "authors",
+					"value": "/authors/"
 				}
 			],
-			"parentId": "fld_8da6dc76acf7492588e53315e5b1d5bf",
+			"parentId": "fld_90abb3332dd24275af373ad4f8c3038c",
 			"settingDisableRenderRequestBody": false,
 			"settingEncodeUrl": true,
 			"settingMaxTimelineDataSize": 1000,
@@ -195,6 +236,296 @@
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
 			"url": "http://openlibrary.org/query.json",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2ebfe654f696442d9a1dc3082c554228",
+			"authentication": {},
+			"body": {},
+			"created": 1540130111239,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_92935d489c7b4107886dd2b2373ad6cf",
+					"name": "Connection",
+					"value": "keep-alive"
+				},
+				{
+					"id": "pair_e4465ebdb51549feb46362e232c32128",
+					"name": "Pragma",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_6511275cfea2423ebb1bf3d7f9fe0559",
+					"name": "Cache-Control",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_35d72bf37fa646d7b97c34ad73f8a5e2",
+					"name": "Upgrade-Insecure-Requests",
+					"value": "1"
+				},
+				{
+					"id": "pair_2a09c63e42394554b5b44ae11adce483",
+					"name": "User-Agent",
+					"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3569.0 Safari/537.36"
+				},
+				{
+					"id": "pair_5e34a1ae801e4e0cbae123a67e5b4eb9",
+					"name": "Accept",
+					"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+				},
+				{
+					"id": "pair_7f2887ecff9a4dbea19ea687d73c099d",
+					"name": "Accept-Encoding",
+					"value": "gzip, deflate"
+				},
+				{
+					"id": "pair_e5ad545f63ed4e52b5c05282264e0fee",
+					"name": "Accept-Language",
+					"value": "en-US,en;q=0.9,tr-TR;q=0.8,tr;q=0.7"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539716879319,
+			"method": "GET",
+			"modified": 1540150166922,
+			"name": "Author",
+			"parameters": [],
+			"parentId": "fld_90abb3332dd24275af373ad4f8c3038c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://openlibrary.org/authors/OL1A.json",
+			"_type": "request"
+		},
+		{
+			"_id": "req_de0a944789e1435095fbbbe70523db36",
+			"authentication": {},
+			"body": {},
+			"created": 1540130221011,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_92935d489c7b4107886dd2b2373ad6cf",
+					"name": "Connection",
+					"value": "keep-alive"
+				},
+				{
+					"id": "pair_e4465ebdb51549feb46362e232c32128",
+					"name": "Pragma",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_6511275cfea2423ebb1bf3d7f9fe0559",
+					"name": "Cache-Control",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_35d72bf37fa646d7b97c34ad73f8a5e2",
+					"name": "Upgrade-Insecure-Requests",
+					"value": "1"
+				},
+				{
+					"id": "pair_2a09c63e42394554b5b44ae11adce483",
+					"name": "User-Agent",
+					"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3569.0 Safari/537.36"
+				},
+				{
+					"id": "pair_5e34a1ae801e4e0cbae123a67e5b4eb9",
+					"name": "Accept",
+					"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+				},
+				{
+					"id": "pair_7f2887ecff9a4dbea19ea687d73c099d",
+					"name": "Accept-Encoding",
+					"value": "gzip, deflate"
+				},
+				{
+					"id": "pair_e5ad545f63ed4e52b5c05282264e0fee",
+					"name": "Accept-Language",
+					"value": "en-US,en;q=0.9,tr-TR;q=0.8,tr;q=0.7"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539716879219,
+			"method": "GET",
+			"modified": 1540150167871,
+			"name": "Book",
+			"parameters": [],
+			"parentId": "fld_90abb3332dd24275af373ad4f8c3038c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://openlibrary.org/editions/OL19121611M.json",
+			"_type": "request"
+		},
+		{
+			"_id": "req_35234532e754446cacc188f497247c40",
+			"authentication": {},
+			"body": {},
+			"created": 1540135767951,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_92935d489c7b4107886dd2b2373ad6cf",
+					"name": "Connection",
+					"value": "keep-alive"
+				},
+				{
+					"id": "pair_e4465ebdb51549feb46362e232c32128",
+					"name": "Pragma",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_6511275cfea2423ebb1bf3d7f9fe0559",
+					"name": "Cache-Control",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_35d72bf37fa646d7b97c34ad73f8a5e2",
+					"name": "Upgrade-Insecure-Requests",
+					"value": "1"
+				},
+				{
+					"id": "pair_2a09c63e42394554b5b44ae11adce483",
+					"name": "User-Agent",
+					"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3569.0 Safari/537.36"
+				},
+				{
+					"id": "pair_5e34a1ae801e4e0cbae123a67e5b4eb9",
+					"name": "Accept",
+					"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+				},
+				{
+					"id": "pair_7f2887ecff9a4dbea19ea687d73c099d",
+					"name": "Accept-Encoding",
+					"value": "gzip, deflate"
+				},
+				{
+					"id": "pair_e5ad545f63ed4e52b5c05282264e0fee",
+					"name": "Accept-Language",
+					"value": "en-US,en;q=0.9,tr-TR;q=0.8,tr;q=0.7"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539716879269,
+			"method": "GET",
+			"modified": 1540150167460,
+			"name": "Work",
+			"parameters": [],
+			"parentId": "fld_90abb3332dd24275af373ad4f8c3038c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://openlibrary.org/works/OL82592W.json",
+			"_type": "request"
+		},
+		{
+			"_id": "req_ccd2b284f3a44e82866e3244f544845b",
+			"authentication": {},
+			"body": {},
+			"created": 1540136718349,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_92935d489c7b4107886dd2b2373ad6cf",
+					"name": "Connection",
+					"value": "keep-alive"
+				},
+				{
+					"id": "pair_e4465ebdb51549feb46362e232c32128",
+					"name": "Pragma",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_6511275cfea2423ebb1bf3d7f9fe0559",
+					"name": "Cache-Control",
+					"value": "no-cache"
+				},
+				{
+					"id": "pair_35d72bf37fa646d7b97c34ad73f8a5e2",
+					"name": "Upgrade-Insecure-Requests",
+					"value": "1"
+				},
+				{
+					"id": "pair_2a09c63e42394554b5b44ae11adce483",
+					"name": "User-Agent",
+					"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3569.0 Safari/537.36"
+				},
+				{
+					"id": "pair_5e34a1ae801e4e0cbae123a67e5b4eb9",
+					"name": "Accept",
+					"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+				},
+				{
+					"id": "pair_7f2887ecff9a4dbea19ea687d73c099d",
+					"name": "Accept-Encoding",
+					"value": "gzip, deflate"
+				},
+				{
+					"id": "pair_e5ad545f63ed4e52b5c05282264e0fee",
+					"name": "Accept-Language",
+					"value": "en-US,en;q=0.9,tr-TR;q=0.8,tr;q=0.7"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1539716879244,
+			"method": "GET",
+			"modified": 1540147153308,
+			"name": "Edition",
+			"parameters": [],
+			"parentId": "fld_90abb3332dd24275af373ad4f8c3038c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://openlibrary.org/editions/OL19121611M.json",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f7d96e0d13e44b7a8034d0fee6ff28b0",
+			"authentication": {},
+			"body": {},
+			"created": 1540136132657,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1540136132657,
+			"method": "GET",
+			"modified": 1540150165349,
+			"name": "search",
+			"parameters": [
+				{
+					"id": "pair_359ade2b92174a33952fa228729e8371",
+					"name": "q",
+					"value": "silmarillion"
+				},
+				{
+					"id": "pair_d55411a841824680baead7f2e7aa87b5",
+					"name": "limit",
+					"value": "1"
+				}
+			],
+			"parentId": "fld_838a373655884f1bb02a7fdfda338897",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://openlibrary.org/search.json?",
 			"_type": "request"
 		}
 	]
