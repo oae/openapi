@@ -23,8 +23,6 @@ async function loadContextCreators() {
 }
 
 (async () => {
-  // await new Promise(resolve => setTimeout(resolve, 2000));
-
   try {
     const contextCreators = await loadContextCreators();
 
