@@ -8,7 +8,7 @@
       "type": "node",
       "request": "attach",
       "name": "Debug",
-      "address": "localhost",
+      "address": "lab.nepjua.org",
       "port": 9229,
       "timeout": 60000,
       "restart": true,
