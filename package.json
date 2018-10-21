@@ -22,9 +22,13 @@
   "keywords": [],
   "author": "Manjula Dube",
   "dependencies": {
+    "@okgrow/graphql-scalars": "^0.4.2",
     "axios": "^0.18.0",
+    "dataloader": "^1.4.0",
     "fs-extra": "^7.0.0",
+    "glob": "^7.1.3",
     "graphql-yoga": "1.16.2",
+    "lodash": "^4.17.11",
     "merge-graphql-schemas": "^1.5.7",
     "path": "^0.12.7"
   },

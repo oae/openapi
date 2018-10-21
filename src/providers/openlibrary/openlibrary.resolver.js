@@ -1,38 +1,28 @@
-const axios = require('axios');
-const qs = require('querystring');
+const client = require('./client');
 
-const client = axios.create({
-  baseURL: 'https://openlibrary.org'
-});
+const fetchRelationWithKey = (dataKey, prefix) => async (obj, args, context, info) => {
+  const loaders = await context.getContext('openlibrary/openlibrary');
+  const keys = obj[dataKey].map(key => `${prefix}/${key}`);
+  return loaders.keyLoader.loadMany(keys);
+};
 
 module.exports = {
   Query: {
-    books: async (obj, { title = 'Silmarillion' } = {}, context, info) => {
-      const bookRefs = await client.get('query.json', {
+    books: async (obj, { title = 'Silmarillion', author, limit } = {}, context, info) => {
+      const res = await client.get('search.json', {
         params: {
-          type: '/type/edition',
-          title
-        }
+          q: title,
+          author,
+          limit,
+        },
       });
 
-      const books = await Promise.all(bookRefs.data.map(async bookRef => {
-        const res = await client.get(bookRef.key);
-        return res.data;
-      }));
-
-      return books;
+      return res.data.docs;
     },
   },
 
   Book: {
-    isbn10: (obj, args, context, info) => {
-      return obj.isbn_10;
-    },
-    isbn13: (obj, args, context, info) => {
-      return obj.isbn_13;
-    },
-    publishDate: (obj, args, context, info) => {
-      return obj.publish_date;
-    }
-  }
+    authors: fetchRelationWithKey('author_key', '/authors'),
+    editions: fetchRelationWithKey('edition_key', '/editions'),
+  },
 };

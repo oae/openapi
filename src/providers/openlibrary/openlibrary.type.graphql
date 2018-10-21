@@ -1,11 +1,24 @@
 type Query {
-  books(title: String!): [Book]
+  books(title: String!, author: String, limit: Int): [Book]
 }
 
 type Book {
   title: String
-  isbn10: [String]
-  isbn13: [String]
+  isbn: [String]
+  editions: [BookEdition]
+  authors: [BookAuthor]
   subjects: [String]
-  publishDate: String
+}
+
+type BookEdition {
+  title: String
+}
+
+type BookAuthor {
+  name: String
+  createdAt: DateTime
+  lastModifiedAt: DateTime
+  deathDate: String
+  altNames: [String]
+  personalName: String
 }
