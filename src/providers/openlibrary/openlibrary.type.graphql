@@ -1,5 +1,6 @@
 type Query {
-  books(title: String!, author: String, limit: Int): [Book]
+  books(title: String!, limit: Int): [Book]
+  booksFromAuthor(author: String!, limit: Int): [Book]
 }
 
 type Book {

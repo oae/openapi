@@ -35,35 +35,38 @@ const commonFields = () => ({
   lastModifiedAt: alias('last_modified.value'),
 });
 
+const createBookSearchResolver = () => async (
+  obj,
+  { title, author, limit = DEFAULT_LIMIT } = {},
+  context,
+  info
+) => {
+  const res = await client.get('search.json', {
+    params: {
+      q: title,
+      author,
+      limit,
+    },
+  });
+
+  const loaders = await context.getContext('openlibrary/openlibrary');
+  const { keyLoader } = loaders;
+
+  return Promise.all(
+    res.data.docs.map(async book => {
+      const work = await keyLoader.load(book.key);
+      return {
+        ...book,
+        ...work,
+      };
+    })
+  );
+};
+
 module.exports = {
   Query: {
-    books: async (
-      obj,
-      { title = 'Silmarillion', author, limit = DEFAULT_LIMIT } = {},
-      context,
-      info
-    ) => {
-      const res = await client.get('search.json', {
-        params: {
-          q: title,
-          author,
-          limit,
-        },
-      });
-
-      const loaders = await context.getContext('openlibrary/openlibrary');
-      const { keyLoader } = loaders;
-
-      return Promise.all(
-        res.data.docs.map(async book => {
-          const work = await keyLoader.load(book.key);
-          return {
-            ...book,
-            ...work,
-          };
-        })
-      );
-    },
+    books: createBookSearchResolver(),
+    booksFromAuthor: createBookSearchResolver(),
   },
 
   Book: {
