@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "yarn docd run --rm --service-ports api",
-    "watch": "nodemon --delay 250ms -x 'kill-port 9229 && node --inspect=0.0.0.0:9229 src/index.js'",
+    "watch": "nodemon --delay 250ms -e js,graphql -x 'kill-port 9229 && node --inspect=0.0.0.0:9229 src/index.js'",
     "start": "node src/index.js",
     "lint": "eslint src/",
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml"
@@ -22,9 +22,13 @@
   "keywords": [],
   "author": "Manjula Dube",
   "dependencies": {
+    "@okgrow/graphql-scalars": "^0.4.2",
     "axios": "^0.18.0",
+    "dataloader": "^1.4.0",
     "fs-extra": "^7.0.0",
+    "glob": "^7.1.3",
     "graphql-yoga": "1.16.2",
+    "lodash": "^4.17.11",
     "merge-graphql-schemas": "^1.5.7",
     "path": "^0.12.7"
   },

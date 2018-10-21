@@ -1,0 +1,45 @@
+type Query {
+  books(title: String!, limit: Int): [Book]
+  booksFromAuthor(author: String!, limit: Int): [Book]
+}
+
+type Book {
+  title: String
+  description: String
+  createdAt: DateTime
+  lastModifiedAt: DateTime
+  covers: [BookCover]
+  subjectPlaces: [String]
+  subjectPeople: [String]
+  subjects: [String]
+  isbn: [String]
+  editions(limit: Int): [BookEdition]
+  authors(limit: Int): [BookAuthor]
+}
+
+type BookCover {
+  small: String
+  medium: String
+  large: String
+}
+
+type BookEdition {
+  title: String
+  isbn10: [String]
+  isbn13: [String]
+  publishers: [String]
+  createdAt: DateTime
+  lastModifiedAt: DateTime
+  publishDate: String
+  authors: [BookAuthor]
+}
+
+type BookAuthor {
+  name: String
+  createdAt: DateTime
+  lastModifiedAt: DateTime
+  birthDate: String
+  deathDate: String
+  altNames: [String]
+  personalName: String
+}
