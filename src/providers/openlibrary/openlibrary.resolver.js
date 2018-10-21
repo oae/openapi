@@ -1,9 +1,10 @@
 const fp = require('lodash/fp');
 
+const { extractKeys, normalizeKey } = require('./utils');
 const client = require('./client');
-const { DEFAULT_LIMIT } = require('./constants');
+const { DEFAULT_LIMIT, KeyType } = require('./constants');
 
-const fetchRelationWithKey = (dataKey, prefix = '') => async (
+const fetchRelationWithKey = (dataKey, type) => async (
   obj,
   { limit = DEFAULT_LIMIT } = {},
   context,
@@ -13,7 +14,8 @@ const fetchRelationWithKey = (dataKey, prefix = '') => async (
   const rawKeys = obj[dataKey] || [];
   const keys = fp.flow(
     fp.take(limit || rawKeys.length),
-    fp.map(key => `${prefix}/${key}`)
+    extractKeys,
+    fp.map(normalizeKey(type))
   )(rawKeys);
 
   return loaders.keyLoader.loadMany(keys);
@@ -69,8 +71,8 @@ module.exports = {
     covers: getCovers('covers'),
     subjectPlaces: alias('subject_places'),
     subjectPeople: alias('subject_people'),
-    authors: fetchRelationWithKey('author_key', '/authors'),
-    editions: fetchRelationWithKey('edition_key', '/editions'),
+    authors: fetchRelationWithKey('author_key', KeyType.AUTHOR),
+    editions: fetchRelationWithKey('edition_key', KeyType.EDITION),
   },
 
   BookEdition: {
@@ -78,7 +80,7 @@ module.exports = {
     isbn10: alias('isbn_10'),
     isbn13: alias('isbn_13'),
     publishDate: alias('publish_date'),
-    authors: fetchRelationWithKey('authors'),
+    authors: fetchRelationWithKey('authors', KeyType.AUTHOR),
   },
 
   BookAuthor: {
