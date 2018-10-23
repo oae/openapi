@@ -1,10 +1,11 @@
-const fp = require('lodash/fp');
+const { resolveAlias } = require('../../utils');
+
 const client = require('./client');
 
 const createWeatherByCityIdResolver = () => async (obj, { cityName } = {}, context, info) => {
   let res = [];
   try {
-    res = await client.get('/', {
+    res = await client.get('', {
       params: {
         q: cityName,
       },
@@ -15,8 +16,6 @@ const createWeatherByCityIdResolver = () => async (obj, { cityName } = {}, conte
 
   return res.data;
 };
-
-const resolveAlias = key => (obj, args, context, info) => fp.get(key, obj);
 
 const resolveGeoLocation = () => (obj, cityName = {}, context, info) => ({
   latitude: obj.coord.lat,
