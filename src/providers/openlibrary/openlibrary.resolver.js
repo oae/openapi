@@ -1,5 +1,6 @@
 const fp = require('lodash/fp');
 
+const { resolveAlias } = require('../../utils');
 const { extractKeys, normalizeKey } = require('./utils');
 const client = require('./client');
 const { DEFAULT_LIMIT, KeyType } = require('./constants');
@@ -21,8 +22,6 @@ const fetchRelationWithKey = (dataKey, type) => async (
   return loaders.keyLoader.loadMany(keys);
 };
 
-const alias = key => (obj, args, context, info) => fp.get(key, obj);
-
 const getCovers = key => obj =>
   fp.map(cover => ({
     small: `https://covers.openlibrary.org/w/id/${cover}-S.jpg`,
@@ -31,8 +30,8 @@ const getCovers = key => obj =>
   }))(obj[key]);
 
 const commonFields = () => ({
-  createdAt: alias('created.value'),
-  lastModifiedAt: alias('last_modified.value'),
+  createdAt: resolveAlias('created.value'),
+  lastModifiedAt: resolveAlias('last_modified.value'),
 });
 
 const createBookSearchResolver = () => async (
@@ -72,25 +71,25 @@ module.exports = {
   Book: {
     ...commonFields(),
     covers: getCovers('covers'),
-    subjectPlaces: alias('subject_places'),
-    subjectPeople: alias('subject_people'),
+    subjectPlaces: resolveAlias('subject_places'),
+    subjectPeople: resolveAlias('subject_people'),
     authors: fetchRelationWithKey('author_key', KeyType.AUTHOR),
     editions: fetchRelationWithKey('edition_key', KeyType.EDITION),
   },
 
   BookEdition: {
     ...commonFields(),
-    isbn10: alias('isbn_10'),
-    isbn13: alias('isbn_13'),
-    publishDate: alias('publish_date'),
+    isbn10: resolveAlias('isbn_10'),
+    isbn13: resolveAlias('isbn_13'),
+    publishDate: resolveAlias('publish_date'),
     authors: fetchRelationWithKey('authors', KeyType.AUTHOR),
   },
 
   BookAuthor: {
     ...commonFields(),
-    birthDate: alias('birth_date'),
-    deathDate: alias('death_date'),
-    altNames: alias('alternate_names'),
-    personalName: alias('personal_name'),
+    birthDate: resolveAlias('birth_date'),
+    deathDate: resolveAlias('death_date'),
+    altNames: resolveAlias('alternate_names'),
+    personalName: resolveAlias('personal_name'),
   },
 };
