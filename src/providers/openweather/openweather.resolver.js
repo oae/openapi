@@ -17,6 +17,22 @@ const createWeatherByCityIdResolver = () => async (obj, { cityName } = {}, conte
   return res.data;
 };
 
+const createWeatherByGeoLocResolver = () => async (obj, { lat, lon } = {}, context, info) => {
+  let res = [];
+  try {
+    res = await client.get('', {
+      params: {
+        lat,
+        lon,
+      },
+    });
+  } catch (e) {
+    return res;
+  }
+
+  return res.data;
+};
+
 const resolveGeoLocation = () => (obj, cityName = {}, context, info) => ({
   latitude: obj.coord.lat,
   longitude: obj.coord.lon,
@@ -35,6 +51,7 @@ const resolveWeatherCondition = () => (obj, cityName = {}, context, info) => ({
 module.exports = {
   Query: {
     currentWeatherByCityName: createWeatherByCityIdResolver(),
+    currentWeatherByGeoLoc: createWeatherByGeoLocResolver(),
   },
   Weather: {
     temperature: resolveAlias('main.temp'),

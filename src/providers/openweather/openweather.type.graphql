@@ -1,5 +1,6 @@
 type Query {
   currentWeatherByCityName(cityName: String!): Weather
+  currentWeatherByGeoLoc(lat: Float!, lon: Float!): Weather
 }
 
 
@@ -28,4 +29,5 @@ type Wind {
   speed: Float
   degree: Float
 }
+
 
