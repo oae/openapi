@@ -2,7 +2,7 @@ const client = require('./client');
 
 module.exports = {
   Query: {
-    series: async (obj, { name, limit = 10 } = {}, context, info) => {
+    series: async (obj, { name, limit = 1 } = {}, context, info) => {
       let res = [];
       try {
         res = await client.get('/search/series', {
@@ -18,14 +18,17 @@ module.exports = {
       const { seriesLoader } = loaders;
 
       return Promise.all(
-        res.data.data.slice(0, limit).map(async series => {
-          const currentSeries = await seriesLoader.load(series.id);
+        res.data.data
+          .filter(series => series.slug !== '403-series-not-permitted')
+          .slice(0, limit)
+          .map(async series => {
+            const currentSeries = await seriesLoader.load(series.id);
 
-          return {
-            ...series,
-            ...currentSeries,
-          };
-        })
+            return {
+              ...series,
+              ...currentSeries,
+            };
+          })
       );
     },
   },
@@ -37,7 +40,19 @@ module.exports = {
     episodes: async (obj, _, context) => {
       const loaders = await context.getContext('tvdb/tvdb');
       const { episodeLoader } = loaders;
-      return episodeLoader.load(obj.id);
+      return episodeLoader.load({
+        seriesId: obj.id,
+      });
+    },
+    seasons: async (obj, { seasonNumber }, context) => {
+      const loaders = await context.getContext('tvdb/tvdb');
+      const { seasonLoader } = loaders;
+      return seasonLoader.load({
+        seriesId: obj.id,
+        options: {
+          seasonNumber,
+        },
+      });
     },
   },
 
@@ -47,5 +62,18 @@ module.exports = {
     name: obj => obj.episodeName,
     relativeNumber: obj => obj.airedEpisodeNumber,
     season: obj => obj.airedSeason,
+  },
+
+  Season: {
+    episodes: async (obj, _, context, info) => {
+      const loaders = await context.getContext('tvdb/tvdb');
+      const { episodeLoader } = loaders;
+      return episodeLoader.load({
+        seriesId: obj.seriesId,
+        options: {
+          airedSeason: obj.number,
+        },
+      });
+    },
   },
 };
