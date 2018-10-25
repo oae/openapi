@@ -1,7 +1,43 @@
 type Query {
-  series(query: String): [Series]
+  series(name: String!, limit: Int): [Series]
 }
 
+
 type Series {
+  airedAt: String
+  airsDayOfWeek: String
+  airsTime: String
+  aliases: [String]
+  banner: String
+  episodes: [Episode]
+  genre: [String]
+  id: String
+  imdbId: String
   name: String
+  network: String
+  overview: String
+  rating: String
+  seasons(seasonNumber: Int): [Season]
+  status: String
 }
+
+type Season {
+  episodes: [Episode]
+  number: Int
+}
+
+type Episode {
+  absoluteNumber: Int
+  airedAt: String
+  artwork: String
+  directors: [String]
+  guestStars: [String]
+  imdbId: String
+  name: String
+  overview: String
+  relativeNumber: Int
+  season: Int
+  writers: [String]
+}
+
+
