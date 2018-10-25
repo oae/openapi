@@ -3,32 +3,22 @@ const { resolveAlias } = require('../../utils');
 const client = require('./client');
 
 const createWeatherByCityIdResolver = () => async (obj, { cityName } = {}, context, info) => {
-  let res = [];
-  try {
-    res = await client.get('', {
-      params: {
-        q: cityName,
-      },
-    });
-  } catch (e) {
-    return res;
-  }
+  const res = await client.get('', {
+    params: {
+      q: cityName,
+    },
+  });
 
   return res.data;
 };
 
 const createWeatherByGeoLocResolver = () => async (obj, { lat, lon } = {}, context, info) => {
-  let res = [];
-  try {
-    res = await client.get('', {
-      params: {
-        lat,
-        lon,
-      },
-    });
-  } catch (e) {
-    return res;
-  }
+  const res = await client.get('', {
+    params: {
+      lat,
+      lon,
+    },
+  });
 
   return res.data;
 };
