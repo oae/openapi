@@ -1,0 +1,33 @@
+type Query {
+  currentWeatherByCityName(cityName: String!): Weather
+  currentWeatherByGeoLoc(lat: Float!, lon: Float!): Weather
+}
+
+
+type Weather {
+  geoloc: GeoLocation
+  condition: WeatherCondition
+  temperature: Float
+  pressure: String
+  humidity: String
+  wind: Wind
+  cityName: String
+  estimatedTime: Int
+}
+
+type GeoLocation {
+  longitude: Float
+  latitude: Float
+}
+
+type WeatherCondition {
+  name: String
+  description: String
+}
+
+type Wind {
+  speed: Float
+  degree: Float
+}
+
+
