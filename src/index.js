@@ -1,42 +1,57 @@
 /* eslint-disable global-require, import/no-dynamic-require */
 
 const { GraphQLServer } = require('graphql-yoga');
-const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
+const fp = require('lodash/fp');
+const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 const path = require('path');
-const util = require('util');
-const glob = util.promisify(require('glob'));
+const fs = require('fs-extra');
+
+const log = require('./log').child({ namespace: 'index' });
 
 const PROVIDER_PATH = path.resolve(__dirname, './providers');
 
-async function loadContextCreators() {
-  const files = await glob(path.resolve(PROVIDER_PATH, `./**/*.context.js`));
-  const reContextName = new RegExp(`${PROVIDER_PATH}/(.*).context.js`);
-  const filesWithNames = files.map(filePath => ({
-    path: filePath,
-    name: filePath.match(reContextName)[1],
-  }));
+async function getProviders() {
+  const relativePaths = await fs.readdir(PROVIDER_PATH);
+  return relativePaths.map(relativePath => require(path.resolve(PROVIDER_PATH, relativePath)));
+}
 
-  return filesWithNames.reduce((acc, file) => {
-    acc[file.name] = require(file.path);
-    return acc;
-  }, {});
+async function initProviders() {
+  try {
+    const providers = await getProviders();
+    return Promise.all(
+      providers.map(async providerManifest => {
+        try {
+          const provider = await providerManifest.init();
+          return {
+            name: providerManifest.name,
+            ...provider,
+          };
+        } catch (err) {
+          err.provider = providerManifest.name;
+          throw err;
+        }
+      })
+    );
+  } catch (err) {
+    log.error(`Error while initializing provider ${err.provider} `, err.stack);
+    throw err;
+  }
 }
 
 (async () => {
   try {
-    const contextCreators = await loadContextCreators();
+    log.info('initializing providers');
+    const providers = await initProviders();
+    const providersByName = providers.reduce((acc, provider) => {
+      acc[provider.name] = provider;
+      return acc;
+    }, {});
 
-    const typeDefs = mergeTypes(
-      fileLoader(path.resolve(PROVIDER_PATH, `./**/*.graphql`), {
-        all: true,
-      })
-    );
+    log.info('creating merged typeDefs');
+    const typeDefs = mergeTypes(providers.map(provider => provider.typeDefs));
 
-    const resolvers = mergeResolvers(
-      fileLoader(path.resolve(PROVIDER_PATH, `./**/*.resolver.js`), {
-        all: true,
-      })
-    );
+    log.info('creating merged resolvers');
+    const resolvers = mergeResolvers(providers.map(provider => provider.resolvers));
 
     const context = () => (...contextArgs) => {
       const contextStore = {};
@@ -44,9 +59,14 @@ async function loadContextCreators() {
       return {
         async getContext(name) {
           if (!contextStore[name]) {
-            const creator = contextCreators[name];
-            if (!creator) {
-              throw new Error(`There is no context with name ${name}`);
+            const provider = providersByName[name];
+            if (!provider) {
+              throw new Error(`There is no provider with name ${name}`);
+            }
+
+            const creator = provider.context;
+            if (!fp.isFunction(creator)) {
+              throw new Error(`Provider ${name} doesn't define any context`);
             }
             contextStore[name] = await creator(...contextArgs);
           }
@@ -56,9 +76,10 @@ async function loadContextCreators() {
       };
     };
 
+    log.info('creating graphql server');
     const server = new GraphQLServer({ typeDefs, resolvers, context });
-    server.start(() => console.log(`Server is running at http://localhost:4000`));
+    server.start(() => log.info(`Server is running at http://localhost:4000`));
   } catch (err) {
-    console.error('Error while starting application: ', err.stack);
+    log.error('Error while starting application: ', err.stack);
   }
 })();

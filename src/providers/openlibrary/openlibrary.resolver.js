@@ -11,7 +11,7 @@ const fetchRelationWithKey = (dataKey, type) => async (
   context,
   info
 ) => {
-  const loaders = await context.getContext('openlibrary/openlibrary');
+  const loaders = await context.getContext('openlibrary');
   const rawKeys = obj[dataKey] || [];
   const keys = fp.flow(
     fp.take(limit || rawKeys.length),
@@ -48,7 +48,7 @@ const createBookSearchResolver = () => async (
     },
   });
 
-  const loaders = await context.getContext('openlibrary/openlibrary');
+  const loaders = await context.getContext('openlibrary');
   const { keyLoader } = loaders;
 
   return Promise.all(
