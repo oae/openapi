@@ -4,8 +4,12 @@ volumes:
   node_modules:
 
 services:
+  redis:
+    ports:
+      - 6379:6379
+
   api:
-    command: sh -c "yarn install && yarn watch"
+    command: yarn dev:in-docker
     volumes:
       - .:/app
       - node_modules:/app/node_modules

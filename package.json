@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "yarn docd run --rm --service-ports api",
-    "watch": "nodemon --delay 250ms -e js,graphql -x 'kill-port 9229 && node --inspect=0.0.0.0:9229 src/index.js'",
+    "dev:in-docker": "yarn install && yarn dev:watch",
+    "dev:watch": "nodemon --delay 250ms -e js,graphql -x 'kill-port 9229 && yarn dev:watch:debug'",
+    "dev:watch:debug": "node --inspect=0.0.0.0:9229 src/index.js | pino-pretty --translateTime",
     "start": "node src/index.js",
     "lint": "eslint src/",
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml"
@@ -24,13 +26,16 @@
   "dependencies": {
     "@okgrow/graphql-scalars": "^0.4.2",
     "axios": "^0.18.0",
+    "bull": "^3.4.8",
     "dataloader": "^1.4.0",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.3",
     "graphql-yoga": "1.16.2",
+    "ioredis": "^4.2.0",
     "lodash": "^4.17.11",
     "merge-graphql-schemas": "^1.5.7",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pino": "^5.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -43,6 +48,7 @@
     "kill-port": "^1.3.2",
     "lint-staged": "^7.3.0",
     "nodemon": "^1.18.4",
+    "pino-pretty": "^2.2.2",
     "prettier": "^1.14.3"
   }
 }

@@ -12,7 +12,7 @@ const createMovieSearchResolver = () => async (
   context,
   info
 ) => {
-  const { movieLoader } = await context.getContext('omdb/omdb');
+  const { movieLoader } = await context.getContext('omdb');
 
   const startPage = skip / PAGE_SIZE + 1;
   const lastPage = startPage + limit / PAGE_SIZE;
@@ -44,7 +44,7 @@ const createMovieSearchResolver = () => async (
 const createMovieResolver = () => async (obj, { imdbId } = {}, context, info) => {
   const {
     loaders: { movieLoader },
-  } = await context.getContext('omdb/omdb');
+  } = await context.getContext('omdb');
 
   return movieLoader.load(imdbId);
 };
