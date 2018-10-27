@@ -1,6 +1,6 @@
 type Query {
-  currentWeatherByCityName(cityName: String!): Weather
-  currentWeatherByGeoLoc(lat: Float!, lon: Float!): Weather
+  currentWeatherByCityName(cityName: String!,unit: Unit): Weather
+  currentWeatherByGeoLoc(lat: Float!, lng: Float!, unit: Unit): Weather
 }
 
 
@@ -28,6 +28,11 @@ type WeatherCondition {
 type Wind {
   speed: Float
   degree: Float
+}
+
+enum Unit {
+  IMPERIAL
+  METRIC
 }
 
 
