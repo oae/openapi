@@ -22,7 +22,6 @@
     ]
   },
   "keywords": [],
-  "author": "Manjula Dube",
   "dependencies": {
     "@okgrow/graphql-scalars": "^0.4.2",
     "axios": "^0.18.0",
