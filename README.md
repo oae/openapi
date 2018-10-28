@@ -1,23 +1,44 @@
 # Open API GraphQL
 
-- This project is under heavy development. 
-- Things may or may not work. 
-- There might be some things that aren't even implemented yet. 
-- Things may be added/deleted in the future.
-
 ## Development
 
 ### Requirements:
 - yarn
 - docker
 - docker-compose
-- If you want to work on tvdb provider you'll need to obtain your `API_KEY` from `https://www.thetvdb.com/` and add following to `.secrets.env` file
 
-    ```
-    OA_TVDB_API_KEY=your-api-key
-    ```
+Clone the repository:
+```sh
+git clone git@github.com:openapi/openapi.git
+```
 
-You can start a development server with following:
+Copy `.secrets.env.example`:
+```sh
+cp .secrets.env.example .secrets.env
+```
+
+Fill the `.secrets.env` with api keys you obtained from relevant providers
+
+Start `api` and all of it's dependencies in development mode:
 ```
 yarn dev
+```
+
+## Deployment
+
+Clone the repository:
+```sh
+git clone git@github.com:openapi/openapi.git
+```
+
+Copy `.secrets.env.example`:
+```sh
+cp .secrets.env.example .secrets.env
+```
+
+Fill the `.secrets.env` with api keys you obtained from relevant providers
+
+Start `api` and all of it's dependencies in development mode:
+```
+docker-compose up --build -d
 ```
