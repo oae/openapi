@@ -1,11 +1,11 @@
 const Redis = require('ioredis');
 
-const { REDIS_MAIN_URL, REDIS_QUEUE_URL } = require('./env');
+const { mainRedisUrl, queueRedisUrl } = require('./env');
 
-module.exports = new Redis(REDIS_MAIN_URL, {
+module.exports = new Redis(mainRedisUrl, {
   enableReadyCheck: true,
 });
 
-module.exports.queueRedis = new Redis(REDIS_QUEUE_URL, {
+module.exports.queueRedis = new Redis(queueRedisUrl, {
   enableReadyCheck: true,
 });

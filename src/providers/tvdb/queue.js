@@ -1,11 +1,11 @@
 const Queue = require('bull');
-const { REDIS_QUEUE_URL, TVDB_API_KEY } = require('../../env');
+const { queueRedisUrl } = require('../../env');
 const { login } = require('./auth');
 
-const authQueue = new Queue('tvdb:auth', REDIS_QUEUE_URL);
+const authQueue = new Queue('tvdb:auth', queueRedisUrl);
 
 authQueue.process(async () => {
-  const token = await login(TVDB_API_KEY);
+  const token = await login();
   return token;
 });
 

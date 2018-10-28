@@ -1,6 +1,7 @@
 const { loadTypeDefs, loadResolvers } = require('../../utils');
 const context = require('./context');
 const queue = require('./queue');
+const { enabled } = require('./env');
 
 async function init() {
   await queue.init();
@@ -14,5 +15,6 @@ async function init() {
 
 module.exports = {
   name: 'tvdb',
+  enabled,
   init,
 };

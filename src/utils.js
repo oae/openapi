@@ -3,6 +3,8 @@ const path = require('path');
 const fs = require('fs-extra');
 const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 
+const sleep = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
+
 const resolveAlias = key => (obj, args, context, info) => fp.get(key, obj);
 const resolveMultiplePaths = (rootPath, files) =>
   files.map(relativePath => path.resolve(path.resolve(rootPath, relativePath)));
@@ -22,6 +24,7 @@ const loadResolvers = async (rootPath, files) => {
 };
 
 module.exports = {
+  sleep,
   resolveAlias,
   resolveMultiplePaths,
   loadTypeDefs,

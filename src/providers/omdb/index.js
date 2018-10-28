@@ -1,5 +1,6 @@
 const { loadTypeDefs, loadResolvers } = require('../../utils');
 const context = require('./context');
+const { enabled } = require('./env');
 
 async function init() {
   return {
@@ -11,5 +12,6 @@ async function init() {
 
 module.exports = {
   name: 'omdb',
+  enabled,
   init,
 };

@@ -1,11 +1,4 @@
-const env = Object.keys(process.env)
-  .filter(key => /^OA_.*$/.test(key))
-  .reduce(
-    (acc, key) => ({
-      ...acc,
-      [key.replace('OA_', '')]: process.env[key],
-    }),
-    {}
-  );
-
-module.exports = env;
+module.exports = {
+  mainRedisUrl: process.env.OA_REDIS_MAIN_URL,
+  queueRedisUrl: process.env.OA_REDIS_QUEUE_URL,
+};
