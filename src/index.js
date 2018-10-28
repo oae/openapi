@@ -3,43 +3,16 @@
 const { GraphQLServer } = require('graphql-yoga');
 const fp = require('lodash/fp');
 const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
-const path = require('path');
-const fs = require('fs-extra');
+const { sleep } = require('./utils');
+const { initProviders } = require('./providers');
 
-const log = require('./log').child({ namespace: 'index' });
-
-const PROVIDER_PATH = path.resolve(__dirname, './providers');
-
-async function getProviders() {
-  const relativePaths = await fs.readdir(PROVIDER_PATH);
-  return relativePaths.map(relativePath => require(path.resolve(PROVIDER_PATH, relativePath)));
-}
-
-async function initProviders() {
-  try {
-    const providers = await getProviders();
-    return Promise.all(
-      providers.map(async providerManifest => {
-        try {
-          const provider = await providerManifest.init();
-          return {
-            name: providerManifest.name,
-            ...provider,
-          };
-        } catch (err) {
-          err.provider = providerManifest.name;
-          throw err;
-        }
-      })
-    );
-  } catch (err) {
-    log.error(`Error while initializing provider ${err.provider} `, err.stack);
-    throw err;
-  }
-}
+const log = require('./log').child({ ns: 'index' });
 
 (async () => {
   try {
+    // this is purely for debugging
+    await sleep(process.env.NODE_ENV === 'development' ? 2000 : 0);
+
     log.info('initializing providers');
     const providers = await initProviders();
     const providersByName = providers.reduce((acc, provider) => {
@@ -78,7 +51,10 @@ async function initProviders() {
 
     log.info('creating graphql server');
     const server = new GraphQLServer({ typeDefs, resolvers, context });
-    server.start(() => log.info(`Server is running at http://localhost:4000`));
+    server.start(() => {
+      // eslint-disable-next-line no-console
+      console.log(`Server is running at http://localhost:4000`);
+    });
   } catch (err) {
     log.error('Error while starting application: ', err.stack);
   }

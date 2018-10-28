@@ -1,11 +1,11 @@
 const axios = require('axios');
 
-const { OMDB_API_KEY } = require('../../env');
+const { apiKey } = require('./env');
 
 const client = axios.create({
   baseURL: 'http://www.omdbapi.com',
   params: {
-    apikey: OMDB_API_KEY,
+    apiKey,
     type: 'movie', // tv series are provided from another provider
   },
 });
