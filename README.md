@@ -38,7 +38,7 @@ cp .secrets.env.example .secrets.env
 
 Fill the `.secrets.env` with api keys you obtained from relevant providers
 
-Start `api` and all of it's dependencies in development mode:
+Start the project in background
 ```
 docker-compose up --build -d
 ```
