@@ -1,6 +1,6 @@
 # Open API GraphQL
 
-## Development
+## :computer: Development
 
 ### Requirements:
 - yarn
@@ -24,7 +24,7 @@ Start `api` and all of it's dependencies in development mode:
 yarn dev
 ```
 
-## Deployment
+## :rocket: Deployment
 
 Clone the repository:
 ```sh
