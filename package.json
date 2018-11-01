@@ -33,6 +33,7 @@
     "ioredis": "^4.2.0",
     "lodash": "^4.17.11",
     "merge-graphql-schemas": "^1.5.7",
+    "moment": "^2.22.2",
     "path": "^0.12.7",
     "pino": "^5.8.0"
   },

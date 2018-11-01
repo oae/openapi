@@ -1,15 +1,20 @@
 type Query {
-    """base currency fields values are available in https://www.xe.com/iso4217.php """
-  latestRates(from: String!, to:[String]!) : Rate 
+    """ date format YYYY/MM/DD """
+  latestRates(from: String!, to:[String]!, date: DateTime) : Rate
+  currencies: [Currency]
 }
 
 type Rate {
   date: DateTime
   from: String
-  rates: [Currency]
+  rates: [ExchangeRate]
+}
+
+type ExchangeRate {
+  to: String
+  rate: Float
 }
 
 type Currency {
-  to: String
-  rate: Float
+  name: String
 }
