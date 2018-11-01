@@ -1,13 +1,13 @@
 {
-  "name": "graphql-boilerplate",
+  "name": "openapi",
   "version": "1.0.0",
   "scripts": {
     "dev": "yarn docd run --rm --service-ports api",
     "dev:in-docker": "yarn install && yarn dev:watch",
     "dev:watch": "nodemon --delay 250ms -e js,graphql -x 'kill-port 9229 && yarn dev:watch:debug'",
-    "dev:watch:debug": "node --inspect=0.0.0.0:9229 src/index.js | pino-pretty --translateTime",
-    "start": "node src/index.js",
-    "lint": "eslint src/",
+    "dev:watch:debug": "node --inspect=0.0.0.0:9229 packages/server/index.js | pino-pretty --translateTime",
+    "start": "node packages/server/index.js",
+    "lint": "eslint packages/",
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml"
   },
   "private": true,
@@ -26,9 +26,6 @@
     ]
   },
   "keywords": [],
-  "dependencies": {
-    "@openapi/core": "1.0.0"
-  },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.7.0",
