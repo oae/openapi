@@ -1,9 +1,13 @@
-const { loadTypeDefs, loadResolvers } = require('../../utils');
+const { loadTypeDefs, loadResolvers } = require('@openapi/core/utils');
 const context = require('./context');
 const queue = require('./queue');
 const { enabled } = require('./env');
 
-async function init() {
+const config = {};
+
+async function init(options = {}) {
+  config.options = options;
+
   await queue.init();
 
   return {
@@ -17,4 +21,5 @@ module.exports = {
   name: 'tvdb',
   enabled,
   init,
+  config,
 };

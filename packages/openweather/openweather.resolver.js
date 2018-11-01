@@ -1,4 +1,4 @@
-const { resolveAlias } = require('../../utils');
+const { resolveAlias } = require('@openapi/core/utils');
 
 const client = require('./client');
 const { Unit } = require('./constants');

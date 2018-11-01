@@ -1,5 +1,5 @@
 const Queue = require('bull');
-const { queueRedisUrl } = require('../../env');
+const { queueRedisUrl } = require('@openapi/core/env');
 const { login } = require('./auth');
 
 const authQueue = new Queue('tvdb:auth', queueRedisUrl);

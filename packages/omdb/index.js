@@ -1,4 +1,4 @@
-const { loadTypeDefs, loadResolvers } = require('../../utils');
+const { loadTypeDefs, loadResolvers } = require('@openapi/core/utils');
 const context = require('./context');
 const { enabled } = require('./env');
 
