@@ -1,0 +1,9 @@
+{
+  "name": "@openapi/plugin-common",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@okgrow/graphql-scalars": "^0.4.2",
+    "@openapi/core": "1.0.0"
+  }
+}

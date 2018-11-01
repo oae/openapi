@@ -1,6 +1,6 @@
 const fp = require('lodash/fp');
 
-const { resolveAlias } = require('../../utils');
+const { resolveAlias } = require('@openapi/core/utils');
 const { extractKeys, normalizeKey } = require('./utils');
 const client = require('./client');
 const { DEFAULT_LIMIT, KeyType } = require('./constants');

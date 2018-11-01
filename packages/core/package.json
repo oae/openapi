@@ -1,0 +1,14 @@
+{
+  "name": "@openapi/core",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "merge-graphql-schemas": "^1.5.7",
+    "ioredis": "^4.2.0",
+    "lodash": "^4.17.11",
+    "path": "^0.12.7",
+    "pino": "^5.8.0",
+    "graphql-yoga": "1.16.2",
+    "fs-extra": "^7.0.0"
+  }
+}

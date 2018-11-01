@@ -1,4 +1,4 @@
-const { loadTypeDefs, loadResolvers } = require('../../utils');
+const { loadTypeDefs, loadResolvers } = require('@openapi/core/utils');
 
 async function init() {
   return {

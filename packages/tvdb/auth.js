@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-const log = require('../../log').child({ ns: 'tvdb:auth' });
-const redis = require('../../redis');
+const log = require('@openapi/core/log').child({ ns: 'tvdb:auth' });
+const { redis } = require('@openapi/core');
 const { apiKey } = require('./env');
 
 const APP_KEY = 'oa:tvdb';
