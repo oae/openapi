@@ -1,9 +1,9 @@
-const moment = require('moment');
+const format = require('date-fns/format');
 const { resolveAlias } = require('../../utils');
 
 const client = require('./client');
 
-const resolveDate = date => moment(date).format('YYYY-MM-DD');
+const resolveDate = date => format(date, 'YYYY-MM-DD');
 
 const createLatestRatesResolver = () => async (obj, { from, to, date } = {}, context, info) => {
   if (date) {
