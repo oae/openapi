@@ -1,6 +1,5 @@
 type Query {
-    """ date format YYYY/MM/DD """
-  latestRates(from: String!, to:[String]!, date: DateTime) : Rate
+  rates(from: String!, to:[String]!, date: DateTime) : Rate
   currencies: [Currency]
 }
 

@@ -20,6 +20,11 @@ const createLatestRatesResolver = () => async (obj, { from, to, date } = {}, con
   return { ...res.data, to };
 };
 
+const createCurrenciesResolver = () => async (obj, _, context, info) => {
+  const res = await client.get('latest');
+  return Object.keys(res.data.rates);
+};
+
 const resolveRates = () => (obj, _, context, info) => {
   const { to, rates } = obj;
   return to.reduce((acc, val) => {
@@ -28,14 +33,21 @@ const resolveRates = () => (obj, _, context, info) => {
   }, []);
 };
 
+const resolveCurrencyNames = () => (name, _, context, info) => name;
+
 module.exports = {
   Query: {
-    latestRates: createLatestRatesResolver(),
+    rates: createLatestRatesResolver(),
+    currencies: createCurrenciesResolver(),
   },
 
   Rate: {
     from: resolveAlias('base'),
     date: resolveAlias('date'),
     rates: resolveRates(),
+  },
+
+  Currency: {
+    name: resolveCurrencyNames(),
   },
 };
