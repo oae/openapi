@@ -1,5 +1,5 @@
 const format = require('date-fns/format');
-const { resolveAlias } = require('../../utils');
+const { resolveAlias } = require('@openapi/core/utils');
 
 const client = require('./client');
 

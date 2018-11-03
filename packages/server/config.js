@@ -27,6 +27,7 @@ module.exports = {
       },
     ],
     '@openapi/plugin-openlibrary',
+    '@openapi/plugin-openrates',
     [
       '@openapi/plugin-openweather',
       {

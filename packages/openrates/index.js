@@ -1,5 +1,4 @@
-const { loadTypeDefs, loadResolvers } = require('../../utils');
-const { enabled } = require('./env');
+const { loadTypeDefs, loadResolvers } = require('@openapi/core/utils');
 
 async function init() {
   return {
@@ -10,7 +9,5 @@ async function init() {
 }
 
 module.exports = {
-  name: 'openrates',
-  enabled,
   init,
 };
