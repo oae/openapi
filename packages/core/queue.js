@@ -1,5 +1,5 @@
 const Queue = require('bull');
-const { getConfig } = require('./server');
+const { getConfig } = require('./openApi');
 
 const create = scope => {
   const { queue } = getConfig();

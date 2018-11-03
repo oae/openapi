@@ -1,7 +1,7 @@
 module.exports = {
   utils: require('./utils'),
   log: require('./log'),
-  server: require('./server'),
+  openApi: require('./openApi'),
   queue: require('./queue'),
   providerUtils: require('./providerUtils'),
 };
