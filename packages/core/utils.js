@@ -27,7 +27,7 @@ const createContextCreatorForProvider = contextCreator => (...contextArgs) => {
   let context = null;
 
   return {
-    async getContext(name) {
+    async getContext() {
       if (!context) {
         context = await contextCreator(...contextArgs);
       }
@@ -37,7 +37,11 @@ const createContextCreatorForProvider = contextCreator => (...contextArgs) => {
   };
 };
 
+// Sorry, but we really want syntax highlighting
+const gql = String.raw;
+
 module.exports = {
+  gql,
   sleep,
   resolveAlias,
   resolveMultiplePaths,
