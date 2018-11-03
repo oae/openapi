@@ -9,7 +9,7 @@
     "dlint": "yarn drun lint",
     "lint": "eslint packages/",
     "test": "jest",
-    "test:debug": "node --inspect=0.0.0.0:9229 ./node_modules/.bin/jest --watchAll --runInBand",
+    "test:debug": "node --inspect=0.0.0.0:9229 ./node_modules/.bin/jest --watch --runInBand",
     "dev:watch": "nodemon --delay 250ms -e js,graphql -x 'kill-port 9229 && yarn dev:debug'",
     "dev:debug": "node --inspect=0.0.0.0:9229 packages/server/index.js | pino-pretty --translateTime",
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml",
@@ -20,6 +20,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "jest": {
+    "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "./config/jest.setup.js"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -42,6 +46,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
+    "jest-extended": "^0.11.0",
     "kill-port": "^1.3.2",
     "lint-staged": "^7.3.0",
     "nodemon": "^1.18.4",
