@@ -9,11 +9,11 @@ RUN apk add --update util-linux git python make bash g++
 COPY . /app
 
 # install only production modules and separate it for later use
-RUN yarn install --production \
+RUN yarn install --production --frozen-lockfile \
   && cp -r node_modules prod_node_modules/
 
 # install all modules
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # starting point for production image
 FROM node:8-alpine as prod
