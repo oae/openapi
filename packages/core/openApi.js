@@ -1,7 +1,7 @@
 const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 const fp = require('lodash/fp');
 
-const providerUtils = require('./providerUtils');
+const pluginUtils = require('./pluginUtils');
 const { sleep } = require('./utils');
 
 const log = require('./log').child({ ns: '@openapi/core/openApi' });
@@ -12,25 +12,25 @@ const getConfig = () => openApiConfig;
 const init = async config => {
   openApiConfig = config;
 
-  const { enabledProviders } = config;
+  const { enabledPlugins } = config;
 
   log.info('starting server');
   try {
     // this is purely for debugging
     await sleep(process.env.NODE_ENV === 'development' ? 2000 : 0);
 
-    log.info('initializing providers');
-    const providers = await providerUtils.initProviders(enabledProviders);
-    const providersByName = providers.reduce((acc, provider) => {
-      acc[provider.name] = provider;
+    log.info('initializing plugins');
+    const plugins = await pluginUtils.initPlugins(enabledPlugins);
+    const pluginsByName = plugins.reduce((acc, plugin) => {
+      acc[plugin.name] = plugin;
       return acc;
     }, {});
 
     log.info('creating merged typeDefs');
-    const typeDefs = mergeTypes(providers.map(provider => provider.typeDefs));
+    const typeDefs = mergeTypes(plugins.map(plugin => plugin.typeDefs));
 
     log.info('creating merged resolvers');
-    const resolvers = mergeResolvers(providers.map(provider => provider.resolvers));
+    const resolvers = mergeResolvers(plugins.map(plugin => plugin.resolvers));
 
     const context = () => (...contextArgs) => {
       const contextStore = {};
@@ -38,14 +38,14 @@ const init = async config => {
       return {
         async getContext(name) {
           if (!contextStore[name]) {
-            const provider = providersByName[name];
-            if (!provider) {
-              throw new Error(`There is no provider with name ${name}`);
+            const plugin = pluginsByName[name];
+            if (!plugin) {
+              throw new Error(`There is no plugin with name ${name}`);
             }
 
-            const creator = provider.context;
+            const creator = plugin.context;
             if (!fp.isFunction(creator)) {
-              throw new Error(`Provider ${name} doesn't define any context`);
+              throw new Error(`Plugin ${name} doesn't define any context`);
             }
             contextStore[name] = await creator(...contextArgs);
           }

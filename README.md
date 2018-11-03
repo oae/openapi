@@ -17,7 +17,7 @@ Copy `.secrets.env.example`:
 cp .secrets.env.example .secrets.env
 ```
 
-Fill the `.secrets.env` with api keys you obtained from relevant providers
+Fill the `.secrets.env` with api keys you obtained from relevant plugins
 
 Start `api` and all of it's dependencies in development mode:
 ```
@@ -36,7 +36,7 @@ Copy `.secrets.env.example`:
 cp .secrets.env.example .secrets.env
 ```
 
-Fill the `.secrets.env` with api keys you obtained from relevant providers
+Fill the `.secrets.env` with api keys you obtained from relevant plugins
 
 Start the project in background
 ```

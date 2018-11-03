@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { getOptions } = require('@openapi/core/providerUtils');
+const { getOptions } = require('@openapi/core/pluginUtils');
 
 const { name: pluginName } = require('./package.json');
 
