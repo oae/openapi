@@ -1,8 +1,10 @@
-version: '3'
+version: '3.7'
 
 services:
   task:
-    build: .
+    build:
+      context: .
+      target: dev
     depends_on:
       - redis
     volumes:
