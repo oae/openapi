@@ -16,7 +16,7 @@ module.exports = {
   queue: {
     redisUrl: process.env.OA_REDIS_QUEUE_URL,
   },
-  enabledProviders: [
+  enabledPlugins: [
     '@openapi/plugin-common',
     [
       '@openapi/plugin-omdb',

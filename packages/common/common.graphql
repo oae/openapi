@@ -1,7 +1,7 @@
 type Query {
-  providers: [Provider]
+  plugins: [Plugin]
 }
 
-type Provider {
+type Plugin {
   name: String
 }
