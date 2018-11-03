@@ -7,14 +7,21 @@ const { sleep } = require('./utils');
 
 const log = require('./log').child({ ns: '@openapi/core/server' });
 
+let serverConfig = {};
+const getConfig = () => serverConfig;
+
 const start = async config => {
-  log.info('starting server with config: %o', config);
+  serverConfig = config;
+
+  const { enabledProviders } = config;
+
+  log.info('starting server');
   try {
     // this is purely for debugging
     await sleep(process.env.NODE_ENV === 'development' ? 2000 : 0);
 
     log.info('initializing providers');
-    const providers = await providerUtils.initProviders(config.providers);
+    const providers = await providerUtils.initProviders(enabledProviders);
     const providersByName = providers.reduce((acc, provider) => {
       acc[provider.name] = provider;
       return acc;
@@ -62,4 +69,5 @@ const start = async config => {
 
 module.exports = {
   start,
+  getConfig,
 };

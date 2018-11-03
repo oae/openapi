@@ -1,6 +1,9 @@
 const fp = require('lodash/fp');
 
 const { resolveAlias } = require('@openapi/core/utils');
+
+const { name: pluginName } = require('./package.json');
+
 const { extractKeys, normalizeKey } = require('./utils');
 const client = require('./client');
 const { DEFAULT_LIMIT, KeyType } = require('./constants');
@@ -11,7 +14,7 @@ const fetchRelationWithKey = (dataKey, type) => async (
   context,
   info
 ) => {
-  const loaders = await context.getContext('openlibrary');
+  const loaders = await context.getContext(pluginName);
   const rawKeys = obj[dataKey] || [];
   const keys = fp.flow(
     fp.take(limit || rawKeys.length),
@@ -48,7 +51,7 @@ const createBookSearchResolver = () => async (
     },
   });
 
-  const loaders = await context.getContext('openlibrary');
+  const loaders = await context.getContext(pluginName);
   const { keyLoader } = loaders;
 
   return Promise.all(

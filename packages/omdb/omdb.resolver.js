@@ -1,10 +1,10 @@
 const fp = require('lodash/fp');
-
 const { resolveAlias } = require('@openapi/core/utils');
-const client = require('./client');
-const { DEFAULT_LIMIT } = require('./constants');
 
-const PAGE_SIZE = 10;
+const { name: pluginName } = require('./package.json');
+
+const client = require('./client');
+const { DEFAULT_LIMIT, PAGE_SIZE } = require('./constants');
 
 const createMovieSearchResolver = () => async (
   obj,
@@ -12,7 +12,7 @@ const createMovieSearchResolver = () => async (
   context,
   info
 ) => {
-  const { movieLoader } = await context.getContext('omdb');
+  const { movieLoader } = await context.getContext(pluginName);
 
   const startPage = skip / PAGE_SIZE + 1;
   const lastPage = startPage + limit / PAGE_SIZE;
@@ -44,7 +44,7 @@ const createMovieSearchResolver = () => async (
 const createMovieResolver = () => async (obj, { imdbId } = {}, context, info) => {
   const {
     loaders: { movieLoader },
-  } = await context.getContext('omdb');
+  } = await context.getContext(pluginName);
 
   return movieLoader.load(imdbId);
 };

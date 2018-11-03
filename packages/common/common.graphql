@@ -4,5 +4,4 @@ type Query {
 
 type Provider {
   name: String
-  enabled: Boolean
 }

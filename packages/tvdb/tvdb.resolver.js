@@ -1,5 +1,7 @@
 const client = require('./client');
 
+const { name: pluginName } = require('./package.json');
+
 module.exports = {
   Query: {
     series: async (obj, { name, limit = 1 } = {}, context, info) => {
@@ -14,7 +16,7 @@ module.exports = {
         return res;
       }
 
-      const loaders = await context.getContext('tvdb');
+      const loaders = await context.getContext(pluginName);
       const { seriesLoader } = loaders;
 
       return Promise.all(
@@ -38,14 +40,14 @@ module.exports = {
     name: obj => obj.seriesName,
     banner: obj => `https://www.thetvdb.com/banners/${obj.banner}`,
     episodes: async (obj, _, context) => {
-      const loaders = await context.getContext('tvdb');
+      const loaders = await context.getContext(pluginName);
       const { episodeLoader } = loaders;
       return episodeLoader.load({
         seriesId: obj.id,
       });
     },
     seasons: async (obj, { seasonNumber }, context) => {
-      const loaders = await context.getContext('tvdb');
+      const loaders = await context.getContext(pluginName);
       const { seasonLoader } = loaders;
       return seasonLoader.load({
         seriesId: obj.id,
@@ -66,7 +68,7 @@ module.exports = {
 
   Season: {
     episodes: async (obj, _, context, info) => {
-      const loaders = await context.getContext('tvdb');
+      const loaders = await context.getContext(pluginName);
       const { episodeLoader } = loaders;
       return episodeLoader.load({
         seriesId: obj.seriesId,

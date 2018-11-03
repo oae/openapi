@@ -1,8 +1,8 @@
-const Queue = require('bull');
-const { queueRedisUrl } = require('@openapi/core/env');
+const { queue } = require('@openapi/core');
+
 const { login } = require('./auth');
 
-const authQueue = new Queue('tvdb:auth', queueRedisUrl);
+const authQueue = queue.create('tvdb:auth');
 
 authQueue.process(async () => {
   const token = await login();

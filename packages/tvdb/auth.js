@@ -1,8 +1,20 @@
 const axios = require('axios');
 
+const { server, providerUtils } = require('@openapi/core');
 const log = require('@openapi/core/log').child({ ns: 'tvdb:auth' });
-const { redis } = require('@openapi/core');
-const { apiKey } = require('./env');
+
+const { name: pluginName } = require('./package.json');
+
+const {
+  auth: { apikey },
+} = providerUtils.getOptions(pluginName);
+
+const { getConfig } = server;
+const {
+  db: {
+    redis: { main: redis },
+  },
+} = getConfig();
 
 const APP_KEY = 'oa:tvdb';
 const TOKEN_KEY = `${APP_KEY}:token`;
@@ -14,7 +26,7 @@ const login = async () => {
   try {
     log.info('authenticating');
     const res = await axios.post('https://api.thetvdb.com/login', {
-      apikey: apiKey,
+      apikey,
     });
 
     if (!res.data) {
