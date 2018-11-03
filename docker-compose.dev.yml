@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.4'
 
 volumes:
   node_modules: {}
@@ -7,7 +7,7 @@ volumes:
 services:
   redis:
     ports:
-      - 6379:6379
+      - 127.0.0.1:6379:6379
 
   api:
     build:
