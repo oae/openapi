@@ -1,6 +1,6 @@
 module.exports = {
-  plugins: ['prettier'],
-  extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  plugins: ['jest', 'prettier'],
+  extends: ['airbnb-base', 'plugin:jest/recommended', 'plugin:prettier/recommended'],
   parser: 'babel-eslint',
   env: {
     node: true,

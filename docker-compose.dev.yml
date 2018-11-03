@@ -1,15 +1,24 @@
-version: "3"
+version: '3'
 
 volumes:
-  node_modules:
+  node_modules: {}
+  proxy_cache: {}
 
 services:
   redis:
     ports:
       - 6379:6379
 
+  proxy:
+    image: sameersbn/squid:3.5.27
+    volumes:
+      - proxy_cache:/var/spool/squid
+      # - ./squid.conf:/etc/squid/squid.conf
+    ports:
+      - 3128:3128
+
   api:
-    command: yarn dev:in-docker
+    command: yarn dev:watch
     environment:
       NODE_ENV: development
     volumes:
