@@ -65,6 +65,14 @@ const createBookSearchResolver = () => async (
   );
 };
 
+const resolveDescription = () => (obj, args, context, info) => {
+  if (fp.isString(obj.description)) {
+    return obj.description;
+  }
+
+  return fp.getOr(null, 'description.value', obj);
+};
+
 module.exports = {
   Query: {
     books: createBookSearchResolver(),
@@ -73,6 +81,7 @@ module.exports = {
 
   Book: {
     ...commonFields(),
+    description: resolveDescription(),
     covers: getCovers('covers'),
     subjectPlaces: resolveAlias('subject_places'),
     subjectPeople: resolveAlias('subject_people'),
