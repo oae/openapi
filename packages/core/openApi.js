@@ -14,7 +14,7 @@ const init = async config => {
 
   const { enabledPlugins } = config;
 
-  log.info('starting server');
+  log.info('initializing openapi');
   try {
     // this is purely for debugging
     await sleep(process.env.NODE_ENV === 'development' ? 2000 : 0);
