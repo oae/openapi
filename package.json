@@ -9,12 +9,12 @@
     "dlint": "yarn drun lint",
     "lint": "eslint packages/",
     "test": "jest",
-    "test:debug": "node --inspect=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand",
+    "test:debug": "node --inspect-brk=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand",
     "dev:watch": "nodemon --delay 250ms -e js,graphql -x 'kill-port 9229 && yarn dev:debug'",
     "dev:debug": "node --inspect=0.0.0.0:9229 packages/server/index.js | pino-pretty --translateTime",
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml",
     "doct": "yarn docd -f docker-compose.task.yml",
-    "drun": "yarn doct run --rm task yarn"
+    "drun": "yarn doct run --rm --user `id -u`:`id -g` task yarn"
   },
   "private": true,
   "workspaces": [

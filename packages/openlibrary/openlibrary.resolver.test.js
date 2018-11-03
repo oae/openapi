@@ -1,68 +1,81 @@
-const { createContextCreatorForProvider } = require('@openapi/core/utils');
+const { request } = require('graphql-request');
+const { gql } = require('@openapi/core/utils');
+const { createServer, destroyServer } = require('@openapi/core/testUtils');
 
-const resolvers = require('./openlibrary.resolver');
-const contextCreator = require('./context');
+const { name: pluginName } = require('./package.json');
 
-const info = `{
-  title
-  description
-  createdAt
-  lastModifiedAt
-  covers {
-    small
-    medium
-    large
-  }
-  subjectPlaces
-  subjectPeople
-  subjects
-  editions(limit: 2) {
+let server = null;
+
+beforeAll(async () => {
+  server = await createServer([pluginName]);
+});
+
+afterAll(async () => {
+  await destroyServer(server);
+});
+
+const bookFields = gql`
+  fragment bookFields on Book {
     title
-    isbn10
-    isbn13
-    publishers
-    publishDate
-    authors {
-      name
-    }
-  }
-  authors(limit: 2) {
-    name
+    description
     createdAt
     lastModifiedAt
-    birthDate
-    deathDate
-    altNames
-    personalName
+    covers {
+      small
+      medium
+      large
+    }
+    subjectPlaces
+    subjectPeople
+    subjects
+    editions(limit: 2) {
+      title
+      isbn10
+      isbn13
+      publishers
+      publishDate
+      authors {
+        name
+      }
+    }
+    authors(limit: 2) {
+      name
+      createdAt
+      lastModifiedAt
+      birthDate
+      deathDate
+      altNames
+      personalName
+    }
   }
-}`;
-
-const createContext = createContextCreatorForProvider(contextCreator);
+`;
 
 describe('openlibrary', () => {
   it('should return books with matching title', async () => {
-    const context = createContext();
+    const query = gql`
+      ${bookFields}
+      {
+        books(title: "Lord of the Rings", limit: 2) {
+          ...bookFields
+        }
+      }
+    `;
 
-    const result = await resolvers.Query.books(
-      {},
-      { title: 'Lord of the Rings', limit: 2 },
-      context,
-      info
-    );
-
+    const result = await request(server.endpoint, query);
     expect(result).toMatchSnapshot();
   });
 
   it('should return books from given author', async () => {
-    const context = createContext();
+    const query = gql`
+      ${bookFields}
+      {
+        booksFromAuthor(author: "tolkien", limit: 2) {
+          ...bookFields
+        }
+      }
+    `;
 
-    const result = await resolvers.Query.booksFromAuthor(
-      {},
-      { author: 'tolkien', limit: 2 },
-      context,
-      info
-    );
-
+    const result = await request(server.endpoint, query);
     expect(result).toMatchSnapshot();
   });
 });

@@ -1,13 +1,22 @@
 const { request } = require('graphql-request');
-const { createServer, destroyServer } = require('../../testUtils');
+const { gql } = require('@openapi/core/utils');
+const { createServer, destroyServer } = require('@openapi/core/testUtils');
 
-const omdbManifest = require('./');
-const { gql } = require('../../utils');
+const { name: pluginName } = require('./package.json');
 
 let server = null;
 
 beforeAll(async () => {
-  server = await createServer([omdbManifest]);
+  server = await createServer([
+    [
+      pluginName,
+      {
+        auth: {
+          apiKey: process.env.OA_OMDB_API_KEY,
+        },
+      },
+    ],
+  ]);
 });
 
 afterAll(async () => {

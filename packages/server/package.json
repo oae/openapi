@@ -11,6 +11,6 @@
     "@openapi/plugin-openweather": "1.0.0",
     "@openapi/plugin-tvdb": "1.0.0",
     "ioredis": "^4.2.0",
-    "graphql-yoga": "1.16.2"
+    "graphql-yoga": "^1.16.7"
   }
 }
