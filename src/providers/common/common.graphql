@@ -1,8 +1,0 @@
-type Query {
-  providers: [Provider]
-}
-
-type Provider {
-  name: String
-  enabled: Boolean
-}
