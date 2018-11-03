@@ -1,6 +1,7 @@
+const { createContextCreatorForProvider } = require('@openapi/core/utils');
+
 const resolvers = require('./openlibrary.resolver');
 const contextCreator = require('./context');
-const { createContextCreatorForProvider } = require('../../utils');
 
 const info = `{
   title
