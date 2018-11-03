@@ -42,9 +42,7 @@ const createMovieSearchResolver = () => async (
 };
 
 const createMovieResolver = () => async (obj, { imdbId } = {}, context, info) => {
-  const {
-    loaders: { movieLoader },
-  } = await context.getContext(pluginName);
+  const { movieLoader } = await context.getContext(pluginName);
 
   return movieLoader.load(imdbId);
 };

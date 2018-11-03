@@ -50,10 +50,19 @@ describe('omdb', () => {
   it('should return movies with title', async () => {
     const context = createContext();
 
-    expect(
-      await resolvers.Query.movies({}, { title: 'Inception', limit: 5 }, context, info)
-    ).toMatchSnapshot();
+    const result = await resolvers.Query.movies(
+      {},
+      { title: 'Inception', limit: 5 },
+      context,
+      info
+    );
+    expect(result).toMatchSnapshot();
   });
 
-  it('should return single movie', async () => {});
+  it('should return single movie', async () => {
+    const context = createContext();
+
+    const result = await resolvers.Query.movie({}, { imdbId: 'tt1375666' }, context, info);
+    expect(result).toMatchSnapshot();
+  });
 });
