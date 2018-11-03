@@ -1,8 +1,7 @@
 module.exports = {
   utils: require('./utils'),
   log: require('./log'),
-  env: require('./env'),
-  redis: require('./redis'),
   server: require('./server'),
+  queue: require('./queue'),
   providerUtils: require('./providerUtils'),
 };

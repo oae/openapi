@@ -2,25 +2,42 @@ const fp = require('lodash/fp');
 
 const log = require('./log').child({ ns: '@openapi/core/providers' });
 
-async function initProvider({ providerManifest, options }) {
+let providersByName = [];
+
+const initProvider = async ({ providerManifest, name }) => {
   try {
-    log.info({ provider: providerManifest.name }, 'initializing provider');
+    log.info({ provider: name }, 'initializing provider');
     const provider = await providerManifest.init();
     return {
-      name: providerManifest.name,
+      name,
       ...provider,
     };
   } catch (err) {
-    err.provider = providerManifest.name;
+    err.provider = name;
     throw err;
   }
-}
+};
 
-async function initProviders(providerList) {
-  const providers = fp.flow(
+const initProviders = async providerList => {
+  providersByName = fp.flow(
     fp.map(fp.castArray),
-    fp.map(([provider, options = {}]) => ({ providerManifest: require(provider), options }))
+    fp.map(([provider, options = {}]) => ({
+      name: provider,
+      options,
+    })),
+    fp.reduce(
+      (acc, provider) => ({
+        ...acc,
+        [provider.name]: provider.options,
+      }),
+      {}
+    )
   )(providerList);
+
+  const providers = Object.keys(providersByName).map(provider => ({
+    providerManifest: require(provider),
+    name: provider,
+  }));
 
   try {
     return Promise.all(providers.map(initProvider));
@@ -28,8 +45,11 @@ async function initProviders(providerList) {
     log.error(`Error while initializing provider ${err.provider} `, err.stack);
     throw err;
   }
-}
+};
+
+const getOptions = name => providersByName[name];
 
 module.exports = {
   initProviders,
+  getOptions,
 };

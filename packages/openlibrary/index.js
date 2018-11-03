@@ -1,6 +1,5 @@
 const { loadTypeDefs, loadResolvers } = require('@openapi/core/utils');
 const context = require('./context');
-const { enabled } = require('./env');
 
 async function init() {
   return {
@@ -11,7 +10,5 @@ async function init() {
 }
 
 module.exports = {
-  name: 'openlibrary',
-  enabled,
   init,
 };

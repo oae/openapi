@@ -1,5 +1,4 @@
 const { loadTypeDefs, loadResolvers } = require('@openapi/core/utils');
-const { enabled } = require('./env');
 
 async function init() {
   return {
@@ -10,7 +9,5 @@ async function init() {
 }
 
 module.exports = {
-  name: 'openweather',
-  enabled,
   init,
 };

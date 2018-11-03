@@ -9,7 +9,5 @@ async function init() {
 }
 
 module.exports = {
-  name: 'common',
-  enabled: true,
   init,
 };
