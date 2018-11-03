@@ -73,6 +73,7 @@ module.exports = {
 
   Book: {
     ...commonFields(),
+    description: resolveAlias('description.value'),
     covers: getCovers('covers'),
     subjectPlaces: resolveAlias('subject_places'),
     subjectPeople: resolveAlias('subject_people'),
