@@ -23,10 +23,25 @@ const loadResolvers = async (rootPath, files) => {
   return mergeResolvers(resolversArray);
 };
 
+const createContextCreatorForProvider = contextCreator => (...contextArgs) => {
+  let context = null;
+
+  return {
+    async getContext(name) {
+      if (!context) {
+        context = await contextCreator(...contextArgs);
+      }
+
+      return context;
+    },
+  };
+};
+
 module.exports = {
   sleep,
   resolveAlias,
   resolveMultiplePaths,
   loadTypeDefs,
   loadResolvers,
+  createContextCreatorForProvider,
 };

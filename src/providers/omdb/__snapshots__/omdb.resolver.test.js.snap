@@ -1,5 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`omdb should return a movie for given imdbId 1`] = `
+Object {
+  "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy",
+  "Awards": "Won 4 Oscars. Another 152 wins & 204 nominations.",
+  "BoxOffice": "$292,568,851",
+  "Country": "USA, UK",
+  "DVD": "07 Dec 2010",
+  "Director": "Christopher Nolan",
+  "Genre": "Action, Adventure, Sci-Fi, Thriller",
+  "Language": "English, Japanese, French",
+  "Metascore": "74",
+  "Plot": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+  "Production": "Warner Bros. Pictures",
+  "Rated": "PG-13",
+  "Ratings": Array [
+    Object {
+      "Source": "Internet Movie Database",
+      "Value": "8.8/10",
+    },
+    Object {
+      "Source": "Rotten Tomatoes",
+      "Value": "86%",
+    },
+    Object {
+      "Source": "Metacritic",
+      "Value": "74/100",
+    },
+  ],
+  "Released": "16 Jul 2010",
+  "Response": "True",
+  "Runtime": "148 min",
+  "Title": "Inception",
+  "Type": "movie",
+  "Website": "http://inceptionmovie.warnerbros.com/",
+  "Writer": "Christopher Nolan",
+  "Year": "2010",
+  "imdbID": "tt1375666",
+  "imdbRating": "8.8",
+  "imdbVotes": "1,755,015",
+}
+`;
+
 exports[`omdb should return movies with title 1`] = `
 Array [
   Object {
@@ -171,47 +214,4 @@ Array [
     "imdbVotes": "14",
   },
 ]
-`;
-
-exports[`omdb should return single movie 1`] = `
-Object {
-  "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy",
-  "Awards": "Won 4 Oscars. Another 152 wins & 204 nominations.",
-  "BoxOffice": "$292,568,851",
-  "Country": "USA, UK",
-  "DVD": "07 Dec 2010",
-  "Director": "Christopher Nolan",
-  "Genre": "Action, Adventure, Sci-Fi, Thriller",
-  "Language": "English, Japanese, French",
-  "Metascore": "74",
-  "Plot": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-  "Production": "Warner Bros. Pictures",
-  "Rated": "PG-13",
-  "Ratings": Array [
-    Object {
-      "Source": "Internet Movie Database",
-      "Value": "8.8/10",
-    },
-    Object {
-      "Source": "Rotten Tomatoes",
-      "Value": "86%",
-    },
-    Object {
-      "Source": "Metacritic",
-      "Value": "74/100",
-    },
-  ],
-  "Released": "16 Jul 2010",
-  "Response": "True",
-  "Runtime": "148 min",
-  "Title": "Inception",
-  "Type": "movie",
-  "Website": "http://inceptionmovie.warnerbros.com/",
-  "Writer": "Christopher Nolan",
-  "Year": "2010",
-  "imdbID": "tt1375666",
-  "imdbRating": "8.8",
-  "imdbVotes": "1,755,015",
-}
 `;

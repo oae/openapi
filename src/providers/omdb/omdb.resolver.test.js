@@ -1,50 +1,39 @@
-const resolvers = require('./omdb.resolver.js');
+const resolvers = require('./omdb.resolver');
 const contextCreator = require('./context');
+const { createContextCreatorForProvider } = require('../../utils');
 
 const info = `{
-    title
-    year
-    imdb {
-      id
-      rating
-      votes
-    }
-    metacritic {
-      rating
-    }
-    rottenTomatoes {
-      rating
-    }
-    rated
-    released
-    runtime
-    genre
-    director
-    writer
-    actors
-    plot
-    language
-    country
-    awards
-    poster
-    boxOffice
-    production
-    website
-  }`;
+  title
+  year
+  imdb {
+    id
+    rating
+    votes
+  }
+  metacritic {
+    rating
+  }
+  rottenTomatoes {
+    rating
+  }
+  rated
+  released
+  runtime
+  genre
+  director
+  writer
+  actors
+  plot
+  language
+  country
+  awards
+  poster
+  boxOffice
+  production
+  website
+}`;
 
-const createContext = (...contextArgs) => {
-  let context = null;
-
-  return {
-    async getContext(name) {
-      if (!context) {
-        context = await contextCreator(...contextArgs);
-      }
-
-      return context;
-    },
-  };
-};
+const createContext = createContextCreatorForProvider(contextCreator);
 
 describe('omdb', () => {
   it('should return movies with title', async () => {
@@ -59,7 +48,7 @@ describe('omdb', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('should return single movie', async () => {
+  it('should return a movie for given imdbId', async () => {
     const context = createContext();
 
     const result = await resolvers.Query.movie({}, { imdbId: 'tt1375666' }, context, info);
