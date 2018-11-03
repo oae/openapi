@@ -1,5 +1,271 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`openlibrary should return books from given author 1`] = `
+Object {
+  "booksFromAuthor": Array [
+    Object {
+      "authors": Array [
+        Object {
+          "altNames": Array [
+            "John Ronald Reuel Tolkien",
+            "J. R. R. Tolkein",
+            "J.R.R. Tolkein",
+          ],
+          "birthDate": "3 January 1892",
+          "createdAt": "2008-04-01T03:28:50.625Z",
+          "deathDate": "2 September 1973",
+          "lastModifiedAt": "2017-03-31T06:37:59.983Z",
+          "name": "J. R. R. Tolkien",
+          "personalName": "J. R. R. Tolkien",
+        },
+      ],
+      "covers": Array [
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/8236263-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/8236263-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/8236263-S.jpg",
+        },
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/-1-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/-1-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/-1-S.jpg",
+        },
+      ],
+      "createdAt": "2009-10-24T09:28:02.453Z",
+      "description": "The classic fantasy novel of a time before the “dominion of men”, this book introduces the reader to Tolkien’s world of hobbits, dwarves, goblins and wizards. The story takes the form of a quest as the hobbit Bilbo Baggins joins Gandalf the wizard Thorin Oakenshield the dwarf on a journey to claim a vast treasure guarded by the evil dragon Smaug. This book is a precursor to Tolkien’s extremely popular Lord of the Rings trilogy, the first of which was published nearly fifteen years later.",
+      "editions": Array [
+        Object {
+          "authors": Array [
+            Object {
+              "name": "J. R. R. Tolkien",
+            },
+          ],
+          "isbn10": Array [
+            "0048230707",
+          ],
+          "isbn13": null,
+          "publishDate": null,
+          "publishers": Array [
+            "Allen and Unwin",
+          ],
+          "title": "The Hobbit",
+        },
+        Object {
+          "authors": Array [
+            Object {
+              "name": "J. R. R. Tolkien",
+            },
+          ],
+          "isbn10": null,
+          "isbn13": null,
+          "publishDate": null,
+          "publishers": Array [
+            "Unwin",
+          ],
+          "title": "The Hobbit",
+        },
+      ],
+      "lastModifiedAt": "2018-09-01T13:46:06.442Z",
+      "subjectPeople": Array [
+        "Bilbo Baggins",
+        "Gandalf the Wizard",
+        "J. R. R. Tolkien (1892-1973)",
+      ],
+      "subjectPlaces": Array [
+        "Middle-earth",
+      ],
+      "subjects": Array [
+        "English Fantasy fiction",
+        "In library",
+        "Middle Earth (Imaginary place)",
+        "Accessible book",
+        "Bilbo Baggins (Fictitious character)",
+        "Fiction",
+        "Wizards",
+        "Specimens",
+        "Juvenile Fantasy fiction",
+        "Toy and movable books",
+        "Magic in fiction",
+        "Open Library Staff Picks",
+        "Large type books",
+        "juvenile literature",
+        "Pictorial works",
+        "Magic",
+        "Quests (Expeditions)",
+        "Graphic novels",
+        "Dragons in fiction",
+        "Children's stories",
+        "Ficción fantástica inglesa",
+        "Fantasy in fiction",
+        "Translations into Russian",
+        "Fantasy fiction",
+        "Juvenile fiction",
+        "Tierra Media (Lugar imaginario)",
+        "Dragons",
+        "Fantasy",
+        "Protected DAISY",
+        "Ficción",
+        "Internet Archive Wishlist",
+      ],
+      "title": "The Hobbit",
+    },
+    Object {
+      "authors": Array [
+        Object {
+          "altNames": Array [
+            "John Ronald Reuel Tolkien",
+            "J. R. R. Tolkein",
+            "J.R.R. Tolkein",
+          ],
+          "birthDate": "3 January 1892",
+          "createdAt": "2008-04-01T03:28:50.625Z",
+          "deathDate": "2 September 1973",
+          "lastModifiedAt": "2017-03-31T06:37:59.983Z",
+          "name": "J. R. R. Tolkien",
+          "personalName": "J. R. R. Tolkien",
+        },
+      ],
+      "covers": Array [
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/8167232-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/8167232-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/8167232-S.jpg",
+        },
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/8167229-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/8167229-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/8167229-S.jpg",
+        },
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/7389663-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/7389663-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/7389663-S.jpg",
+        },
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/2341290-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/2341290-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/2341290-S.jpg",
+        },
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/6415824-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/6415824-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/6415824-S.jpg",
+        },
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/255849-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/255849-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/255849-S.jpg",
+        },
+        Object {
+          "large": "https://covers.openlibrary.org/w/id/5071064-L.jpg",
+          "medium": "https://covers.openlibrary.org/w/id/5071064-M.jpg",
+          "small": "https://covers.openlibrary.org/w/id/5071064-S.jpg",
+        },
+      ],
+      "createdAt": "2009-10-24T09:28:02.453Z",
+      "description": "Frodo and the Companions of the Ring have been beset by danger during their quest to prevent the Ruling Ring from falling into the hands of the Dark Lord by destroying it in the Cracks of Doom. They have lost the wizard, Gandalf, in the battle with an evil spirit in the Mines of Moria; and at the Falls of Rauros, Boromir, seduced by the power of the Ring, tried to seize it by force. While Frodo and Sam made their escape the rest of the company were attacked by Orcs. Now they continue their journey alone down the great River Anduin – alone, that is, save for the mysterious creeping figure that follows wherever they go. J.R.R. Tolkien’s great work of imaginative fiction has been labelled both a heroic romance and a classic fantasy fiction. By turns comic and homely, epic and diabolic, the narrative moves through countless changes of scene and character in an imaginary world which is totally convincing in its detail.",
+      "editions": Array [
+        Object {
+          "authors": Array [
+            Object {
+              "name": "J. R. R. Tolkien",
+            },
+          ],
+          "isbn10": Array [
+            "8445071769",
+          ],
+          "isbn13": Array [
+            "9788445071762",
+          ],
+          "publishDate": "2001 December",
+          "publishers": Array [
+            "Minotauro",
+          ],
+          "title": "Las dos torres",
+        },
+        Object {
+          "authors": Array [],
+          "isbn10": Array [
+            "6020332276",
+          ],
+          "isbn13": Array [
+            "9786020332277",
+          ],
+          "publishDate": "2016 August",
+          "publishers": Array [
+            "Gramedia Pustaka Utama",
+          ],
+          "title": "The Two Towers",
+        },
+      ],
+      "lastModifiedAt": "2018-08-11T15:51:58.362Z",
+      "subjectPeople": Array [
+        "Gandalf",
+        "Frodo Baggins",
+        "Aragorn II",
+        "Merry",
+        "Pippin",
+        "Samwise",
+        "Boromir",
+        "Saruman the White",
+        "Uruk-hai",
+        "hobbits",
+        "Sauron",
+        "Shelob",
+        "Legolas",
+        "Gimli",
+        "Orcs",
+        "Huorns",
+        "Gollum",
+        "Éomer",
+        "Gríma Wormtongue",
+        "the Balrog",
+        "Ents",
+        "Treebeard",
+        "Rohirrim",
+        "Théoden",
+      ],
+      "subjectPlaces": Array [
+        "Tierra Media",
+        "River Anduin",
+        "Middle Earth",
+        "Minas Tirith",
+        "Rohan",
+        "Fangorn Forrest",
+        "Moria",
+        "Edoras",
+        "Helm's Deep",
+        "Isengard",
+        "Gondor",
+        "Mount Doom",
+        "Ithilien",
+        "Dead Marshes",
+      ],
+      "subjects": Array [
+        "magic",
+        "Ficción fantástica inglesa",
+        "Ficción",
+        "translations into Spanish",
+        "readers for new literates",
+        "The Lord of the Rings",
+        "English Fantasy fiction",
+        "In library",
+        "Open Library Staff Picks",
+        "Accessible book",
+        "Fiction",
+        "Large type books",
+        "Fantasy",
+        "Protected DAISY",
+        "Popular Print Disabled Books",
+        "Popular Carousel",
+        "Internet Archive Wishlist",
+      ],
+      "title": "The Two Towers",
+    },
+  ],
+}
+`;
+
 exports[`openlibrary should return books with matching title 1`] = `
 Object {
   "books": Array [
