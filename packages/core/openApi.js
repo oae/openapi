@@ -1,17 +1,16 @@
 const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
-const { GraphQLServer } = require('graphql-yoga');
 const fp = require('lodash/fp');
 
 const providerUtils = require('./providerUtils');
 const { sleep } = require('./utils');
 
-const log = require('./log').child({ ns: '@openapi/core/server' });
+const log = require('./log').child({ ns: '@openapi/core/openApi' });
 
-let serverConfig = {};
-const getConfig = () => serverConfig;
+let openApiConfig = {};
+const getConfig = () => openApiConfig;
 
-const start = async config => {
-  serverConfig = config;
+const init = async config => {
+  openApiConfig = config;
 
   const { enabledProviders } = config;
 
@@ -56,18 +55,15 @@ const start = async config => {
       };
     };
 
-    log.info('creating graphql server');
-    const server = new GraphQLServer({ typeDefs, resolvers, context });
-    server.start(() => {
-      // eslint-disable-next-line no-console
-      console.log(`Server is running at http://localhost:4000`);
-    });
+    return { typeDefs, resolvers, context };
   } catch (err) {
     log.error('Error while starting application: ', err.stack);
   }
+
+  return {};
 };
 
 module.exports = {
-  start,
+  init,
   getConfig,
 };

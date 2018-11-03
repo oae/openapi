@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const { server, providerUtils } = require('@openapi/core');
+const { openApi, providerUtils } = require('@openapi/core');
 const log = require('@openapi/core/log').child({ ns: 'tvdb:auth' });
 
 const { name: pluginName } = require('./package.json');
@@ -9,7 +9,7 @@ const {
   auth: { apikey },
 } = providerUtils.getOptions(pluginName);
 
-const { getConfig } = server;
+const { getConfig } = openApi;
 const {
   db: {
     redis: { main: redis },
