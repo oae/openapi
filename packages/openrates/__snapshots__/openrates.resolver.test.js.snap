@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`openrates should return all currencies 1`] = `
+Object {
+  "currencies": Array [
+    Object {
+      "name": "BGN",
+    },
+    Object {
+      "name": "CAD",
+    },
+    Object {
+      "name": "BRL",
+    },
+    Object {
+      "name": "HUF",
+    },
+    Object {
+      "name": "DKK",
+    },
+    Object {
+      "name": "JPY",
+    },
+    Object {
+      "name": "ILS",
+    },
+    Object {
+      "name": "TRY",
+    },
+    Object {
+      "name": "RON",
+    },
+    Object {
+      "name": "GBP",
+    },
+    Object {
+      "name": "PHP",
+    },
+    Object {
+      "name": "HRK",
+    },
+    Object {
+      "name": "NOK",
+    },
+    Object {
+      "name": "USD",
+    },
+    Object {
+      "name": "MXN",
+    },
+    Object {
+      "name": "AUD",
+    },
+    Object {
+      "name": "IDR",
+    },
+    Object {
+      "name": "KRW",
+    },
+    Object {
+      "name": "HKD",
+    },
+    Object {
+      "name": "ZAR",
+    },
+    Object {
+      "name": "ISK",
+    },
+    Object {
+      "name": "CZK",
+    },
+    Object {
+      "name": "THB",
+    },
+    Object {
+      "name": "MYR",
+    },
+    Object {
+      "name": "NZD",
+    },
+    Object {
+      "name": "PLN",
+    },
+    Object {
+      "name": "SEK",
+    },
+    Object {
+      "name": "RUB",
+    },
+    Object {
+      "name": "CNY",
+    },
+    Object {
+      "name": "SGD",
+    },
+    Object {
+      "name": "CHF",
+    },
+    Object {
+      "name": "INR",
+    },
+  ],
+}
+`;
+
+exports[`openrates should return rates for a given currency pair on a specific date 1`] = `
+Object {
+  "rates": Object {
+    "date": "2018-11-02T00:00:00.000Z",
+    "from": "USD",
+    "rates": Array [
+      Object {
+        "rate": 5.47770868,
+        "to": "TRY",
+      },
+    ],
+  },
+}
+`;
