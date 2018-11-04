@@ -3,6 +3,7 @@ const { GraphQLServer } = require('graphql-yoga');
 const config = require('@openapi/server/config');
 
 const openApi = require('./openApi');
+const queue = require('./queue');
 
 const createServer = async plugins => {
   const { typeDefs, resolvers, context } = await openApi.init({
@@ -32,6 +33,16 @@ const destroyServer = async server => {
   if (http && http.close) {
     await promisify(http.close).call(http);
   }
+
+  if (config.db && config.db.redis && config.db.redis.main) {
+    await config.db.redis.main.disconnect();
+  }
+
+  if (config.db && config.db.redis && config.db.redis.queue) {
+    await config.db.redis.queue.disconnect();
+  }
+
+  await queue.closeAll();
 };
 
 module.exports = {
