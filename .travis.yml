@@ -9,7 +9,7 @@ before_cache:
   # Save tagged docker images
   - >
     mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}'
-    | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+    | grep -i 'openapi' | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
 
 cache:
   bundler: true
@@ -27,60 +27,61 @@ install:
   - yarn dinstall
 
 stages:
-  - lint code
-  - test code
-  - code coverage
-  - update documentation
-  - deploy openapi
-  - publish npm packages
+  - Lint
+  - Test
+  - Code Coverage
+  - Documentation
+  - Deploy
+  - Publish
+
 # stages:
-#   - lint code
-#   - test code
-#   - code coverage
-#   - name: update documentation
-#     if: branch = master
-#   - name: deploy openapi
-#     if: branch = master
-#   - name: publish npm packages
-#     if: tag IS present
+#   - Lint
+#   - Test
+#   # - Code Coverage
+#   # - name: Documentation
+#   #   if: branch = master
+#   # - name: Deploy
+#   #   if: branch = master
+#   # - name: Publish
+#   #   if: tag IS present
 
 jobs:
   include:
-    - stage: lint code
+    - stage: Lint
       name: "Running eslint on packages"
       script:
         - yarn dlint
 
-    - stage: test code
+    - stage: Test
       name: "Running unit tests"
       script: 
         - yarn dtest
 
-    - stage: test code
+    - stage: Test
       name: "Running mutation tests"
       install: skip
       script: 
         - echo "TODO"
 
-    - stage: code coverage
+    - stage: Code Coverage
       name: "Running code coverage"
       install: skip
       script: 
         - echo "TODO"
 
-    - stage: update documentation
+    - stage: Documentation
       name: "Creating static documentation and deploying to github pages"
       install: skip
       script: 
         - echo "TODO"
 
-    - stage: deploy openapi
+    - stage: Deploy
       name: "Deploying openapi"
       install: skip
       script: 
         - echo "TODO"
 
-    - stage: publish npm
+    - stage: Publish
       name: "Publishing npm packages"
       install: skip
       script: 
