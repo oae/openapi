@@ -1,0 +1,89 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - '10'
+
+before_cache:
+  # Save tagged docker images
+  - >
+    mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}'
+    | grep -i 'openapi' | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+
+cache:
+  bundler: true
+  directories:
+    - $HOME/docker
+
+services:
+  - docker
+
+before_install:
+  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
+  - npm i -g yarn
+
+install:
+  - yarn dinstall
+
+# stages:
+#   - Lint
+#   - Test
+#   - Code Coverage
+#   - Documentation
+#   - Deploy
+#   - Publish
+
+stages:
+  - Lint
+  - Test
+  # - Code Coverage
+  # - name: Documentation
+  #   if: branch = master
+  # - name: Deploy
+  #   if: branch = master
+  # - name: Publish
+  #   if: tag IS present
+
+jobs:
+  include:
+    - stage: Lint
+      name: "Running eslint on packages"
+      script:
+        - yarn dlint
+
+    - stage: Test
+      name: "Running unit tests"
+      script: 
+        - yarn dtest
+
+    # - stage: Test
+    #   name: "Running mutation tests"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
+
+    # - stage: Code Coverage
+    #   name: "Running code coverage"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
+
+    # - stage: Documentation
+    #   name: "Creating static documentation and deploying to github pages"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
+
+    # - stage: Deploy
+    #   name: "Deploying openapi"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
+
+    # - stage: Publish
+    #   name: "Publishing npm packages"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
+    

@@ -12,9 +12,9 @@ Object {
             "J.R.R. Tolkein",
           ],
           "birthDate": "3 January 1892",
-          "createdAt": "2008-04-01T00:28:50.625Z",
+          "createdAt": "2008-04-01T03:28:50.625Z",
           "deathDate": "2 September 1973",
-          "lastModifiedAt": "2017-03-31T03:37:59.983Z",
+          "lastModifiedAt": "2017-03-31T06:37:59.983Z",
           "name": "J. R. R. Tolkien",
           "personalName": "J. R. R. Tolkien",
         },
@@ -31,7 +31,7 @@ Object {
           "small": "https://covers.openlibrary.org/w/id/-1-S.jpg",
         },
       ],
-      "createdAt": "2009-10-24T06:28:02.453Z",
+      "createdAt": "2009-10-24T09:28:02.453Z",
       "description": "The classic fantasy novel of a time before the “dominion of men”, this book introduces the reader to Tolkien’s world of hobbits, dwarves, goblins and wizards. The story takes the form of a quest as the hobbit Bilbo Baggins joins Gandalf the wizard Thorin Oakenshield the dwarf on a journey to claim a vast treasure guarded by the evil dragon Smaug. This book is a precursor to Tolkien’s extremely popular Lord of the Rings trilogy, the first of which was published nearly fifteen years later.",
       "editions": Array [
         Object {
@@ -65,7 +65,7 @@ Object {
           "title": "The Hobbit",
         },
       ],
-      "lastModifiedAt": "2018-09-01T10:46:06.442Z",
+      "lastModifiedAt": "2018-09-01T13:46:06.442Z",
       "subjectPeople": Array [
         "Bilbo Baggins",
         "Gandalf the Wizard",
@@ -118,9 +118,9 @@ Object {
             "J.R.R. Tolkein",
           ],
           "birthDate": "3 January 1892",
-          "createdAt": "2008-04-01T00:28:50.625Z",
+          "createdAt": "2008-04-01T03:28:50.625Z",
           "deathDate": "2 September 1973",
-          "lastModifiedAt": "2017-03-31T03:37:59.983Z",
+          "lastModifiedAt": "2017-03-31T06:37:59.983Z",
           "name": "J. R. R. Tolkien",
           "personalName": "J. R. R. Tolkien",
         },
@@ -162,7 +162,7 @@ Object {
           "small": "https://covers.openlibrary.org/w/id/5071064-S.jpg",
         },
       ],
-      "createdAt": "2009-10-24T06:28:02.453Z",
+      "createdAt": "2009-10-24T09:28:02.453Z",
       "description": "Frodo and the Companions of the Ring have been beset by danger during their quest to prevent the Ruling Ring from falling into the hands of the Dark Lord by destroying it in the Cracks of Doom. They have lost the wizard, Gandalf, in the battle with an evil spirit in the Mines of Moria; and at the Falls of Rauros, Boromir, seduced by the power of the Ring, tried to seize it by force. While Frodo and Sam made their escape the rest of the company were attacked by Orcs. Now they continue their journey alone down the great River Anduin – alone, that is, save for the mysterious creeping figure that follows wherever they go. J.R.R. Tolkien’s great work of imaginative fiction has been labelled both a heroic romance and a classic fantasy fiction. By turns comic and homely, epic and diabolic, the narrative moves through countless changes of scene and character in an imaginary world which is totally convincing in its detail.",
       "editions": Array [
         Object {
@@ -198,7 +198,7 @@ Object {
           "title": "The Two Towers",
         },
       ],
-      "lastModifiedAt": "2018-08-11T12:51:58.362Z",
+      "lastModifiedAt": "2018-08-11T15:51:58.362Z",
       "subjectPeople": Array [
         "Gandalf",
         "Frodo Baggins",
@@ -278,9 +278,9 @@ Object {
             "J.R.R. Tolkein",
           ],
           "birthDate": "3 January 1892",
-          "createdAt": "2008-04-01T00:28:50.625Z",
+          "createdAt": "2008-04-01T03:28:50.625Z",
           "deathDate": "2 September 1973",
-          "lastModifiedAt": "2017-03-31T03:37:59.983Z",
+          "lastModifiedAt": "2017-03-31T06:37:59.983Z",
           "name": "J. R. R. Tolkien",
           "personalName": "J. R. R. Tolkien",
         },
@@ -362,7 +362,7 @@ Object {
           "small": "https://covers.openlibrary.org/w/id/6821986-S.jpg",
         },
       ],
-      "createdAt": "2009-10-12T23:46:28.838Z",
+      "createdAt": "2009-10-13T02:46:28.838Z",
       "description": "A one-volume edition of the trilogy which tells of the quest undertaken by the hobbit Frodo and his companions to journey across Middle-earth and cast the evil One Ring, into the Cracks of Doom.",
       "editions": Array [
         Object {
@@ -402,7 +402,7 @@ Object {
           "title": "The Hobbit & The Lord of the Rings",
         },
       ],
-      "lastModifiedAt": "2018-07-30T20:48:11.201Z",
+      "lastModifiedAt": "2018-07-30T23:48:11.201Z",
       "subjectPeople": Array [
         "Aragorn",
         "Frodo",
@@ -448,7 +448,7 @@ Object {
           "birthDate": null,
           "createdAt": null,
           "deathDate": null,
-          "lastModifiedAt": "2008-04-29T12:03:11.581Z",
+          "lastModifiedAt": "2008-04-29T15:03:11.581Z",
           "name": "Cedco Publishing",
           "personalName": null,
         },
@@ -460,7 +460,7 @@ Object {
           "small": "https://covers.openlibrary.org/w/id/1454705-S.jpg",
         },
       ],
-      "createdAt": "2009-12-10T20:54:38.967Z",
+      "createdAt": "2009-12-10T22:54:38.967Z",
       "description": null,
       "editions": Array [
         Object {
@@ -500,7 +500,7 @@ Object {
           "title": "Lord of the Rings",
         },
       ],
-      "lastModifiedAt": "2010-04-28T06:44:07.374Z",
+      "lastModifiedAt": "2010-04-28T09:44:07.374Z",
       "subjectPeople": null,
       "subjectPlaces": null,
       "subjects": null,

@@ -16,5 +16,6 @@ services:
     environment:
       OA_REDIS_MAIN_URL: redis://redis:6379/0
       OA_REDIS_QUEUE_URL: redis://redis:6379/1
-    env_file:
-      - ./.secrets.env
+      OA_OMDB_API_KEY: ${OA_OMDB_API_KEY}
+      OA_OPENWEATHER_API_KEY: ${OA_OPENWEATHER_API_KEY}
+      OA_TVDB_API_KEY: ${OA_TVDB_API_KEY}

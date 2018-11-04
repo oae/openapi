@@ -1,9 +1,13 @@
 FROM node:8-alpine as dev
 
+ARG TZ="Etc/GMT"
+
+ENV TZ ${TZ}
+
 WORKDIR /app
 
 # We need some packages in development
-RUN apk add --update util-linux git python make bash g++
+RUN apk add --update util-linux git python make bash g++ tzdata
 
 # copy source
 COPY . /app
