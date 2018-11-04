@@ -26,24 +26,24 @@ before_install:
 install:
   - yarn dinstall
 
-stages:
-  - Lint
-  - Test
-  - Code Coverage
-  - Documentation
-  - Deploy
-  - Publish
-
 # stages:
 #   - Lint
 #   - Test
-#   # - Code Coverage
-#   # - name: Documentation
-#   #   if: branch = master
-#   # - name: Deploy
-#   #   if: branch = master
-#   # - name: Publish
-#   #   if: tag IS present
+#   - Code Coverage
+#   - Documentation
+#   - Deploy
+#   - Publish
+
+stages:
+  - Lint
+  - Test
+  # - Code Coverage
+  # - name: Documentation
+  #   if: branch = master
+  # - name: Deploy
+  #   if: branch = master
+  # - name: Publish
+  #   if: tag IS present
 
 jobs:
   include:
