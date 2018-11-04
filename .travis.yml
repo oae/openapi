@@ -5,60 +5,49 @@ language: node_js
 node_js:
   - '10'
 
-# cache:
-#   yarn: true
-#   directories:
-#     - node_modules
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 services:
-  - docker
-
-env:
-  - DOCKER_COMPOSE_VERSION=1.22.0
+  - redis-server
 
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
   - npm i -g yarn
 
-install: true
+install:
+  - yarn install
 
-script:
-  - yarn dinstall
-  - yarn dlint
-  - yarn dtest
+stages:
+  - lint
+  - test
+  - name: docs
+    if: branch = master
+  - name: deploy-docs
+    if: branch = master
+  - name: deploy-openapi
+    if: branch = master
+  - name: publish-npm
+    if: tag IS present
 
-# stages:
-  # - lint
-  # - test
-  # - name: docs
-  #   if: branch = master
-  # - name: deploy-docs
-  #   if: branch = master
-  # - name: deploy-openapi
-  #   if: branch = master
-  # - name: publish-npm
-  #   if: tag IS present
-
-# jobs:
-  # include:
-    # - stage: lint
-    #   name: "Running eslint on packages"
-    #   script: yarn dlint
-    # - stage: test
-    #   name: "Running unit tests"
-    #   script: yarn dtest
-    # - stage: docs
-    #   name: "Creating static documentation page"
-    #   script: echo "TODO"
-    # - stage: deploy-docs
-    #   name: "Deploying docs to github pages"
-    #   script: echo "TODO"
-    # - stage: deploy-openapi
-    #   name: "Deploying openapi"
-    #   script: echo "TODO"
-    # - stage: publish-npm
-    #   name: "Publishing npm packages"
-    #   script: echo "TODO"
+jobs:
+  include:
+    - stage: lint
+      name: "Running eslint on packages"
+      script: yarn lint
+    - stage: test
+      name: "Running unit tests"
+      script: yarn test
+    - stage: docs
+      name: "Creating static documentation page"
+      script: echo "TODO"
+    - stage: deploy-docs
+      name: "Deploying docs to github pages"
+      script: echo "TODO"
+    - stage: deploy-openapi
+      name: "Deploying openapi"
+      script: echo "TODO"
+    - stage: publish-npm
+      name: "Publishing npm packages"
+      script: echo "TODO"

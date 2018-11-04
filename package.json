@@ -15,7 +15,7 @@
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml",
     "doct": "yarn docd -f docker-compose.task.yml",
     "drun": "yarn doct run --rm --user `id -u`:`id -g` task yarn",
-    "dinstall": "yarn doct run --rm task chown -R `id -u`:`id -g` .; yarn drun install"
+    "dinstall": "yarn doct run --rm task chown -R node:node .; yarn drun install"
   },
   "private": true,
   "workspaces": [
