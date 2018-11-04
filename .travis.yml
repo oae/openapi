@@ -22,12 +22,14 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-install: yarn dinstall
+script:
+  - yarn dinstall
+  - yarn dlint
+  - yarn dtest
 
-
-stages:
+# stages:
   # - lint
-  - test
+  # - test
   # - name: docs
   #   if: branch = master
   # - name: deploy-docs
@@ -37,14 +39,14 @@ stages:
   # - name: publish-npm
   #   if: tag IS present
 
-jobs:
-  include:
+# jobs:
+  # include:
     # - stage: lint
     #   name: "Running eslint on packages"
     #   script: yarn dlint
-    - stage: test
-      name: "Running unit tests"
-      script: yarn dtest
+    # - stage: test
+    #   name: "Running unit tests"
+    #   script: yarn dtest
     # - stage: docs
     #   name: "Creating static documentation page"
     #   script: echo "TODO"
