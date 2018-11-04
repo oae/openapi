@@ -23,7 +23,11 @@ const loadResolvers = async (rootPath, files) => {
   return mergeResolvers(resolversArray);
 };
 
+// Sorry, but we really want syntax highlighting
+const gql = String.raw;
+
 module.exports = {
+  gql,
   sleep,
   resolveAlias,
   resolveMultiplePaths,

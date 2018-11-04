@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  task:
+    build:
+      context: .
+      target: dev
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+      # - node_modules:/app/node_modules
+    environment:
+      OA_REDIS_MAIN_URL: redis://redis:6379/2
+      OA_REDIS_QUEUE_URL: redis://redis:6379/3
+    env_file:
+      - ./.secrets.env
+    ports:
+      - 5001:9229

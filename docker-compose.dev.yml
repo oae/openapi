@@ -1,20 +1,23 @@
-version: "3"
+version: '3.4'
 
 volumes:
-  node_modules:
+  node_modules: {}
+  proxy_cache: {}
 
 services:
   redis:
     ports:
-      - 6379:6379
+      - 127.0.0.1:6379:6379
 
   api:
-    command: yarn dev:in-docker
+    build:
+      target: dev
+    command: yarn dev:watch
     environment:
       NODE_ENV: development
     volumes:
       - .:/app
-      - node_modules:/app/node_modules
+      # - node_modules:/app/node_modules
     ports:
       - 4000:4000
       - 9229:9229
