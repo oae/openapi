@@ -13,7 +13,8 @@ services:
     environment:
       OA_REDIS_MAIN_URL: redis://redis:6379/2
       OA_REDIS_QUEUE_URL: redis://redis:6379/3
-    env_file:
-      - ./.secrets.env
+      OA_OMDB_API_KEY: ${OA_OMDB_API_KEY}
+      OA_OPENWEATHER_API_KEY: ${OA_OPENWEATHER_API_KEY}
+      OA_TVDB_API_KEY: ${OA_TVDB_API_KEY}
     ports:
       - 5001:9229
