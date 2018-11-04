@@ -51,31 +51,39 @@ const bookFields = gql`
 `;
 
 describe('openlibrary', () => {
-  it('should return books with matching title', async () => {
-    const query = gql`
-      ${bookFields}
-      {
-        books(title: "Lord of the Rings", limit: 2) {
-          ...bookFields
+  it(
+    'should return books with matching title',
+    async () => {
+      const query = gql`
+        ${bookFields}
+        {
+          books(title: "Lord of the Rings", limit: 2) {
+            ...bookFields
+          }
         }
-      }
-    `;
+      `;
 
-    const result = await request(server.endpoint, query);
-    expect(result).toMatchSnapshot();
-  });
+      const result = await request(server.endpoint, query);
+      expect(result).toMatchSnapshot();
+    },
+    20000
+  );
 
-  it('should return books from given author', async () => {
-    const query = gql`
-      ${bookFields}
-      {
-        booksFromAuthor(author: "tolkien", limit: 2) {
-          ...bookFields
+  it(
+    'should return books from given author',
+    async () => {
+      const query = gql`
+        ${bookFields}
+        {
+          booksFromAuthor(author: "tolkien", limit: 2) {
+            ...bookFields
+          }
         }
-      }
-    `;
+      `;
 
-    const result = await request(server.endpoint, query);
-    expect(result).toMatchSnapshot();
-  });
+      const result = await request(server.endpoint, query);
+      expect(result).toMatchSnapshot();
+    },
+    20000
+  );
 });
