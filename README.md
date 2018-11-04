@@ -1,4 +1,5 @@
 # Open API GraphQL
+[![Build Status](https://travis-ci.com/openapi/openapi.svg?branch=master)](https://travis-ci.com/openapi/openapi)
 
 ## :computer: Development
 
