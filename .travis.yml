@@ -5,49 +5,72 @@ language: node_js
 node_js:
   - '10'
 
-cache:
-  yarn: true
-  directories:
-    - node_modules
+# cache:
+#   yarn: true
+#   directories:
+#     - node_modules
 
 services:
-  - redis-server
+  - docker
 
 before_install:
   - npm i -g yarn
 
 install:
-  - yarn install
+  - yarn dinstall
 
 stages:
   - lint
   - test
-  - name: docs
-    if: branch = master
-  - name: deploy-docs
-    if: branch = master
-  - name: deploy-openapi
-    if: branch = master
-  - name: publish-npm
-    if: tag IS present
+  - codecov
+  - docs
+  - deploy-openapi
+  - publish-npm
+
+# stages:
+#   - lint
+#   - test
+#   - name: docs
+#     if: branch = master
+#   - name: deploy-docs
+#     if: branch = master
+#   - name: deploy-openapi
+#     if: branch = master
+#   - name: publish-npm
+#     if: tag IS present
 
 jobs:
   include:
     - stage: lint
       name: "Running eslint on packages"
-      script: yarn lint
+      script:
+        - yarn dlint
+
     - stage: test
       name: "Running unit tests"
-      script: yarn test
+      script: 
+        - yarn dtest
+
+    - stage: codecov
+      name: "Running code coverage"
+      install: skip
+      script: 
+        - echo "TODO"
+
     - stage: docs
-      name: "Creating static documentation page"
-      script: echo "TODO"
-    - stage: deploy-docs
-      name: "Deploying docs to github pages"
-      script: echo "TODO"
+      name: "Creating static documentation and deploying to github pages"
+      install: skip
+      script: 
+        - echo "TODO"
+
     - stage: deploy-openapi
       name: "Deploying openapi"
-      script: echo "TODO"
+      install: skip
+      script: 
+        - echo "TODO"
+
     - stage: publish-npm
       name: "Publishing npm packages"
-      script: echo "TODO"
+      install: skip
+      script: 
+        - echo "TODO"

@@ -9,7 +9,7 @@ services:
       - redis
     volumes:
       - .:/app
-      # - node_modules:/app/node_modules
+      - node_modules:/app/node_modules
     environment:
       OA_REDIS_MAIN_URL: redis://redis:6379/2
       OA_REDIS_QUEUE_URL: redis://redis:6379/3
