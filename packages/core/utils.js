@@ -23,20 +23,6 @@ const loadResolvers = async (rootPath, files) => {
   return mergeResolvers(resolversArray);
 };
 
-const createContextCreatorForProvider = contextCreator => (...contextArgs) => {
-  let context = null;
-
-  return {
-    async getContext() {
-      if (!context) {
-        context = await contextCreator(...contextArgs);
-      }
-
-      return context;
-    },
-  };
-};
-
 // Sorry, but we really want syntax highlighting
 const gql = String.raw;
 
@@ -47,5 +33,4 @@ module.exports = {
   resolveMultiplePaths,
   loadTypeDefs,
   loadResolvers,
-  createContextCreatorForProvider,
 };
