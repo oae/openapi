@@ -57,32 +57,32 @@ jobs:
       script: 
         - yarn dtest
 
-    - stage: Test
-      name: "Running mutation tests"
-      install: skip
-      script: 
-        - echo "TODO"
+    # - stage: Test
+    #   name: "Running mutation tests"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
 
-    - stage: Code Coverage
-      name: "Running code coverage"
-      install: skip
-      script: 
-        - echo "TODO"
+    # - stage: Code Coverage
+    #   name: "Running code coverage"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
 
-    - stage: Documentation
-      name: "Creating static documentation and deploying to github pages"
-      install: skip
-      script: 
-        - echo "TODO"
+    # - stage: Documentation
+    #   name: "Creating static documentation and deploying to github pages"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
 
-    - stage: Deploy
-      name: "Deploying openapi"
-      install: skip
-      script: 
-        - echo "TODO"
+    # - stage: Deploy
+    #   name: "Deploying openapi"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
 
-    - stage: Publish
-      name: "Publishing npm packages"
-      install: skip
-      script: 
-        - echo "TODO"
+    # - stage: Publish
+    #   name: "Publishing npm packages"
+    #   install: skip
+    #   script: 
+    #     - echo "TODO"
