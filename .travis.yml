@@ -27,7 +27,7 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 install:
-  - yarn dinstall
+  - yarn install
 
 stages:
   - lint
