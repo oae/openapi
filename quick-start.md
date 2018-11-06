@@ -13,12 +13,12 @@ Clone the repository:
 git clone git@github.com:openapi/openapi.git
 ```
 
-Copy `.secrets.env.example`:
+Copy `.env.example`:
 ```sh
-cp .secrets.env.example .secrets.env
+cp .env.example .env
 ```
 
-Fill the `.secrets.env` with api keys you obtained from relevant plugins
+Fill the `.env` with api keys you obtained from relevant plugins
 
 Start `api` and all of it's dependencies in development mode:
 ```
@@ -32,12 +32,12 @@ Clone the repository:
 git clone git@github.com:openapi/openapi.git
 ```
 
-Copy `.secrets.env.example`:
+Copy `.env.example`:
 ```sh
-cp .secrets.env.example .secrets.env
+cp .env.example .env
 ```
 
-Fill the `.secrets.env` with api keys you obtained from relevant plugins
+Fill the `.env` with api keys you obtained from relevant plugins
 
 Start the project in background
 ```
