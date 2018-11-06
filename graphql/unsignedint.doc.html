@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
+    <title>UnsignedInt</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
+</head>
+<body class="slds-scrollable--y">
+    <nav class="slds-grid slds-grid--vertical slds-col--rule-right">
+        <header class="slds-p-around--medium slds-col slds-shrik slds-grow-none">
+            <button class="slds-button slds-button--icon slds-float--right js-toggle-navigation less-than-medium">
+                <i class="material-icons">close</i>
+            </button>
+                <h3 class="slds-text-heading--medium"><a href="./">GraphQL Schema</a></h3>
+            <div class="slds-p-top--small">
+                <input id="type-search" type="text" placeholder="Search a type" autofocus="" class="slds-input" />
+            </div>
+        </header>
+        <div id="navication-scroll" class="slds-scrollable--y slds-col slds-grow">
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Schema</h4>
+    <ul>
+        <li  title="Query">
+            <a href="query.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Query
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Scalars</h4>
+    <ul>
+        <li  title="Boolean">
+            <a href="boolean.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Boolean
+            </a>
+        </li>
+        <li  title="DateTime">
+            <a href="datetime.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DateTime
+            </a>
+        </li>
+        <li  title="EmailAddress">
+            <a href="emailaddress.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                EmailAddress
+            </a>
+        </li>
+        <li  title="Float">
+            <a href="float.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Float
+            </a>
+        </li>
+        <li  title="Int">
+            <a href="int.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Int
+            </a>
+        </li>
+        <li  title="NegativeFloat">
+            <a href="negativefloat.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NegativeFloat
+            </a>
+        </li>
+        <li  title="NegativeInt">
+            <a href="negativeint.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NegativeInt
+            </a>
+        </li>
+        <li  title="NonNegativeFloat">
+            <a href="nonnegativefloat.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NonNegativeFloat
+            </a>
+        </li>
+        <li  title="NonNegativeInt">
+            <a href="nonnegativeint.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NonNegativeInt
+            </a>
+        </li>
+        <li  title="NonPositiveFloat">
+            <a href="nonpositivefloat.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NonPositiveFloat
+            </a>
+        </li>
+        <li  title="NonPositiveInt">
+            <a href="nonpositiveint.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NonPositiveInt
+            </a>
+        </li>
+        <li  title="PhoneNumber">
+            <a href="phonenumber.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PhoneNumber
+            </a>
+        </li>
+        <li  title="PositiveFloat">
+            <a href="positivefloat.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PositiveFloat
+            </a>
+        </li>
+        <li  title="PositiveInt">
+            <a href="positiveint.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PositiveInt
+            </a>
+        </li>
+        <li  title="PostalCode">
+            <a href="postalcode.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PostalCode
+            </a>
+        </li>
+        <li  title="RegularExpression">
+            <a href="regularexpression.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                RegularExpression
+            </a>
+        </li>
+        <li  title="String">
+            <a href="string.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                String
+            </a>
+        </li>
+        <li  title="UnsignedFloat">
+            <a href="unsignedfloat.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                UnsignedFloat
+            </a>
+        </li>
+        <li class="slds-is-active" title="UnsignedInt">
+            <a href="unsignedint.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                UnsignedInt
+            </a>
+        </li>
+        <li  title="URL">
+            <a href="url.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                URL
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Enums</h4>
+    <ul>
+        <li  title="Unit">
+            <a href="unit.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Unit
+            </a>
+        </li>
+        <li  title="__DirectiveLocation">
+            <a href="directivelocation.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __DirectiveLocation
+            </a>
+        </li>
+        <li  title="__TypeKind">
+            <a href="typekind.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __TypeKind
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
+    <ul>
+        <li  title="Book">
+            <a href="book.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Book
+            </a>
+        </li>
+        <li  title="BookAuthor">
+            <a href="bookauthor.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BookAuthor
+            </a>
+        </li>
+        <li  title="BookCover">
+            <a href="bookcover.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BookCover
+            </a>
+        </li>
+        <li  title="BookEdition">
+            <a href="bookedition.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BookEdition
+            </a>
+        </li>
+        <li  title="Currency">
+            <a href="currency.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Currency
+            </a>
+        </li>
+        <li  title="Episode">
+            <a href="episode.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Episode
+            </a>
+        </li>
+        <li  title="ExchangeRate">
+            <a href="exchangerate.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ExchangeRate
+            </a>
+        </li>
+        <li  title="GeoLocation">
+            <a href="geolocation.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                GeoLocation
+            </a>
+        </li>
+        <li  title="Movie">
+            <a href="movie.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Movie
+            </a>
+        </li>
+        <li  title="MovieImdb">
+            <a href="movieimdb.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                MovieImdb
+            </a>
+        </li>
+        <li  title="MovieMetacritic">
+            <a href="moviemetacritic.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                MovieMetacritic
+            </a>
+        </li>
+        <li  title="MovieRottenTomatoes">
+            <a href="movierottentomatoes.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                MovieRottenTomatoes
+            </a>
+        </li>
+        <li  title="Plugin">
+            <a href="plugin.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Plugin
+            </a>
+        </li>
+        <li  title="Rate">
+            <a href="rate.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Rate
+            </a>
+        </li>
+        <li  title="Season">
+            <a href="season.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Season
+            </a>
+        </li>
+        <li  title="Series">
+            <a href="series.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Series
+            </a>
+        </li>
+        <li  title="Weather">
+            <a href="weather.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Weather
+            </a>
+        </li>
+        <li  title="WeatherCondition">
+            <a href="weathercondition.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                WeatherCondition
+            </a>
+        </li>
+        <li  title="Wind">
+            <a href="wind.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Wind
+            </a>
+        </li>
+        <li  title="__Directive">
+            <a href="directive.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Directive
+            </a>
+        </li>
+        <li  title="__EnumValue">
+            <a href="enumvalue.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __EnumValue
+            </a>
+        </li>
+        <li  title="__Field">
+            <a href="field.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Field
+            </a>
+        </li>
+        <li  title="__InputValue">
+            <a href="inputvalue.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __InputValue
+            </a>
+        </li>
+        <li  title="__Schema">
+            <a href="schema.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Schema
+            </a>
+        </li>
+        <li  title="__Type">
+            <a href="type.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Type
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Directives</h4>
+    <ul>
+        <li  title="deprecated">
+            <a href="deprecated.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                deprecated
+            </a>
+        </li>
+        <li  title="include">
+            <a href="include.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                include
+            </a>
+        </li>
+        <li  title="skip">
+            <a href="skip.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                skip
+            </a>
+        </li>
+    </ul>
+</div>
+        </div>
+    </nav>
+    <main><section class="title slds-theme--inverse">
+    <div class="container slds-grid">
+        <div>
+        <button class="slds-button js-toggle-navigation less-than-medium">
+            <i class="material-icons slds-button__icon slds-button__icon--left">menu</i>
+            <span class="slds-text-title--caps">Types<span>
+        </button>
+        </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="slds-text-title--caps slds-text-color--weak">SCALAR</p>
+        <h1 class="slds-text-heading--large">UnsignedInt</h1>
+        <div class="slds-text-body--regular"></div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="graphql-schema-definition" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#graphql-schema-definition">
+                <i class="material-icons">link</i>
+            </a>
+            GraphQL Schema definition
+        </h2>
+        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">scalar</span> <span class="identifier">UnsignedInt</span></li></ul></code>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="require-by" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#require-by">
+                <i class="material-icons">link</i>
+            </a>
+            Require by
+        </h2>
+        <div class="require-by anyone">This element is not required by anyone</div>
+    </div>
+</section>
+<footer>
+<div class="container slds-p-around--large">
+    <p class="slds-text-align--right slds-text-title--caps">
+        Generated with <a href="https://github.com/2fd/graphdoc#readme" target="_blank">graphdoc 2.4.0</a>
+    </p>
+</div>
+</footer>
+</main>
+    <script src="./scripts/focus-active.js"></script>
+    <script src="./scripts/filter-types.js"></script>
+    <script src="./scripts/toggle-navigation.js"></script>
+</body>
