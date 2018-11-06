@@ -7,7 +7,7 @@
 - :rocket: Up and running within seconds using docker
 - :package: Out of the box api's like openweather, tvdb, openlibrary
 
-<a href="/graphql"><span>API Reference</span></a>
+<a href="graphql"><span>API Reference</span></a>
 
 <!-- background color -->
 
