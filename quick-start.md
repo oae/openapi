@@ -1,7 +1,7 @@
 # Open API GraphQL
 [![Build Status](https://travis-ci.com/openapi/openapi.svg?branch=master)](https://travis-ci.com/openapi/openapi)
 
-## :computer: Development
+## Development
 
 ### Requirements:
 - yarn
@@ -25,7 +25,7 @@ Start `api` and all of it's dependencies in development mode:
 yarn dev
 ```
 
-## :rocket: Deployment
+## Deployment
 
 Clone the repository:
 ```sh

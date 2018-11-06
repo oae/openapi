@@ -8,6 +8,8 @@
 - :package: Out of the box api's like openweather, tvdb, openlibrary
 
 <a href="graphql"><span>API Reference</span></a>
+[Get Started](quick-start)
+
 
 <!-- background color -->
 
