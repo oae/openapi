@@ -44,5 +44,14 @@ module.exports = {
         },
       },
     ],
+    [
+      '@openapi/plugin-kitsu',
+      {
+        auth: {
+          clientId: process.env.OA_KITSU_CLIENT_ID,
+          clientSecret: process.env.OA_KITSU_CLIENT_SECRET,
+        },
+      },
+    ],
   ],
 };

@@ -1,0 +1,7 @@
+type Query {
+  categories: [Category]
+}
+
+type Category {
+  id: String
+}
