@@ -5,7 +5,7 @@
 > One api to query them all
 
 - :rocket: Up and running within seconds using docker
-- :package: Out of the box api's like openweather, tvdb, openlibrary
+- :package: Out of the box apis like openweather, tvdb, openlibrary
 
 <a href="graphql"><span>API Reference</span></a>
 [Get Started](quick-start)
