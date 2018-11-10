@@ -1,11 +1,10 @@
-const axios = require('axios');
-const querystring = require('querystring');
+const { create } = require('simple-oauth2');
 const { openApi, pluginUtils } = require('@openapi/core');
 const log = require('@openapi/core/log').child({ ns: 'kitsu:auth' });
 const { name: pluginName } = require('./package.json');
 
 const {
-  auth: { clientId, clientSecret },
+  auth: { clientId, clientSecret, username, password },
 } = pluginUtils.getOptions(pluginName);
 
 const { getConfig } = openApi;
@@ -15,37 +14,44 @@ const {
   },
 } = getConfig();
 
+const oauth2 = create({
+  client: {
+    id: clientId,
+    secret: clientSecret,
+  },
+  auth: {
+    tokenHost: 'https://kitsu.io',
+    tokenPath: '/api/oauth/token',
+    revokePath: '/api/oauth/revoke',
+  },
+});
+
 const APP_KEY = 'oa:kitsu';
-const TOKEN_KEY = `${APP_KEY}:token`;
+const ACCESS_TOKEN_KEY = `${APP_KEY}:accesstoken`;
+const REFRESH_TOKEN_KEY = `${APP_KEY}:refreshtoken`;
 
-const setAccessToken = async accessToken => redis.set(TOKEN_KEY, accessToken);
-const getAccessToken = async () => redis.get(TOKEN_KEY);
-
-const data = {
-  grant_type: 'authorization_code',
-  client_id: clientId,
-  client_secret: clientSecret,
-  scope: 'public',
-  username: 'hltognc@gmail.com',
-  password: '12345678',
-};
+const setTokens = async (accessToken, refreshToken) =>
+  redis.mset({ ACCESS_TOKEN_KEY: accessToken, REFRESH_TOKEN_KEY: refreshToken });
+const getAccessToken = async () => redis.get(ACCESS_TOKEN_KEY);
+const getRefreshToken = async () => redis.get(REFRESH_TOKEN_KEY);
 
 const login = async () => {
   try {
     log.info('authenticating');
-    const res = await axios.post('https://kitsu.io/api/oauth/token', querystring.stringify(data));
 
-    if (!res.data) {
+    const res = await oauth2.ownerPassword.getToken({ username, password });
+
+    if (!res) {
       throw new Error('Request error while authenticating');
     }
 
-    const { access_token: accessToken } = res.data;
-    if (!accessToken) {
+    const { access_token: accessToken, refresh_token: refreshToken } = res;
+    if (!accessToken || !refreshToken) {
       throw new Error('Did not receive token when authenticating');
     }
 
     log.info('authenticated successfully, saving token to redis');
-    await setAccessToken(accessToken);
+    await setTokens(accessToken, refreshToken);
 
     return accessToken;
   } catch (err) {
@@ -57,4 +63,5 @@ const login = async () => {
 module.exports = {
   login,
   getAccessToken,
+  getRefreshToken,
 };

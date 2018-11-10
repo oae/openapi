@@ -3,7 +3,7 @@ const fp = require('lodash/fp');
 const { getAccessToken, login } = require('./auth');
 
 const client = axios.create({
-  baseURL: 'https://kitsu.io/api/oauth/token',
+  baseURL: 'https://kitsu.io/api/edge',
   headers: {
     Accept: 'application/vnd.api+json',
     'Content-Type': 'application/vnd.api+json',
@@ -11,12 +11,14 @@ const client = axios.create({
 });
 
 client.interceptors.request.use(async config => {
-  let token = await getAccessToken();
-  if (fp.isEmpty(token)) {
-    token = await login();
+  let accessToken = await getAccessToken();
+  if (fp.isEmpty(accessToken)) {
+    accessToken = await login();
+  } else if (accessToken.expired()) {
+    accessToken = await accessToken.refresh();
   }
   // eslint-disable-next-line no-param-reassign
-  config.headers.Authorization = `Bearer ${token}`;
+  config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
 });
 
