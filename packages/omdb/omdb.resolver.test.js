@@ -56,6 +56,29 @@ const movieFields = gql`
   }
 `;
 
+const validMovie = {
+  title: expect.not.toBeEmpty(),
+  year: expect.not.toBeEmpty(),
+  imdb: {
+    id: expect.not.toBeEmpty(),
+    rating: expect.not.toBeEmpty(),
+    votes: expect.not.toBeEmpty(),
+  },
+  rated: expect.not.toBeEmpty(),
+  released: expect.not.toBeEmpty(),
+  runtime: expect.not.toBeEmpty(),
+  genre: expect.toBeArray(),
+  director: expect.not.toBeEmpty(),
+  writer: expect.not.toBeEmpty(),
+  actors: expect.toBeArray(),
+  plot: expect.not.toBeEmpty(),
+  language: expect.toBeArray(),
+  country: expect.toBeArray(),
+  boxOffice: expect.not.toBeEmpty(),
+  production: expect.not.toBeEmpty(),
+  website: expect.not.toBeEmpty(),
+};
+
 describe('omdb', () => {
   it('should return movies with title', async () => {
     const query = gql`
@@ -68,7 +91,8 @@ describe('omdb', () => {
     `;
 
     const result = await request(server.endpoint, query);
-    expect(result).toMatchSnapshot();
+    expect(result.movies).toBeArray();
+    expect(result.movies[0]).toMatchObject(validMovie);
   });
 
   it('should return a movie for given imdbId', async () => {
@@ -82,6 +106,6 @@ describe('omdb', () => {
     `;
 
     const result = await request(server.endpoint, query);
-    expect(result).toMatchSnapshot();
+    expect(result.movie).toMatchObject(validMovie);
   });
 });

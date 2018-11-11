@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`tvdb should return series with given name 1`] = `
-Object {
-  "series": Array [],
-}
-`;

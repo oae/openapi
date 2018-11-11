@@ -1,7 +1,6 @@
 const { request } = require('graphql-request');
 const { gql } = require('@openapi/core/utils');
 const { createServer, destroyServer } = require('@openapi/core/testUtils');
-
 const { name: pluginName } = require('./package.json');
 
 let server = null;
@@ -64,6 +63,24 @@ const fragments = gql`
   }
 `;
 
+const validSeries = {
+  airedAt: expect.not.toBeEmpty(),
+  airsDayOfWeek: expect.not.toBeEmpty(),
+  airsTime: expect.not.toBeEmpty(),
+  aliases: expect.toBeArray(),
+  banner: expect.not.toBeEmpty(),
+  episodes: expect.toBeArray(),
+  genre: expect.toBeArray(),
+  id: expect.not.toBeEmpty(),
+  imdbId: expect.not.toBeEmpty(),
+  name: expect.not.toBeEmpty(),
+  network: expect.not.toBeEmpty(),
+  overview: expect.not.toBeEmpty(),
+  rating: expect.not.toBeEmpty(),
+  seasons: expect.toBeArray(),
+  status: expect.not.toBeEmpty(),
+};
+
 describe('tvdb', () => {
   it(
     'should return series with given name',
@@ -76,9 +93,10 @@ describe('tvdb', () => {
           }
         }
       `;
-
       const result = await request(server.endpoint, query);
-      expect(result).toMatchSnapshot();
+      expect(result.series).toBeArray();
+
+      expect(result.series[0]).toMatchObject(validSeries);
     },
     20000
   );
