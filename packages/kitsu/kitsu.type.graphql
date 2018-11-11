@@ -1,7 +1,21 @@
 type Query {
-  categories: [Category]
+  animeCategories(limit: Int): [Category]
 }
 
 type Category {
-  id: String
+  title: String
+  description: String
+  slug: String
+  nsfw: Boolean
+  covers: Cover
+  createdAt:DateTime
+  updatedAt: DateTime
+}
+
+type Cover {
+  tiny: String
+  small: String
+  medium: String
+  large: String
+  original: String
 }
