@@ -1,5 +1,24 @@
 type Query {
+  animes(season: AnimeSeason, limit: Int): [Anime]
   animeCategories(limit: Int): [Category]
+}
+
+
+type Anime {
+  title: AnimeTitle
+  slug: String
+  synopsis: String
+  createdAt:DateTime
+  updatedAt: DateTime
+  status: String
+  averageRating: Float
+  startDate: DateTime
+  endDate: DateTime
+  posterImage: AnimeImage
+  coverImage: AnimeImage
+  episodeCount: Int
+  nsfw: Boolean
+  categories: [Category]
 }
 
 type Category {
@@ -7,15 +26,30 @@ type Category {
   description: String
   slug: String
   nsfw: Boolean
-  covers: Cover
+  cover: AnimeImage
   createdAt:DateTime
   updatedAt: DateTime
 }
 
-type Cover {
+type AnimeImage {
   tiny: String
   small: String
   medium: String
   large: String
   original: String
 }
+
+type AnimeTitle {
+  en: String
+  enJp: String
+  jaJp: String
+  canonicalTitle: String
+}
+
+enum AnimeSeason {
+  WINTER
+  SPRING
+  SUMMER
+  FALL
+}
+
