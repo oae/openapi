@@ -50,6 +50,8 @@ module.exports = {
         auth: {
           clientId: process.env.OA_KITSU_CLIENT_ID,
           clientSecret: process.env.OA_KITSU_CLIENT_SECRET,
+          username: process.env.OA_KITSU_USERNAME,
+          password: process.env.OA_KITSU_PASSWORD,
         },
       },
     ],
