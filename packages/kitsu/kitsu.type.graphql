@@ -1,5 +1,6 @@
 type Query {
-  animes(season: AnimeSeason, limit: Int): [Anime]
+  animes(limit: Int): [Anime]
+  trendingAnimes: [Anime]
   animeCategories(limit: Int): [Category]
 }
 
@@ -44,12 +45,5 @@ type AnimeTitle {
   enJp: String
   jaJp: String
   canonicalTitle: String
-}
-
-enum AnimeSeason {
-  WINTER
-  SPRING
-  SUMMER
-  FALL
 }
 

@@ -70,6 +70,11 @@ const resolveDate = key => obj => {
 
 const resolveTitle = () => obj => obj.attributes.title;
 
+const createTrendingAnimesResolver = () => async (obj, args, context, info) => {
+  const res = await client.get('trending/anime');
+  return res.data.data;
+};
+
 const resolveAnimeCategories = () => async (obj, args, context, info) => {
   const res = await client.get(`anime/${obj.id}/categories`);
   return res.data.data;
@@ -78,6 +83,7 @@ const resolveAnimeCategories = () => async (obj, args, context, info) => {
 module.exports = {
   Query: {
     animes: createAnimesResolver(),
+    trendingAnimes: createTrendingAnimesResolver(),
     animeCategories: createCategoriesResolver(),
   },
 
