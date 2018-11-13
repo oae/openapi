@@ -24,6 +24,7 @@ const createCategoriesResolver = () => async (
       'page[limit]': limit,
     },
   });
+
   return res.data.data;
 };
 
@@ -61,6 +62,11 @@ const resolveDate = key => obj => {
 
 const resolveTitle = () => obj => obj.attributes.title;
 
+const resolveAnimeCategories = () => async (obj, _, context, info) => {
+  const res = await client.get(`anime/${obj.id}/categories`);
+  return res.data.data;
+};
+
 module.exports = {
   Query: {
     animes: createAnimesResolver(),
@@ -81,6 +87,7 @@ module.exports = {
     coverImage: getAnimeImage('attributes.coverImage'),
     episodeCount: resolveAlias('attributes.episodeCount'),
     nsfw: resolveAlias('attributes.nsfw'),
+    categories: resolveAnimeCategories(),
   },
 
   Category: {
