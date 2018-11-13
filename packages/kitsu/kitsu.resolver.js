@@ -1,17 +1,25 @@
 const { resolveAlias } = require('@openapi/core/utils');
 const format = require('date-fns/format');
+const _ = require('lodash');
 const fp = require('lodash/fp');
 const client = require('./client');
 const { DEFAULT_LIMIT } = require('./constants');
 
-const createAnimesResolver = () => async (obj, { limit = DEFAULT_LIMIT } = {}, context, info) => {
-  const res = await client.get('anime', {
-    params: {
-      'page[limit]': 5,
-    },
-  });
-  return res.data.data;
-};
+const createAnimesResolver = () => async (obj, { limit = DEFAULT_LIMIT } = {}, context, info) =>
+  // Kitsu anime query max limit is 20. So we need to divide query in pieces.
+  Promise.all(
+    _.range(0, limit, 20).map(offset => {
+      const limitVal = limit - offset >= 20 ? 20 : limit - offset;
+      return client
+        .get('anime', {
+          params: {
+            'page[limit]': limitVal,
+            'page[offset]': offset,
+          },
+        })
+        .then(res => res.data.data);
+    })
+  ).then(data => _.flatten(data));
 
 const createCategoriesResolver = () => async (
   obj,
@@ -62,7 +70,7 @@ const resolveDate = key => obj => {
 
 const resolveTitle = () => obj => obj.attributes.title;
 
-const resolveAnimeCategories = () => async (obj, _, context, info) => {
+const resolveAnimeCategories = () => async (obj, args, context, info) => {
   const res = await client.get(`anime/${obj.id}/categories`);
   return res.data.data;
 };
