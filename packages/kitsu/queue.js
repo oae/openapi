@@ -10,7 +10,7 @@ authQueue.process(async () => {
 });
 
 async function init() {
-  authQueue.add({}, { repeat: { every: 1000 * 60 * 5 } });
+  authQueue.add({}, { repeat: { every: 1000 * 60 * 60 } });
 }
 
 module.exports = {
