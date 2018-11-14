@@ -92,7 +92,7 @@ describe('omdb', () => {
 
     const result = await request(server.endpoint, query);
     expect(result.movies).toBeArray();
-    expect(result.movies[0]).toMatchObject(validMovie);
+    result.movies.forEach(movie => expect(movie).toMatchObject(validMovie));
   });
 
   it('should return a movie for given imdbId', async () => {

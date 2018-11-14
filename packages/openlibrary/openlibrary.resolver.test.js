@@ -78,7 +78,7 @@ describe('openlibrary', () => {
 
       const result = await request(server.endpoint, query);
       expect(result.books).toBeArray();
-      expect(result.books[0]).toMatchObject(validBook);
+      result.books.forEach(book => expect(book).toMatchObject(validBook));
     },
     20000
   );
@@ -97,7 +97,7 @@ describe('openlibrary', () => {
 
       const result = await request(server.endpoint, query);
       expect(result.booksFromAuthor).toBeArray();
-      expect(result.booksFromAuthor[0]).toMatchObject(validBook);
+      result.booksFromAuthor.forEach(book => expect(book).toMatchObject(validBook));
     },
     20000
   );

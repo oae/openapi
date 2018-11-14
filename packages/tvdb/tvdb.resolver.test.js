@@ -95,8 +95,7 @@ describe('tvdb', () => {
       `;
       const result = await request(server.endpoint, query);
       expect(result.series).toBeArray();
-
-      expect(result.series[0]).toMatchObject(validSeries);
+      result.series.forEach(series => expect(series).toMatchObject(validSeries));
     },
     20000
   );

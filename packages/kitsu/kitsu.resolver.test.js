@@ -92,11 +92,21 @@ const validAnimes = {
   categories: expect.toBeArray(),
 };
 
+const validCategory = {
+  title: expect.not.toBeEmpty(),
+  description: expect.not.toBeEmpty(),
+  slug: expect.not.toBeEmpty(),
+  nsfw: expect.toBeBoolean(),
+  cover: expect.toBeObject(),
+  createdAt: expect.not.toBeEmpty(),
+  updatedAt: expect.not.toBeEmpty(),
+};
+
 describe('kitsu', () => {
   it('should return categories', async () => {
     const query = gql`
       {
-        animeCategories(limit: 1) {
+        animeCategories(limit: 2) {
           title
           description
           slug
@@ -114,32 +124,34 @@ describe('kitsu', () => {
       }
     `;
     const result = await request(server.endpoint, query);
-    expect(result).toMatchSnapshot();
+    expect(result.animeCategories).toBeArray();
+    result.animeCategories.forEach(category => expect(category).toMatchObject(validCategory));
   });
 
   it('should return animes', async () => {
     const query = gql`
       ${fragments}
       {
-        animes(limit: 1) {
+        animes(limit: 2) {
           ...animeFields
         }
       }
     `;
     const result = await request(server.endpoint, query);
-    expect(result).toMatchSnapshot();
+    expect(result.animes).toBeArray();
+    result.animes.forEach(anime => expect(anime).toMatchObject(validAnimes));
   });
 
   it('should return animes as far as limit', async () => {
     const query = gql`
       {
-        animes(limit: 30) {
+        animes(limit: 5) {
           nsfw
         }
       }
     `;
     const result = await request(server.endpoint, query);
-    expect(result.animes).toHaveLength(30);
+    expect(result.animes).toHaveLength(5);
   });
 
   it('should return trending animes', async () => {
@@ -153,6 +165,6 @@ describe('kitsu', () => {
     `;
     const result = await request(server.endpoint, query);
     expect(result.trendingAnimes).toBeArray();
-    expect(result.trendingAnimes[0]).toMatchObject(validAnimes);
+    result.trendingAnimes.forEach(anime => expect(anime).toMatchObject(validAnimes));
   });
 });
