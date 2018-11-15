@@ -27,19 +27,10 @@ const oauth2 = create({
 });
 
 const APP_KEY = 'oa:kitsu';
-const ACCESS_TOKEN_KEY = `${APP_KEY}:accesstoken`;
-const REFRESH_TOKEN_KEY = `${APP_KEY}:refreshtoken`;
+const TOKEN_WRAPPER = `${APP_KEY}:tokenwrapper`;
 
-const setTokens = async (accessToken, refreshToken, expire) =>
-  redis
-    .multi()
-    .set(ACCESS_TOKEN_KEY, accessToken)
-    .set(REFRESH_TOKEN_KEY, refreshToken)
-    .expire(ACCESS_TOKEN_KEY, expire)
-    .expire(REFRESH_TOKEN_KEY, expire)
-    .exec();
-const getAccessToken = async () => redis.get(ACCESS_TOKEN_KEY);
-const getRefreshToken = async () => redis.get(REFRESH_TOKEN_KEY);
+const setTokenWrapper = async tokenWrapper => redis.set(TOKEN_WRAPPER, tokenWrapper);
+const getTokenWrapper = async () => redis.get(TOKEN_WRAPPER);
 
 const login = async () => {
   try {
@@ -52,12 +43,21 @@ const login = async () => {
     }
 
     const { access_token: accessToken, refresh_token: refreshToken, expires_in: expiresIn } = res;
+
     if (!accessToken || !refreshToken) {
       throw new Error('Did not receive token when authenticating');
     }
 
+    const tokenObj = {
+      access_token: accessToken,
+      refresh_token: refreshToken,
+      expires_in: expiresIn,
+    };
+
     log.info('authenticated successfully, saving token to redis');
-    await setTokens(accessToken, refreshToken, expiresIn);
+
+    // access token wrapper
+    await setTokenWrapper(JSON.stringify(oauth2.accessToken.create(tokenObj)));
 
     return accessToken;
   } catch (err) {
@@ -68,6 +68,5 @@ const login = async () => {
 
 module.exports = {
   login,
-  getAccessToken,
-  getRefreshToken,
+  getTokenWrapper,
 };

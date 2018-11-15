@@ -68,8 +68,6 @@ const resolveDate = key => obj => {
   return format(date);
 };
 
-const resolveTitle = () => obj => obj.attributes.title;
-
 const createTrendingAnimesResolver = () => async (obj, args, context, info) => {
   const res = await client.get('trending/anime');
   return res.data.data;
@@ -105,7 +103,7 @@ module.exports = {
   },
 
   Category: {
-    title: resolveTitle(),
+    title: resolveAlias('attributes.title'),
     description: resolveAlias('attributes.description'),
     slug: resolveAlias('attributes.slug'),
     nsfw: resolveAlias('attributes.nsfw'),

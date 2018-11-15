@@ -1,6 +1,8 @@
 const axios = require('axios');
 const fp = require('lodash/fp');
-const { getAccessToken, login } = require('./auth');
+const { getTokenWrapper, login } = require('./auth');
+
+const { getAccessToken } = require('./utils');
 
 const client = axios.create({
   baseURL: 'https://kitsu.io/api/edge',
@@ -11,10 +13,13 @@ const client = axios.create({
 });
 
 client.interceptors.request.use(async config => {
-  let accessToken = await getAccessToken();
-  if (fp.isEmpty(accessToken)) {
+  let accessToken = JSON.parse(await getTokenWrapper());
+  if (fp.isNil(accessToken)) {
     accessToken = await login();
+  } else {
+    accessToken = getAccessToken(accessToken);
   }
+
   // eslint-disable-next-line no-param-reassign
   config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
