@@ -86,18 +86,14 @@ const validAnimes = {
   startDate: expect.not.toBeEmpty(),
   endDate: expect.not.toBeEmpty(),
   posterImage: expect.toBeObject(),
-  coverImage: expect.toBeObject(),
-  episodeCount: expect.toBeNumber(),
   nsfw: expect.toBeBoolean(),
   categories: expect.toBeArray(),
 };
 
 const validCategory = {
   title: expect.not.toBeEmpty(),
-  description: expect.not.toBeEmpty(),
   slug: expect.not.toBeEmpty(),
   nsfw: expect.toBeBoolean(),
-  cover: expect.toBeObject(),
   createdAt: expect.not.toBeEmpty(),
   updatedAt: expect.not.toBeEmpty(),
 };

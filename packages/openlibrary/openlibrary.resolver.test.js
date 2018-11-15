@@ -52,12 +52,8 @@ const bookFields = gql`
 
 const validBook = {
   title: expect.not.toBeEmpty(),
-  description: expect.not.toBeEmpty(),
   createdAt: expect.not.toBeEmpty(),
   lastModifiedAt: expect.not.toBeEmpty(),
-  subjectPlaces: expect.toBeArray(),
-  subjectPeople: expect.toBeArray(),
-  subjects: expect.toBeArray(),
   editions: expect.toBeArray(),
   covers: expect.toBeArray(),
   authors: expect.toBeArray(),
