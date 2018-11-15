@@ -14,8 +14,6 @@ client.interceptors.request.use(async config => {
   let accessToken = await getAccessToken();
   if (fp.isEmpty(accessToken)) {
     accessToken = await login();
-  } else if (accessToken.expired()) {
-    accessToken = await accessToken.refresh();
   }
   // eslint-disable-next-line no-param-reassign
   config.headers.Authorization = `Bearer ${accessToken}`;
