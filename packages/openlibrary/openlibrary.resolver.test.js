@@ -52,12 +52,8 @@ const bookFields = gql`
 
 const validBook = {
   title: expect.not.toBeEmpty(),
-  description: expect.not.toBeEmpty(),
   createdAt: expect.not.toBeEmpty(),
   lastModifiedAt: expect.not.toBeEmpty(),
-  subjectPlaces: expect.toBeArray(),
-  subjectPeople: expect.toBeArray(),
-  subjects: expect.toBeArray(),
   editions: expect.toBeArray(),
   covers: expect.toBeArray(),
   authors: expect.toBeArray(),
@@ -78,7 +74,7 @@ describe('openlibrary', () => {
 
       const result = await request(server.endpoint, query);
       expect(result.books).toBeArray();
-      expect(result.books[0]).toMatchObject(validBook);
+      result.books.forEach(book => expect(book).toMatchObject(validBook));
     },
     20000
   );
@@ -97,7 +93,7 @@ describe('openlibrary', () => {
 
       const result = await request(server.endpoint, query);
       expect(result.booksFromAuthor).toBeArray();
-      expect(result.booksFromAuthor[0]).toMatchObject(validBook);
+      result.booksFromAuthor.forEach(book => expect(book).toMatchObject(validBook));
     },
     20000
   );

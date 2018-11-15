@@ -1,0 +1,15 @@
+{
+  "name": "@openapi/plugin-kitsu",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@openapi/core": "1.0.0",
+    "axios": "^0.18.0",
+    "date-fns": "^1.29.0",
+    "lodash": "^4.17.11",
+    "simple-oauth2": "^2.2.1"
+  },
+  "devDependencies": {
+    "graphql-request": "^1.8.2"
+  }
+}

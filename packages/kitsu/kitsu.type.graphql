@@ -1,0 +1,49 @@
+type Query {
+  animes(limit: Int): [Anime]
+  trendingAnimes: [Anime]
+  animeCategories(limit: Int): [Category]
+}
+
+
+type Anime {
+  title: AnimeTitle
+  slug: String
+  synopsis: String
+  createdAt:DateTime
+  updatedAt: DateTime
+  status: String
+  averageRating: Float
+  startDate: DateTime
+  endDate: DateTime
+  posterImage: AnimeImage
+  coverImage: AnimeImage
+  episodeCount: Int
+  nsfw: Boolean
+  categories: [Category]
+}
+
+type Category {
+  title: String
+  description: String
+  slug: String
+  nsfw: Boolean
+  cover: AnimeImage
+  createdAt:DateTime
+  updatedAt: DateTime
+}
+
+type AnimeImage {
+  tiny: String
+  small: String
+  medium: String
+  large: String
+  original: String
+}
+
+type AnimeTitle {
+  en: String
+  enJp: String
+  jaJp: String
+  canonicalTitle: String
+}
+
