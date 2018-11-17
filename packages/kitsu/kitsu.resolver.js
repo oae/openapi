@@ -5,7 +5,12 @@ const fp = require('lodash/fp');
 const client = require('./client');
 const { DEFAULT_LIMIT } = require('./constants');
 
-const createAnimesResolver = () => async (obj, { limit = DEFAULT_LIMIT } = {}, context, info) =>
+const createAnimesResolver = () => async (
+  obj,
+  { limit = DEFAULT_LIMIT, skip = 0 } = {},
+  context,
+  info
+) =>
   // Kitsu anime query max limit is 20. So we need to divide query in pieces.
   Promise.all(
     _.range(0, limit, 20).map(offset => {
@@ -14,7 +19,7 @@ const createAnimesResolver = () => async (obj, { limit = DEFAULT_LIMIT } = {}, c
         .get('anime', {
           params: {
             'page[limit]': limitVal,
-            'page[offset]': offset,
+            'page[offset]': offset + skip,
           },
         })
         .then(res => res.data.data);
@@ -23,13 +28,14 @@ const createAnimesResolver = () => async (obj, { limit = DEFAULT_LIMIT } = {}, c
 
 const createCategoriesResolver = () => async (
   obj,
-  { limit = DEFAULT_LIMIT } = {},
+  { limit = DEFAULT_LIMIT, skip = 0 } = {},
   context,
   info
 ) => {
   const res = await client.get('categories', {
     params: {
       'page[limit]': limit,
+      'page[offset]': skip,
     },
   });
 

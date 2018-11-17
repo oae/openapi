@@ -1,7 +1,7 @@
 type Query {
-  animes(limit: Int): [Anime]
+  animes(limit: Int, skip: Int): [Anime]
   trendingAnimes: [Anime]
-  animeCategories(limit: Int): [Category]
+  animeCategories(limit: Int, skip: Int): [Category]
 }
 
 
