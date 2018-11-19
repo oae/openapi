@@ -102,7 +102,7 @@ describe('kitsu', () => {
   it('should return categories', async () => {
     const query = gql`
       {
-        animeCategories(limit: 2) {
+        animeCategories(limit: 2, skip: 3) {
           title
           description
           slug
@@ -128,7 +128,7 @@ describe('kitsu', () => {
     const query = gql`
       ${fragments}
       {
-        animes(limit: 2) {
+        animes(limit: 2, skip: 3) {
           ...animeFields
         }
       }
@@ -141,7 +141,7 @@ describe('kitsu', () => {
   it('should return animes as far as limit', async () => {
     const query = gql`
       {
-        animes(limit: 5) {
+        animes(limit: 5, skip: 3) {
           nsfw
         }
       }
