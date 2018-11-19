@@ -1,81 +1,91 @@
+const { resolveAlias } = require('@openapi/core/utils');
 const client = require('./client');
 
 const { name: pluginName } = require('./package.json');
 
+const createSeriesSearchResolver = () => async (obj, { name, limit = 1 } = {}, context, info) => {
+  let res = [];
+  try {
+    res = await client.get('/search/series', {
+      params: {
+        name,
+      },
+    });
+  } catch (e) {
+    return res;
+  }
+
+  const loaders = await context.getContext(pluginName);
+  const { seriesLoader } = loaders;
+
+  return Promise.all(
+    res.data.data
+      .filter(series => series.slug !== '403-series-not-permitted')
+      .slice(0, limit)
+      .map(async series => {
+        const currentSeries = await seriesLoader.load(series.id);
+
+        return {
+          ...series,
+          ...currentSeries,
+        };
+      })
+  );
+};
+
+const resolveEpisodes = hasOptions => async (obj, _, context) => {
+  const loaders = await context.getContext(pluginName);
+  const { episodeLoader } = loaders;
+  if (!hasOptions) {
+    return episodeLoader.load({
+      seriesId: obj.id,
+    });
+  }
+
+  return episodeLoader.load({
+    seriesId: obj.seriesId,
+    options: {
+      airedSeason: obj.number,
+    },
+  });
+};
+
+const resolveSeasons = () => async (obj, { seasonNumber }, context) => {
+  const loaders = await context.getContext(pluginName);
+  const { seasonLoader } = loaders;
+  return seasonLoader.load({
+    seriesId: obj.id,
+    options: {
+      seasonNumber,
+    },
+  });
+};
+
+const resolveBanner = () => obj => `https://www.thetvdb.com/banners/${obj.banner}`;
+const resolveArtWork = () => obj => `https://www.thetvdb.com/banners/${obj.filename}`;
+
 module.exports = {
   Query: {
-    series: async (obj, { name, limit = 1 } = {}, context, info) => {
-      let res = [];
-      try {
-        res = await client.get('/search/series', {
-          params: {
-            name,
-          },
-        });
-      } catch (e) {
-        return res;
-      }
-
-      const loaders = await context.getContext(pluginName);
-      const { seriesLoader } = loaders;
-
-      return Promise.all(
-        res.data.data
-          .filter(series => series.slug !== '403-series-not-permitted')
-          .slice(0, limit)
-          .map(async series => {
-            const currentSeries = await seriesLoader.load(series.id);
-
-            return {
-              ...series,
-              ...currentSeries,
-            };
-          })
-      );
-    },
+    series: createSeriesSearchResolver(),
   },
 
   Series: {
-    airedAt: obj => obj.firstAired,
-    name: obj => obj.seriesName,
-    banner: obj => `https://www.thetvdb.com/banners/${obj.banner}`,
-    episodes: async (obj, _, context) => {
-      const loaders = await context.getContext(pluginName);
-      const { episodeLoader } = loaders;
-      return episodeLoader.load({
-        seriesId: obj.id,
-      });
-    },
-    seasons: async (obj, { seasonNumber }, context) => {
-      const loaders = await context.getContext(pluginName);
-      const { seasonLoader } = loaders;
-      return seasonLoader.load({
-        seriesId: obj.id,
-        options: {
-          seasonNumber,
-        },
-      });
-    },
+    airedAt: resolveAlias('firstAired'),
+    name: resolveAlias('seriesName'),
+    banner: resolveBanner(),
+    episodes: resolveEpisodes(false),
+    seasons: resolveSeasons(),
   },
 
   Episode: {
-    airedAt: obj => obj.firstAired,
-    artwork: obj => `https://www.thetvdb.com/banners/${obj.filename}`,
-    name: obj => obj.episodeName,
-    relativeNumber: obj => obj.airedEpisodeNumber,
-    season: obj => obj.airedSeason,
+    airedAt: resolveAlias('firstAired'),
+    artwork: resolveArtWork(),
+    name: resolveAlias('episodeName'),
+    relativeNumber: resolveAlias('airedEpisodeNumber'),
+    season: resolveAlias('airedSeason'),
   },
 
   Season: {
-    episodes: async (obj, _, context, info) => {
-      const loaders = await context.getContext(pluginName);
-      const { episodeLoader } = loaders;
-      return episodeLoader.load({
-        seriesId: obj.seriesId,
-        options: {
-          airedSeason: obj.number,
-        },
-      });
-    },
+    episodes: resolveEpisodes(true),
   },
 };
