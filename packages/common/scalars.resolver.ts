@@ -1,20 +1,20 @@
-const {
+import {
   DateTime,
-  NonPositiveInt,
-  PositiveInt,
-  NonNegativeInt,
-  NegativeInt,
-  NonPositiveFloat,
-  PositiveFloat,
-  NonNegativeFloat,
-  NegativeFloat,
   EmailAddress,
-  URL,
+  NegativeFloat,
+  NegativeInt,
+  NonNegativeFloat,
+  NonNegativeInt,
+  NonPositiveFloat,
+  NonPositiveInt,
   PhoneNumber,
+  PositiveFloat,
+  PositiveInt,
   PostalCode,
-} = require('@okgrow/graphql-scalars');
+  URL,
+} from '@okgrow/graphql-scalars';
 
-module.exports = {
+export default {
   DateTime,
 
   NonPositiveInt,

@@ -1,6 +1,6 @@
-const fp = require('lodash/fp');
+import * as fp from 'lodash/fp';
 
-const log = require('./log').child({ ns: '@openapi/core/pluginUtils' });
+const log = require('./log').default.child({ ns: '@openapi/core/pluginUtils' });
 
 let pluginsByName = [];
 
@@ -18,7 +18,7 @@ const initPlugin = async ({ pluginManifest, name }) => {
   }
 };
 
-const initPlugins = async pluginList => {
+export const initPlugins = async pluginList => {
   pluginsByName = fp.flow(
     fp.map(fp.castArray),
     fp.map(([plugin, options = {}]) => ({
@@ -35,7 +35,7 @@ const initPlugins = async pluginList => {
   )(pluginList);
 
   const plugins = Object.keys(pluginsByName).map(plugin => ({
-    pluginManifest: require(plugin),
+    pluginManifest: require(plugin).default,
     name: plugin,
   }));
 
@@ -47,9 +47,9 @@ const initPlugins = async pluginList => {
   }
 };
 
-const getOptions = name => pluginsByName[name];
+export const getOptions = name => pluginsByName[name];
 
-module.exports = {
+export default {
   initPlugins,
   getOptions,
 };

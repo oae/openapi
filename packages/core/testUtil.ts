@@ -1,11 +1,12 @@
-const { promisify } = require('util');
-const { GraphQLServer } = require('graphql-yoga');
-const config = require('@openapi/server/config');
+import config from '@openapi/server/config';
+import { GraphQLServer } from 'graphql-yoga';
+import { AddressInfo } from 'net';
+import { promisify } from 'util';
 
-const openApi = require('./openApi');
-const queue = require('./queue');
+import openApi from './openApi';
+import queue from './queue';
 
-const createServer = async plugins => {
+export const createServer = async plugins => {
   const { typeDefs, resolvers, context } = await openApi.init({
     ...config,
     enabledPlugins: ['@openapi/plugin-common', ...plugins],
@@ -17,13 +18,13 @@ const createServer = async plugins => {
   const http = await server.start({
     port: 0,
   });
-  const { port } = http.address();
+  const { port } = http.address() as AddressInfo;
   const endpoint = `http://localhost:${port}/`;
 
   return { http, endpoint };
 };
 
-const destroyServer = async server => {
+export const destroyServer = async server => {
   if (!server || !server.http) {
     return;
   }
@@ -43,9 +44,4 @@ const destroyServer = async server => {
   }
 
   await queue.closeAll();
-};
-
-module.exports = {
-  createServer,
-  destroyServer,
 };

@@ -1,0 +1,29 @@
+extends:
+  - tslint:latest
+rulesDirectory:
+  - tslint-plugin-prettier
+rules:
+  prettier:
+    options:
+      singleQuote: true
+      trailingComma: es5
+      printWidth: 100
+  quotemark:
+    options:
+      - single
+  arrow-parens:
+    options:
+      - ban-single-arg-parens
+  no-var-requires: false
+  object-literal-sort-keys: false
+  trailing-comma: false
+  no-submodule-imports:
+    options:
+      - '@openapi/core/log'
+      - '@openapi/core/utils'
+      - '@openapi/server/config'
+      - '@openapi/core/openApi'
+      - 'lodash/fp'
+  no-empty:
+    options:
+      - allow-empty-functions

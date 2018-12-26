@@ -1,8 +1,8 @@
-const Queue = require('bull');
-const { getConfig } = require('./openApi');
+import * as Queue from 'bull';
+import { getConfig } from './openApi';
 
 let queues = [];
-const create = scope => {
+export const create = scope => {
   const { queue } = getConfig();
 
   const q = new Queue(scope, queue.redisUrl);
@@ -11,12 +11,12 @@ const create = scope => {
   return q;
 };
 
-const closeAll = async () => {
+export const closeAll = async () => {
   await Promise.all(queues.map(q => q.close()));
   queues = [];
 };
 
-module.exports = {
+export default {
   create,
   closeAll,
 };

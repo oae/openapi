@@ -1,15 +1,30 @@
-const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
-const fp = require('lodash/fp');
+import * as fp from 'lodash/fp';
+import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
 
-const pluginUtils = require('./pluginUtils');
-const { sleep } = require('./utils');
+import * as pluginUtils from './pluginUtils';
+import { sleep } from './utils';
 
-const log = require('./log').child({ ns: '@openapi/core/openApi' });
+const log = require('./log').default.child({ ns: '@openapi/core/openApi' });
 
-let openApiConfig = {};
-const getConfig = () => openApiConfig;
+export interface IConfig {
+  db?: {
+    redis?: {
+      main?: any;
+      queue?: any;
+    };
+    mongo?: any;
+    postgresql: {};
+  };
+  queue?: {
+    redisUrl: string;
+  };
+  enabledPlugins?: any[];
+}
 
-const init = async config => {
+let openApiConfig: IConfig = {};
+export const getConfig = () => openApiConfig;
+
+export const init = async (config: IConfig) => {
   openApiConfig = config;
 
   const { enabledPlugins } = config;
@@ -63,7 +78,7 @@ const init = async config => {
   return {};
 };
 
-module.exports = {
+export default {
   init,
   getConfig,
 };

@@ -1,8 +1,7 @@
-const fp = require('lodash/fp');
+import { openApi } from '@openapi/core';
+import * as fp from 'lodash/fp';
 
-const { openApi } = require('@openapi/core');
-
-module.exports = {
+export default {
   Query: {
     plugins: (obj, args, context, info) => {
       const { enabledPlugins } = openApi.getConfig();

@@ -233,5 +233,8 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/node,visualstudiocode,macos,linux,windows,webstorm
 
+# Start of project specific ignore
 build
 *.env
+dist
+# End of project specific ignore

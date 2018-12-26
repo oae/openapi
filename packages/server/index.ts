@@ -1,9 +1,9 @@
-const { GraphQLServer } = require('graphql-yoga');
+import { GraphQLServer } from 'graphql-yoga';
 
-const { openApi } = require('@openapi/core');
-const log = require('@openapi/core/log').child({ ns: '@openapi/server' });
+import { openApi } from '@openapi/core';
+import config from './config';
 
-const config = require('./config');
+const log = require('@openapi/core/log').default.child({ ns: '@openapi/server' });
 
 (async () => {
   const { typeDefs, resolvers, context } = await openApi.init(config);
@@ -11,7 +11,7 @@ const config = require('./config');
   log.info('creating graphql server');
   const server = new GraphQLServer({ typeDefs, resolvers, context });
   server.start(() => {
-    // eslint-disable-next-line no-console
+    // tslint:disable-next-line:no-console
     console.log(`Server is running at http://localhost:4000`);
   });
 })();
