@@ -2,7 +2,6 @@ version: '3.4'
 
 volumes:
   node_modules: {}
-  proxy_cache: {}
 
 services:
   redis:
@@ -12,7 +11,7 @@ services:
   api:
     build:
       target: dev
-    command: yarn dev:watch
+    command: yarn dev
     environment:
       NODE_ENV: development
     volumes:
