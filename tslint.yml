@@ -17,13 +17,11 @@ rules:
   no-var-requires: false
   object-literal-sort-keys: false
   trailing-comma: false
-  no-submodule-imports:
-    options:
-      - '@openapi/core/log'
-      - '@openapi/core/utils'
-      - '@openapi/server/config'
-      - '@openapi/core/openApi'
-      - 'lodash/fp'
+  no-submodule-imports: false
   no-empty:
     options:
       - allow-empty-functions
+  no-implicit-dependencies:
+    options:
+      - true
+      - dev

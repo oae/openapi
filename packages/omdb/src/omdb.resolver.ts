@@ -1,14 +1,14 @@
-const fp = require('lodash/fp');
-const { resolveAlias } = require('@openapi/core/utils');
+import { resolveAlias } from '@openapi/core/utils';
+import * as fp from 'lodash/fp';
 
-const { name: pluginName } = require('./package.json');
+import { name as pluginName } from '../package.json';
 
-const client = require('./client');
-const { DEFAULT_LIMIT, PAGE_SIZE } = require('./constants');
+import client from './client';
+import { DEFAULT_LIMIT, PAGE_SIZE } from './constants';
 
 const createMovieSearchResolver = () => async (
   obj,
-  { title, limit = DEFAULT_LIMIT, skip = 0 } = {},
+  { title = null, limit = DEFAULT_LIMIT, skip = 0 } = {},
   context,
   info
 ) => {
@@ -41,7 +41,7 @@ const createMovieSearchResolver = () => async (
   return movieLoader.loadMany(imdbIds);
 };
 
-const createMovieResolver = () => async (obj, { imdbId } = {}, context, info) => {
+const createMovieResolver = () => async (obj, { imdbId = null } = {}, context, info) => {
   const { movieLoader } = await context.getContext(pluginName);
 
   return movieLoader.load(imdbId);
@@ -54,13 +54,13 @@ const resolveSeperatedArray = (alias, seperator) =>
     fp.map(fp.trim)
   );
 
-const resolveImdb = () => (obj, { imdbId } = {}, context, info) => ({
+const resolveImdb = () => (obj, { imdbId = null } = {}, context, info) => ({
   id: obj.imdbID,
   rating: obj.imdbRating,
   votes: obj.imdbVotes,
 });
 
-const resolveRating = source => (obj, { imdbId } = {}, context, info) => {
+const resolveRating = source => (obj, { imdbId = null } = {}, context, info) => {
   const ratingSource = obj.Ratings.find(r => r.Source === source);
 
   return ratingSource
@@ -70,7 +70,7 @@ const resolveRating = source => (obj, { imdbId } = {}, context, info) => {
     : null;
 };
 
-module.exports = {
+export default {
   Query: {
     movies: createMovieSearchResolver(),
     movie: createMovieResolver(),

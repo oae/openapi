@@ -1,8 +1,8 @@
-const { request } = require('graphql-request');
-const { gql } = require('@openapi/core/utils');
-const { createServer, destroyServer } = require('@openapi/core/testUtils');
+import { createServer, destroyServer } from '@openapi/core/testUtils';
+import { gql } from '@openapi/core/utils';
+import { request } from 'graphql-request';
 
-const { name: pluginName } = require('./package.json');
+import { name as pluginName } from '../package.json';
 
 let server = null;
 
@@ -56,28 +56,29 @@ const movieFields = gql`
   }
 `;
 
-const validMovie = {
-  title: expect.not.toBeEmpty(),
-  year: expect.not.toBeEmpty(),
-  imdb: {
-    id: expect.not.toBeEmpty(),
-    rating: expect.not.toBeEmpty(),
-    votes: expect.not.toBeEmpty(),
-  },
-  rated: expect.not.toBeEmpty(),
-  released: expect.not.toBeEmpty(),
-  runtime: expect.not.toBeEmpty(),
-  genre: expect.toBeArray(),
-  director: expect.not.toBeEmpty(),
-  writer: expect.not.toBeEmpty(),
-  actors: expect.toBeArray(),
-  plot: expect.not.toBeEmpty(),
-  language: expect.toBeArray(),
-  country: expect.toBeArray(),
-  boxOffice: expect.not.toBeEmpty(),
-  production: expect.not.toBeEmpty(),
-  website: expect.not.toBeEmpty(),
-};
+function testValidMovie(movie) {
+  expect(movie.title).not.toBeEmpty();
+  expect(movie.year).not.toBeEmpty();
+
+  expect(movie.imdb).toBeObject();
+  expect(movie.imdb.id).not.toBeEmpty();
+  expect(movie.imdb.rating).not.toBeEmpty();
+  expect(movie.imdb.votes).not.toBeEmpty();
+
+  expect(movie.rated).not.toBeEmpty();
+  expect(movie.released).not.toBeEmpty();
+  expect(movie.runtime).not.toBeEmpty();
+  expect(movie.genre).toBeArray();
+  expect(movie.director).not.toBeEmpty();
+  expect(movie.writer).not.toBeEmpty();
+  expect(movie.actors).toBeArray();
+  expect(movie.plot).not.toBeEmpty();
+  expect(movie.language).toBeArray();
+  expect(movie.country).toBeArray();
+  expect(movie.boxOffice).not.toBeEmpty();
+  expect(movie.production).not.toBeEmpty();
+  expect(movie.website).not.toBeEmpty();
+}
 
 describe('omdb', () => {
   it('should return movies with title', async () => {
@@ -92,7 +93,7 @@ describe('omdb', () => {
 
     const result = await request(server.endpoint, query);
     expect(result.movies).toBeArray();
-    result.movies.forEach(movie => expect(movie).toMatchObject(validMovie));
+    result.movies.forEach(testValidMovie);
   });
 
   it('should return a movie for given imdbId', async () => {

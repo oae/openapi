@@ -19,14 +19,14 @@ const config: IConfig = {
   },
   enabledPlugins: [
     '@openapi/plugin-common',
-    // [
-    //   '@openapi/plugin-omdb',
-    //   {
-    //     auth: {
-    //       apiKey: process.env.OA_OMDB_API_KEY,
-    //     },
-    //   },
-    // ],
+    [
+      '@openapi/plugin-omdb',
+      {
+        auth: {
+          apiKey: process.env.OA_OMDB_API_KEY,
+        },
+      },
+    ],
     // '@openapi/plugin-openlibrary',
     // '@openapi/plugin-openrates',
     // [

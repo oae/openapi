@@ -7,6 +7,7 @@
     "target": "es2017",
     "skipLibCheck": true,
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "noEmitOnError": false,
     "strictFunctionTypes": false,

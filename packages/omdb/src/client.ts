@@ -1,7 +1,8 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const { getOptions } = require('@openapi/core/pluginUtils');
-const { name: pluginName } = require('./package.json');
+import { getOptions } from '@openapi/core/pluginUtils';
+
+import { name as pluginName } from './package.json';
 
 const {
   auth: { apiKey },
@@ -15,4 +16,4 @@ const client = axios.create({
   },
 });
 
-module.exports = client;
+export default client;

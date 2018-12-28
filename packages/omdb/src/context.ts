@@ -1,6 +1,6 @@
-const DataLoader = require('dataloader');
+import * as DataLoader from 'dataloader';
 
-const client = require('./client');
+import client from './client';
 
 const loadMovies = imdbIds =>
   Promise.all(
@@ -15,8 +15,8 @@ const loadMovies = imdbIds =>
     )
   );
 
-module.exports = async function createContext() {
+export default async function createContext() {
   return {
     movieLoader: new DataLoader(loadMovies),
   };
-};
+}
