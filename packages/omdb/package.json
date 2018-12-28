@@ -2,6 +2,7 @@
   "name": "@openapi/plugin-omdb",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "src/index",
   "dependencies": {
     "@openapi/core": "1.0.0",
     "axios": "^0.18.0",

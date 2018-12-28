@@ -17,7 +17,8 @@
     "drun": "yarn doct run --rm task yarn",
     "dinstall": "yarn doct run --rm task chown -R node:node .; yarn drun install",
     "dup": "yarn docd up -d redis",
-    "gen:gql": "lerna run gen:gql --parallel"
+    "gen:gql": "lerna run gen:gql --parallel",
+    "clean": "yarn drun lerna clean"
   },
   "private": true,
   "workspaces": [

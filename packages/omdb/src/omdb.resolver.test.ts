@@ -3,6 +3,7 @@ import { gql } from '@openapi/core/utils';
 import { request } from 'graphql-request';
 
 import { name as pluginName } from '../package.json';
+import { Movie } from './generated/graphql.js';
 
 let server = null;
 
@@ -91,7 +92,7 @@ describe('omdb', () => {
       }
     `;
 
-    const result = await request(server.endpoint, query);
+    const result: { movies: Movie[] } = await request(server.endpoint, query);
     expect(result.movies).toBeArray();
     result.movies.forEach(testValidMovie);
   });
@@ -106,7 +107,7 @@ describe('omdb', () => {
       }
     `;
 
-    const result = await request(server.endpoint, query);
-    expect(result.movie).toMatchObject(validMovie);
+    const result: { movie: Movie } = await request(server.endpoint, query);
+    testValidMovie(result.movie);
   });
 });

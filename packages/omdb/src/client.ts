@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { getOptions } from '@openapi/core/pluginUtils';
 
-import { name as pluginName } from './package.json';
+import { name as pluginName } from '../package.json';
 
 const {
   auth: { apiKey },
