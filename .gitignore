@@ -123,8 +123,8 @@ typings/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
+!.vscode/launch.json
 !.vscode/extensions.json
-!.vscode/sftp.json
 
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -237,4 +237,5 @@ $RECYCLE.BIN/
 build
 *.env
 dist
+!.vscode/sftp.json
 # End of project specific ignore
