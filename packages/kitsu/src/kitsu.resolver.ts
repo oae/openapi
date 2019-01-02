@@ -1,9 +1,9 @@
-const { resolveAlias } = require('@openapi/core/utils');
-const format = require('date-fns/format');
-const _ = require('lodash');
-const fp = require('lodash/fp');
-const client = require('./client');
-const { DEFAULT_LIMIT } = require('./constants');
+import { resolveAlias } from '@openapi/core/utils';
+import * as format from 'date-fns/format';
+import * as _ from 'lodash';
+import * as fp from 'lodash/fp';
+import client from './client';
+import { DEFAULT_LIMIT } from './constants';
 
 const createAnimesResolver = () => async (
   obj,
@@ -84,7 +84,7 @@ const resolveAnimeCategories = () => async (obj, args, context, info) => {
   return res.data.data;
 };
 
-module.exports = {
+export default {
   Query: {
     animes: createAnimesResolver(),
     trendingAnimes: createTrendingAnimesResolver(),

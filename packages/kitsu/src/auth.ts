@@ -1,8 +1,8 @@
-const { create } = require('simple-oauth2');
-const { openApi, pluginUtils } = require('@openapi/core');
-const log = require('@openapi/core/log').child({ ns: 'kitsu:auth' });
-const { name: pluginName } = require('./package.json');
+import { openApi, pluginUtils } from '@openapi/core';
+import { create } from 'simple-oauth2';
+import { name as pluginName } from '../package.json';
 
+const log = require('@openapi/core/log').createLogger('kitsu:auth');
 const {
   auth: { clientId, clientSecret, username, password },
 } = pluginUtils.getOptions(pluginName);
@@ -30,9 +30,9 @@ const APP_KEY = 'oa:kitsu';
 const TOKEN_WRAPPER = `${APP_KEY}:tokenwrapper`;
 
 const setTokenWrapper = async tokenWrapper => redis.set(TOKEN_WRAPPER, tokenWrapper);
-const getTokenWrapper = async () => redis.get(TOKEN_WRAPPER);
+export const getTokenWrapper = async () => redis.get(TOKEN_WRAPPER);
 
-const login = async () => {
+export const login = async () => {
   try {
     log.info('authenticating');
 
@@ -64,9 +64,4 @@ const login = async () => {
     log.error('error while authenticating: ', err.stack);
     throw err;
   }
-};
-
-module.exports = {
-  login,
-  getTokenWrapper,
 };

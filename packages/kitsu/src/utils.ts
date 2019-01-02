@@ -1,6 +1,6 @@
-const log = require('@openapi/core/log').child({ ns: 'kitsu:auth' });
+const log = require('@openapi/core/log').createLogger('kitsu:auth');
 
-const getAccessToken = async accessTokenParam => {
+export const getAccessToken = async accessTokenParam => {
   // Provide a window of time before the actual expiration to refresh the token
   const EXPIRATION_WINDOW_IN_SECONDS = 300;
 
@@ -21,8 +21,4 @@ const getAccessToken = async accessTokenParam => {
     log.info('Returns current access token');
     return accessTokenParam.token.access_token;
   }
-};
-
-module.exports = {
-  getAccessToken,
 };

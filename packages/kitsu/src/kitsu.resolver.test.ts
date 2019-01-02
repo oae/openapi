@@ -1,7 +1,9 @@
-const { request } = require('graphql-request');
-const { gql } = require('@openapi/core/utils');
-const { createServer, destroyServer } = require('@openapi/core/testUtils');
-const { name: pluginName } = require('./package.json');
+import { createServer, destroyServer } from '@openapi/core/testUtils';
+import { gql } from '@openapi/core/utils';
+import { request } from 'graphql-request';
+
+import { name as pluginName } from '../package.json';
+import { Query } from './generated/graphql.js';
 
 let server = null;
 
@@ -25,7 +27,7 @@ afterAll(async () => {
   await destroyServer(server);
 });
 
-const fragments = gql`
+const animeImageFields = gql`
   fragment animeImageFields on AnimeImage {
     tiny
     small
@@ -33,7 +35,9 @@ const fragments = gql`
     large
     original
   }
+`;
 
+const categoryFields = gql`
   fragment categoryFields on Category {
     title
     description
@@ -45,7 +49,9 @@ const fragments = gql`
     createdAt
     updatedAt
   }
+`;
 
+const animeFields = gql`
   fragment animeFields on Anime {
     title {
       en
@@ -75,67 +81,59 @@ const fragments = gql`
   }
 `;
 
-const validAnimes = {
-  title: expect.toBeObject(),
-  slug: expect.not.toBeEmpty(),
-  synopsis: expect.not.toBeEmpty(),
-  createdAt: expect.not.toBeEmpty(),
-  updatedAt: expect.not.toBeEmpty(),
-  status: expect.not.toBeEmpty(),
-  averageRating: expect.toBeNumber(),
-  startDate: expect.not.toBeEmpty(),
-  endDate: expect.not.toBeEmpty(),
-  posterImage: expect.toBeObject(),
-  nsfw: expect.toBeBoolean(),
-  categories: expect.toBeArray(),
-};
+function testValidAnime(anime) {
+  expect(anime.title).toBeObject();
+  expect(anime.slug).not.toBeEmpty();
+  expect(anime.synopsis).not.toBeEmpty();
+  expect(anime.createdAt).not.toBeEmpty();
+  expect(anime.updatedAt).not.toBeEmpty();
+  expect(anime.status).not.toBeEmpty();
+  expect(anime.averageRating).toBeNumber();
+  expect(anime.startDate).not.toBeEmpty();
+  expect(anime.endDate).not.toBeEmpty();
+  expect(anime.posterImage).toBeObject();
+  expect(anime.nsfw).toBeBoolean();
+  expect(anime.categories).toBeArray();
+}
 
-const validCategory = {
-  title: expect.not.toBeEmpty(),
-  slug: expect.not.toBeEmpty(),
-  nsfw: expect.toBeBoolean(),
-  createdAt: expect.not.toBeEmpty(),
-  updatedAt: expect.not.toBeEmpty(),
-};
+function testValidCategory(category) {
+  expect(category.title).not.toBeEmpty();
+  expect(category.slug).not.toBeEmpty();
+  expect(category.nsfw).toBeBoolean();
+  expect(category.createdAt).not.toBeEmpty();
+  expect(category.updatedAt).not.toBeEmpty();
+}
 
 describe('kitsu', () => {
   it('should return categories', async () => {
     const query = gql`
+      ${animeImageFields}
+      ${categoryFields}
       {
         animeCategories(limit: 2, skip: 3) {
-          title
-          description
-          slug
-          nsfw
-          cover {
-            tiny
-            small
-            medium
-            large
-            original
-          }
-          createdAt
-          updatedAt
+          ...categoryFields
         }
       }
     `;
-    const result = await request(server.endpoint, query);
+    const result: Query = await request(server.endpoint, query);
     expect(result.animeCategories).toBeArray();
-    result.animeCategories.forEach(category => expect(category).toMatchObject(validCategory));
+    result.animeCategories.forEach(testValidCategory);
   });
 
   it('should return animes', async () => {
     const query = gql`
-      ${fragments}
+      ${animeImageFields}
+      ${categoryFields}
+      ${animeFields}
       {
         animes(limit: 2, skip: 3) {
           ...animeFields
         }
       }
     `;
-    const result = await request(server.endpoint, query);
+    const result: Query = await request(server.endpoint, query);
     expect(result.animes).toBeArray();
-    result.animes.forEach(anime => expect(anime).toMatchObject(validAnimes));
+    result.animes.forEach(testValidAnime);
   });
 
   it('should return animes as far as limit', async () => {
@@ -146,21 +144,23 @@ describe('kitsu', () => {
         }
       }
     `;
-    const result = await request(server.endpoint, query);
+    const result: Query = await request(server.endpoint, query);
     expect(result.animes).toHaveLength(5);
   });
 
   it('should return trending animes', async () => {
     const query = gql`
-      ${fragments}
+      ${animeImageFields}
+      ${categoryFields}
+      ${animeFields}
       {
         trendingAnimes {
           ...animeFields
         }
       }
     `;
-    const result = await request(server.endpoint, query);
+    const result: Query = await request(server.endpoint, query);
     expect(result.trendingAnimes).toBeArray();
-    result.trendingAnimes.forEach(anime => expect(anime).toMatchObject(validAnimes));
+    result.trendingAnimes.forEach(testValidAnime);
   });
 });
