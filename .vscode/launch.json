@@ -15,39 +15,43 @@
       "localRoot": "${workspaceRoot}",
       "remoteRoot": "/app",
       "smartStep": false,
-      "timeout": 60000
+      "timeout": 60000,
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Jest All",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "--runInBand",
-        "--detectOpenHandles"
-      ],
+      "args": ["--runInBand", "--detectOpenHandles"],
       "envFile": "${workspaceFolder}/.env",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
       "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      }
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+      },
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/jest-jasmine2/**",
+        "<node_internals>/**"
+      ]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Jest Current File",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "${relativeFile}"
-      ],
+      "args": ["--runInBand", "--detectOpenHandles", "${relativeFile}"],
       "console": "integratedTerminal",
       "envFile": "${workspaceFolder}/.env",
       "internalConsoleOptions": "neverOpen",
       "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      }
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+      },
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/jest-jasmine2/**",
+        "<node_internals>/**"
+      ]
     }
   ]
 }
