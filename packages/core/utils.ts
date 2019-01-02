@@ -27,12 +27,3 @@ export const loadResolvers = async (rootPath, files) => {
 
 // Sorry, but we really want syntax highlighting
 export const gql = String.raw;
-
-export default {
-  gql,
-  loadResolvers,
-  loadTypeDefs,
-  resolveAlias,
-  resolveMultiplePaths,
-  sleep,
-};

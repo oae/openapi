@@ -1,13 +1,13 @@
 import * as fp from 'lodash/fp';
 
-const log = require('./log').default.child({ ns: '@openapi/core/pluginUtils' });
+const log = require('./log').createLogger('@openapi/core/pluginUtils');
 
 let pluginsByName = [];
 
-const initPlugin = async ({ pluginManifest, name }) => {
+const initPlugin = async ({ init, name }) => {
   try {
     log.info({ plugin: name }, 'initializing plugin');
-    const plugin = await pluginManifest.init();
+    const plugin = await init();
     return {
       name,
       ...plugin,
@@ -35,7 +35,7 @@ export const initPlugins = async pluginList => {
   )(pluginList);
 
   const plugins = Object.keys(pluginsByName).map(plugin => ({
-    pluginManifest: require(plugin).default,
+    init: require(plugin).init,
     name: plugin,
   }));
 
@@ -48,8 +48,3 @@ export const initPlugins = async pluginList => {
 };
 
 export const getOptions = name => pluginsByName[name];
-
-export default {
-  initPlugins,
-  getOptions,
-};

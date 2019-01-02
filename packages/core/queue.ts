@@ -15,8 +15,3 @@ export const closeAll = async () => {
   await Promise.all(queues.map(q => q.close()));
   queues = [];
 };
-
-export default {
-  create,
-  closeAll,
-};

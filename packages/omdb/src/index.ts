@@ -1,14 +1,10 @@
 import { loadResolvers, loadTypeDefs } from '@openapi/core/utils';
-import context from './context';
+import createContext from './createContext';
 
-async function init() {
+export async function init() {
   return {
     typeDefs: await loadTypeDefs(__dirname, ['./omdb.type.graphql']),
     resolvers: await loadResolvers(__dirname, ['./omdb.resolver']),
-    context,
+    context: createContext,
   };
 }
-
-export default {
-  init,
-};

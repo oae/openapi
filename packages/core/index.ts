@@ -1,5 +1,5 @@
-export { default as utils } from './utils';
-export { default as log } from './log';
-export { default as openApi } from './openApi';
-export { default as queue } from './queue';
-export { default as pluginUtils } from './pluginUtils';
+export const utils = require('./utils');
+export const openApi = require('./openApi');
+export const queue = require('./queue');
+export const pluginUtils = require('./pluginUtils');
+export const testUtils = require('./testUtils');

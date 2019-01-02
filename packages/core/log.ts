@@ -1,5 +1,9 @@
 import * as pino from 'pino';
 
-const log = pino({ name: 'openapi' });
+export const log = pino({ name: 'openapi' });
 
-export default log;
+export const createLogger = (ns = 'openapi', options = {}) =>
+  log.child({
+    ...options,
+    ns,
+  });

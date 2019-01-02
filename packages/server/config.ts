@@ -1,7 +1,7 @@
 import { IConfig } from '@openapi/core/openApi';
 import * as Redis from 'ioredis';
 
-const config: IConfig = {
+export const config: IConfig = {
   db: {
     redis: {
       main: new Redis(process.env.OA_REDIS_MAIN_URL, {
@@ -45,18 +45,16 @@ const config: IConfig = {
     //     },
     //   },
     // ],
-    // [
-    //   '@openapi/plugin-kitsu',
-    //   {
-    //     auth: {
-    //       clientId: process.env.OA_KITSU_CLIENT_ID,
-    //       clientSecret: process.env.OA_KITSU_CLIENT_SECRET,
-    //       username: process.env.OA_KITSU_USERNAME,
-    //       password: process.env.OA_KITSU_PASSWORD,
-    //     },
-    //   },
-    // ],
+    [
+      '@openapi/plugin-kitsu',
+      {
+        auth: {
+          clientId: process.env.OA_KITSU_CLIENT_ID,
+          clientSecret: process.env.OA_KITSU_CLIENT_SECRET,
+          username: process.env.OA_KITSU_USERNAME,
+          password: process.env.OA_KITSU_PASSWORD,
+        },
+      },
+    ],
   ],
 };
-
-export default config;

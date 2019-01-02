@@ -1,10 +1,10 @@
-import config from '@openapi/server/config';
+import { config } from '@openapi/server/config';
 import { GraphQLServer } from 'graphql-yoga';
 import { AddressInfo } from 'net';
 import { promisify } from 'util';
 
-import openApi from './openApi';
-import queue from './queue';
+import * as openApi from './openApi';
+import * as queue from './queue';
 
 export const createServer = async plugins => {
   const { typeDefs, resolvers, context } = await openApi.init({

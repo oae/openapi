@@ -4,7 +4,7 @@ import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
 import * as pluginUtils from './pluginUtils';
 import { sleep } from './utils';
 
-const log = require('./log').default.child({ ns: '@openapi/core/openApi' });
+const log = require('./log').createLogger('@openapi/core/openApi');
 
 export interface IConfig {
   db?: {
@@ -76,9 +76,4 @@ export const init = async (config: IConfig) => {
   }
 
   return {};
-};
-
-export default {
-  init,
-  getConfig,
 };
