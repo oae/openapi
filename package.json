@@ -4,13 +4,11 @@
   "scripts": {
     "ddev": "yarn dup && yarn docd run --rm --service-ports api",
     "dtest": "yarn drun test",
-    "dtest:debug": "yarn doct run --rm --service-ports task yarn test:debug",
     "dlint": "yarn drun lint",
     "lint": "tslint 'packages/**/*.ts?(x)'",
     "test": "jest",
-    "test:debug": "node --inspect-brk=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand --detectOpenHandles",
     "dev": "yarn && nodemon -e js,ts,graphql -x 'yarn dev:debug'",
-    "dev:debug": "node --inspect=0.0.0.0:9229 -r ts-node/register packages/server/index.ts | pino-pretty --translateTime",
+    "dev:debug": "node --nolazy --inspect=0.0.0.0:9229 -r ts-node/register packages/server/index.ts | pino-pretty --translateTime",
     "build": "tsc --build tsconfig.json",
     "docd": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml",
     "doct": "yarn docd -f docker-compose.task.yml",
@@ -58,6 +56,7 @@
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.2.2"
   }
