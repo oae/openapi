@@ -6,6 +6,5 @@ generates:
     schema: src/**/*.graphql
     plugins:
       - add: "/* tslint:disable */"
-      - time
       - typescript-common
       - typescript-server

@@ -1,5 +1,4 @@
 /* tslint:disable */
-// Generated in 2019-01-02T09:07:55+03:00
 export type Maybe<T> = T | null;
 
 export type DateTime = any;

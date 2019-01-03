@@ -15,7 +15,6 @@
     "graphql-codegen-typescript-common": "0.15.2",
     "graphql-codegen-typescript-server": "0.15.2",
     "graphql-codegen-add": "^0.15.2",
-    "graphql-codegen-time": "^0.15.2",
     "graphql-request": "^1.8.2"
   },
   "scripts": {

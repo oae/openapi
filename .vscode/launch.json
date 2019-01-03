@@ -23,7 +23,7 @@
       "request": "launch",
       "name": "Jest All",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["--runInBand", "--detectOpenHandles"],
+      "args": ["--runInBand", "--detectOpenHandles", "--watch"],
       "envFile": "${workspaceFolder}/.env",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
