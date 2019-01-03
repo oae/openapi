@@ -1,19 +1,19 @@
-const { resolveAlias } = require('@openapi/core/utils');
-const client = require('./client');
+import { resolveAlias } from '@openapi/core/utils';
+import client from './client';
 
-const { name: pluginName } = require('./package.json');
+import { name as pluginName } from '../package.json';
 
-const createSeriesSearchResolver = () => async (obj, { name, limit = 1 } = {}, context, info) => {
-  let res = [];
-  try {
-    res = await client.get('/search/series', {
-      params: {
-        name,
-      },
-    });
-  } catch (e) {
-    return res;
-  }
+const createSeriesSearchResolver = () => async (
+  obj,
+  { name = null, limit = 1 } = {},
+  context,
+  info
+) => {
+  const res = await client.get('/search/series', {
+    params: {
+      name,
+    },
+  });
 
   const loaders = await context.getContext(pluginName);
   const { seriesLoader } = loaders;
@@ -64,7 +64,7 @@ const resolveSeasons = () => async (obj, { seasonNumber }, context) => {
 const resolveBanner = () => obj => `https://www.thetvdb.com/banners/${obj.banner}`;
 const resolveArtWork = () => obj => `https://www.thetvdb.com/banners/${obj.filename}`;
 
-module.exports = {
+export default {
   Query: {
     series: createSeriesSearchResolver(),
   },

@@ -1,7 +1,14 @@
-const DataLoader = require('dataloader');
-const _ = require('lodash');
+import * as DataLoader from 'dataloader';
+import * as _ from 'lodash';
 
-const client = require('./client');
+import client from './client';
+
+interface ISeasonLoaderInput {
+  seriesId?: number;
+  options?: {
+    seasonNumber?: number;
+  };
+}
 
 const getEpisodesForSeries = async (seriesId, options = {}) =>
   client
@@ -41,7 +48,7 @@ const loadSeries = async seriesIds =>
 const loadEpisode = async seriesIds =>
   seriesIds.map(({ seriesId, options }) => getEpisodesForSeries(seriesId, options));
 
-const loadSeason = async seriesIds =>
+const loadSeason = async (seriesIds: ISeasonLoaderInput[]) =>
   seriesIds.map(({ seriesId, options = {} }) =>
     client.get(`/series/${seriesId}/episodes/summary`).then(res =>
       _.map(res.data.data.airedSeasons, season => ({
@@ -51,10 +58,10 @@ const loadSeason = async seriesIds =>
     )
   );
 
-module.exports = async function createContext() {
+export default async function createContext() {
   return {
     seriesLoader: new DataLoader(loadSeries),
     episodeLoader: new DataLoader(loadEpisode),
     seasonLoader: new DataLoader(loadSeason),
   };
-};
+}

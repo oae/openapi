@@ -1,7 +1,7 @@
-const axios = require('axios');
-const fp = require('lodash/fp');
+import axios from 'axios';
+import * as fp from 'lodash/fp';
 
-const { getToken, login } = require('./auth');
+import { getToken, login } from './auth';
 
 const client = axios.create({
   baseURL: 'https://api.thetvdb.com',
@@ -17,4 +17,4 @@ client.interceptors.request.use(async config => {
   return config;
 });
 
-module.exports = client;
+export default client;

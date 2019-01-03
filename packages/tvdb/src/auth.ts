@@ -1,9 +1,8 @@
-const axios = require('axios');
+import { openApi, pluginUtils } from '@openapi/core';
+import axios from 'axios';
+import { name as pluginName } from '../package.json';
 
-const { openApi, pluginUtils } = require('@openapi/core');
-const log = require('@openapi/core/log').child({ ns: 'tvdb:auth' });
-
-const { name: pluginName } = require('./package.json');
+const log = require('@openapi/core/log').createLogger('tvdb:auth');
 
 const {
   auth: { apikey },
@@ -20,9 +19,9 @@ const APP_KEY = 'oa:tvdb';
 const TOKEN_KEY = `${APP_KEY}:token`;
 
 const setToken = async token => redis.set(TOKEN_KEY, token);
-const getToken = async () => redis.get(TOKEN_KEY);
+export const getToken = async () => redis.get(TOKEN_KEY);
 
-const login = async () => {
+export const login = async () => {
   try {
     log.info('authenticating');
     const res = await axios.post('https://api.thetvdb.com/login', {
@@ -46,9 +45,4 @@ const login = async () => {
     log.error('error while authenticating: ', err.stack);
     throw err;
   }
-};
-
-module.exports = {
-  login,
-  getToken,
 };

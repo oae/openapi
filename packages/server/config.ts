@@ -37,14 +37,14 @@ export const config: IConfig = {
         },
       },
     ],
-    // [
-    //   '@openapi/plugin-tvdb',
-    //   {
-    //     auth: {
-    //       apikey: process.env.OA_TVDB_API_KEY,
-    //     },
-    //   },
-    // ],
+    [
+      '@openapi/plugin-tvdb',
+      {
+        auth: {
+          apikey: process.env.OA_TVDB_API_KEY,
+        },
+      },
+    ],
     [
       '@openapi/plugin-kitsu',
       {
