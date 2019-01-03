@@ -3669,13 +3669,6 @@ graphql-codegen-plugin-helpers@0.15.2:
     graphql-codegen-core "0.15.2"
     import-from "2.1.0"
 
-graphql-codegen-time@^0.15.2:
-  version "0.15.2"
-  resolved "https://registry.npmjs.org/graphql-codegen-time/-/graphql-codegen-time-0.15.2.tgz#39ec1699ecb2af7af3a5f545464c5d0ba30a4cb1"
-  integrity sha512-IhjYlDKZqvEShxzg2j1r07A2OODA68y2ol9JCn0ePf+/6q1nnc7t9x1eUx2HQwKl1nqUHcBB61JPvbrfJVpg7A==
-  dependencies:
-    moment "2.23.0"
-
 graphql-codegen-typescript-common@0.15.2:
   version "0.15.2"
   resolved "https://registry.npmjs.org/graphql-codegen-typescript-common/-/graphql-codegen-typescript-common-0.15.2.tgz#9368ca0d9a4f2938823d3dc80b364cd337c686df"
@@ -6112,7 +6105,7 @@ moment-timezone@^0.5.23:
   dependencies:
     moment ">= 2.9.0"
 
-moment@2.23.0, "moment@>= 2.9.0":
+"moment@>= 2.9.0":
   version "2.23.0"
   resolved "https://registry.npmjs.org/moment/-/moment-2.23.0.tgz#759ea491ac97d54bac5ad776996e2a58cc1bc225"
   integrity sha512-3IE39bHVqFbWWaPOMHZF98Q9c3LDKGTmypMiTM2QygGXXElkFWIH7GxfmlwmY2vwa+wmNsoYZmG2iusf1ZjJoA==

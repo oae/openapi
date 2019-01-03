@@ -2,9 +2,19 @@
   "name": "@openapi/plugin-common",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "src/index",
   "dependencies": {
     "@okgrow/graphql-scalars": "^0.4.2",
     "@openapi/core": "1.0.0",
     "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "graphql-code-generator": "^0.15.2",
+    "graphql-codegen-typescript-common": "0.15.2",
+    "graphql-codegen-typescript-server": "0.15.2",
+    "graphql-codegen-add": "^0.15.2"
+  },
+  "scripts": {
+    "gen:gql": "gql-gen --config codegen.yml"
   }
 }
