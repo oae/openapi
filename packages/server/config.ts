@@ -29,14 +29,14 @@ export const config: IConfig = {
     ],
     '@openapi/plugin-openlibrary',
     '@openapi/plugin-openrates',
-    // [
-    //   '@openapi/plugin-openweather',
-    //   {
-    //     auth: {
-    //       appId: process.env.OA_OPENWEATHER_API_KEY,
-    //     },
-    //   },
-    // ],
+    [
+      '@openapi/plugin-openweather',
+      {
+        auth: {
+          appId: process.env.OA_OPENWEATHER_API_KEY,
+        },
+      },
+    ],
     // [
     //   '@openapi/plugin-tvdb',
     //   {

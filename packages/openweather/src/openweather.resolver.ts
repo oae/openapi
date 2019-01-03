@@ -1,11 +1,11 @@
-const { resolveAlias } = require('@openapi/core/utils');
+import { resolveAlias } from '@openapi/core/utils';
 
-const client = require('./client');
-const { Unit } = require('./constants');
+import client from './client';
+import { Unit } from './constants';
 
 const createWeatherByCityIdResolver = () => async (
   obj,
-  { cityName, unit = Unit.METRIC } = {},
+  { cityName = null, unit = Unit.METRIC } = {},
   context,
   info
 ) => {
@@ -21,7 +21,7 @@ const createWeatherByCityIdResolver = () => async (
 
 const createWeatherByGeoLocResolver = () => async (
   obj,
-  { lat, lng, unit = Unit.METRIC } = {},
+  { lat = null, lng = null, unit = Unit.METRIC } = {},
   context,
   info
 ) => {
@@ -51,7 +51,7 @@ const resolveWeatherCondition = () => (obj, cityName = {}, context, info) => ({
   description: obj.weather[0].description,
 });
 
-module.exports = {
+export default {
   Query: {
     currentWeatherByCityName: createWeatherByCityIdResolver(),
     currentWeatherByGeoLoc: createWeatherByGeoLocResolver(),

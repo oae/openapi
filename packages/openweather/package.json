@@ -2,11 +2,19 @@
   "name": "@openapi/plugin-openweather",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "src/index",
   "dependencies": {
     "@openapi/core": "1.0.0",
     "axios": "^0.18.0"
   },
   "devDependencies": {
+    "graphql-code-generator": "^0.15.2",
+    "graphql-codegen-typescript-common": "0.15.2",
+    "graphql-codegen-typescript-server": "0.15.2",
+    "graphql-codegen-add": "^0.15.2",
     "graphql-request": "^1.8.2"
+  },
+  "scripts": {
+    "gen:gql": "gql-gen --config codegen.yml"
   }
 }

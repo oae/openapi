@@ -1,8 +1,9 @@
-const { request } = require('graphql-request');
-const { gql } = require('@openapi/core/utils');
-const { createServer, destroyServer } = require('@openapi/core/testUtils');
+import { createServer, destroyServer } from '@openapi/core/testUtils';
+import { gql } from '@openapi/core/utils';
+import { request } from 'graphql-request';
 
-const { name: pluginName } = require('./package.json');
+import { name as pluginName } from '../package.json';
+import { Query } from './generated/graphql.js';
 
 let server = null;
 
@@ -45,25 +46,24 @@ const weatherFields = gql`
   }
 `;
 
-const validWeather = {
-  geoloc: {
-    longitude: 28.95,
-    latitude: 41.01,
-  },
-  condition: {
-    name: expect.not.toBeEmpty(),
-    description: expect.not.toBeEmpty(),
-  },
-  temperature: expect.toBeNumber(),
-  pressure: expect.not.toBeEmpty(),
-  humidity: expect.not.toBeEmpty(),
-  wind: {
-    speed: expect.toBeNumber(),
-    degree: expect.toBeNumber(),
-  },
-  cityName: 'Istanbul',
-  estimatedTime: expect.toBeNumber(),
-};
+function testValidWeather(weather) {
+  expect(weather).toMatchObject({
+    geoloc: {
+      longitude: 28.95,
+      latitude: 41.01,
+    },
+    cityName: 'Istanbul',
+  });
+
+  expect(weather.condition.name).not.toBeEmpty();
+  expect(weather.condition.description).not.toBeEmpty();
+  expect(weather.temperature).toBeNumber();
+  expect(weather.pressure).not.toBeEmpty();
+  expect(weather.humidity).not.toBeEmpty();
+  expect(weather.wind.speed).toBeNumber();
+  expect(weather.wind.degree).toBeNumber();
+  expect(weather.estimatedTime).toBeNumber();
+}
 
 describe('openweather', () => {
   it('should return current weather for a given cityName', async () => {
@@ -76,8 +76,8 @@ describe('openweather', () => {
       }
     `;
 
-    const result = await request(server.endpoint, query);
-    expect(result.currentWeatherByCityName).toEqual(validWeather);
+    const result: Query = await request(server.endpoint, query);
+    testValidWeather(result.currentWeatherByCityName);
   });
 
   it('should return current weather for a given location', async () => {
@@ -90,7 +90,7 @@ describe('openweather', () => {
       }
     `;
 
-    const result = await request(server.endpoint, query);
-    expect(result.currentWeatherByGeoLoc).toEqual(validWeather);
+    const result: Query = await request(server.endpoint, query);
+    testValidWeather(result.currentWeatherByGeoLoc);
   });
 });
