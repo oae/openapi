@@ -1,18 +1,25 @@
-const format = require('date-fns/format');
-const { resolveAlias } = require('@openapi/core/utils');
+import { resolveAlias } from '@openapi/core/utils';
+import * as format from 'date-fns/format';
 
-const client = require('./client');
+import client from './client';
 
 const resolveDate = date => format(date, 'YYYY-MM-DD');
 
-const createLatestRatesResolver = () => async (obj, { from, to, date } = {}, context, info) => {
+const createLatestRatesResolver = () => async (
+  obj,
+  { from = null, to = null, date = null } = {},
+  context,
+  info
+) => {
+  let res;
+
   if (date) {
     const resolvedDate = resolveDate(date);
-    const res = await client.get(resolvedDate, { params: { base: from } });
+    res = await client.get(resolvedDate, { params: { base: from } });
     return { ...res.data, to };
   }
 
-  const res = await client.get('latest', {
+  res = await client.get('latest', {
     params: {
       base: from,
     },
@@ -35,7 +42,7 @@ const resolveRates = () => (obj, _, context, info) => {
 
 const resolveCurrencyNames = () => (name, _, context, info) => name;
 
-module.exports = {
+export default {
   Query: {
     rates: createLatestRatesResolver(),
     currencies: createCurrenciesResolver(),

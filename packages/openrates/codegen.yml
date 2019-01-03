@@ -1,0 +1,10 @@
+overwrite: true
+schema: ../common/**/*.graphql
+documents: null
+generates:
+  src/generated/graphql.ts:
+    schema: src/**/*.graphql
+    plugins:
+      - add: "/* tslint:disable */"
+      - typescript-common
+      - typescript-server
