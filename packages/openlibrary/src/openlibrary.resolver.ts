@@ -1,12 +1,11 @@
-const fp = require('lodash/fp');
+import * as fp from 'lodash/fp';
 
-const { resolveAlias } = require('@openapi/core/utils');
+import { resolveAlias } from '@openapi/core/utils';
 
-const { name: pluginName } = require('./package.json');
-
-const { extractKeys, normalizeKey } = require('./utils');
-const client = require('./client');
-const { DEFAULT_LIMIT, KeyType } = require('./constants');
+import { name as pluginName } from '../package.json';
+import client from './client';
+import { DEFAULT_LIMIT, KeyType } from './constants';
+import { extractKeys, normalizeKey } from './utils';
 
 const fetchRelationWithKey = (dataKey, type) => async (
   obj,
@@ -39,7 +38,7 @@ const commonFields = () => ({
 
 const createBookSearchResolver = () => async (
   obj,
-  { title, author, limit = DEFAULT_LIMIT } = {},
+  { title = null, author = null, limit = DEFAULT_LIMIT } = {},
   context,
   info
 ) => {
@@ -65,15 +64,10 @@ const createBookSearchResolver = () => async (
   );
 };
 
-const resolveDescription = () => (obj, args, context, info) => {
-  if (fp.isString(obj.description)) {
-    return obj.description;
-  }
+const resolveDescription = () => (obj, args, context, info) =>
+  fp.getOr(null, 'description.value', obj) || fp.getOr(null, 'description', obj);
 
-  return fp.getOr(null, 'description.value', obj);
-};
-
-module.exports = {
+export default {
   Query: {
     books: createBookSearchResolver(),
     booksFromAuthor: createBookSearchResolver(),

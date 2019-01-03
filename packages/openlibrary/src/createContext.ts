@@ -1,7 +1,7 @@
-const DataLoader = require('dataloader');
+import * as DataLoader from 'dataloader';
 
-const { extractKeys } = require('./utils');
-const client = require('./client');
+import client from './client';
+import { extractKeys } from './utils';
 
 const loadKeys = async inputKeys => {
   const keys = extractKeys(inputKeys);
@@ -9,8 +9,8 @@ const loadKeys = async inputKeys => {
   return Promise.all(keys.map(key => client.get(key).then(res => res.data)));
 };
 
-module.exports = async function createContext() {
+export default async function createContext() {
   return {
     keyLoader: new DataLoader(loadKeys),
   };
-};
+}

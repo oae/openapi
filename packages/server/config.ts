@@ -27,7 +27,7 @@ export const config: IConfig = {
         },
       },
     ],
-    // '@openapi/plugin-openlibrary',
+    '@openapi/plugin-openlibrary',
     // '@openapi/plugin-openrates',
     // [
     //   '@openapi/plugin-openweather',
