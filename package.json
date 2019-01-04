@@ -16,7 +16,10 @@
     "dinstall": "yarn doct run --rm task chown -R node:node .; yarn drun install",
     "dup": "yarn docd up -d redis",
     "gen:gql": "lerna run gen:gql --parallel",
-    "clean": "yarn drun lerna clean"
+    "clean": "yarn drun lerna clean",
+    "script:lerna-exec": "lerna exec --stream --parallel -- node -r ts-node/register \\$LERNA_ROOT_PATH/scripts/runScript",
+    "script:update-packages": "yarn script:lerna-exec updatePackage",
+    "script:update-plugins": "yarn script:lerna-exec updatePlugin"
   },
   "private": true,
   "workspaces": [
@@ -45,6 +48,7 @@
     "@types/node": "^10.12.17",
     "@types/pino": "^5.8.3",
     "@types/prettier": "^1.15.2",
+    "fs-extra": "^7.0.1",
     "graphql-request": "^1.8.2",
     "husky": "^1.3.0",
     "jest": "^23.6.0",
