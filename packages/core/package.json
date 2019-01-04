@@ -2,6 +2,7 @@
   "name": "@openapi/core",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "src/index",
   "dependencies": {
     "@openapi/server": "1.0.0",
     "bull": "^3.4.8",

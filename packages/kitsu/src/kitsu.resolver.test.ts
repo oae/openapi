@@ -1,5 +1,4 @@
-import { createServer, destroyServer } from '@openapi/core/testUtils';
-import { gql } from '@openapi/core/utils';
+import { gql, testUtils } from '@openapi/core';
 import { request } from 'graphql-request';
 
 import { name as pluginName } from '../package.json';
@@ -8,7 +7,7 @@ import { Query } from './generated/graphql.js';
 let server = null;
 
 beforeAll(async () => {
-  server = await createServer([
+  server = await testUtils.createServer([
     [
       pluginName,
       {
@@ -24,7 +23,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await destroyServer(server);
+  await testUtils.destroyServer(server);
 });
 
 const animeImageFields = gql`

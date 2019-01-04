@@ -1,8 +1,9 @@
 import * as fp from 'lodash/fp';
+import { PluginConfig } from './config';
 
 const log = require('./log').createLogger('@openapi/core/pluginUtils');
 
-let pluginsByName = [];
+let pluginsByName: { [key: string]: PluginConfig } = {};
 
 const initPlugin = async ({ init, name }) => {
   try {
@@ -18,7 +19,7 @@ const initPlugin = async ({ init, name }) => {
   }
 };
 
-export const initPlugins = async pluginList => {
+export const initPlugins = async (pluginList: PluginConfig[]) => {
   pluginsByName = fp.flow(
     fp.map(fp.castArray),
     fp.map(([plugin, options = {}]) => ({
@@ -28,7 +29,7 @@ export const initPlugins = async pluginList => {
     fp.reduce(
       (acc, plugin) => ({
         ...acc,
-        [plugin.name]: plugin.options,
+        [plugin.name as string]: plugin.options,
       }),
       {}
     )

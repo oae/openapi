@@ -1,7 +1,27 @@
-import { IConfig } from '@openapi/core/openApi';
 import * as Redis from 'ioredis';
 
-export const config: IConfig = {
+export interface IPluginOptions {
+  auth: any;
+}
+
+export type PluginConfig = string | [string, IPluginOptions?];
+
+export interface IConfig {
+  db?: {
+    redis?: {
+      main?: any;
+      queue?: any;
+    };
+    mongo?: any;
+    postgresql: {};
+  };
+  queue?: {
+    redisUrl: string;
+  };
+  enabledPlugins?: PluginConfig[];
+}
+
+const config: IConfig = {
   db: {
     redis: {
       main: new Redis(process.env.OA_REDIS_MAIN_URL, {
@@ -58,3 +78,5 @@ export const config: IConfig = {
     ],
   ],
 };
+
+export default config;

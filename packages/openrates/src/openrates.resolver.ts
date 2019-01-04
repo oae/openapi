@@ -1,7 +1,9 @@
-import { resolveAlias } from '@openapi/core/utils';
-import * as format from 'date-fns/format';
+import { utils } from '@openapi/core';
+import { format } from 'date-fns';
 
 import client from './client';
+
+const { resolveAlias } = utils;
 
 const resolveDate = date => format(date, 'YYYY-MM-DD');
 

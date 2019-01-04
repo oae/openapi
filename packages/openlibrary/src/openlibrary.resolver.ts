@@ -1,11 +1,13 @@
 import * as fp from 'lodash/fp';
 
-import { resolveAlias } from '@openapi/core/utils';
+import { utils } from '@openapi/core';
 
 import { name as pluginName } from '../package.json';
 import client from './client';
 import { DEFAULT_LIMIT, KeyType } from './constants';
 import { extractKeys, normalizeKey } from './utils';
+
+const { resolveAlias } = utils;
 
 const fetchRelationWithKey = (dataKey, type) => async (
   obj,

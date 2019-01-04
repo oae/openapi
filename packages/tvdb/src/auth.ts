@@ -2,7 +2,7 @@ import { openApi, pluginUtils } from '@openapi/core';
 import axios from 'axios';
 import { name as pluginName } from '../package.json';
 
-const log = require('@openapi/core/log').createLogger('tvdb:auth');
+const log = require('@openapi/core').createLogger('tvdb:auth');
 
 const {
   auth: { apikey },

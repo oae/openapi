@@ -11,7 +11,9 @@ rules:
       printWidth: 100
   no-var-requires: false
   object-literal-sort-keys: false
-  no-submodule-imports: false
+  no-submodule-imports:
+    options:
+      - lodash/fp
   no-empty:
     options:
       - allow-empty-functions

@@ -1,7 +1,7 @@
-import { config } from '@openapi/server/config';
 import { GraphQLServer } from 'graphql-yoga';
 import { AddressInfo } from 'net';
 import { promisify } from 'util';
+import config from './config';
 
 import * as openApi from './openApi';
 import * as queue from './queue';

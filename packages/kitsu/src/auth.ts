@@ -2,7 +2,7 @@ import { openApi, pluginUtils } from '@openapi/core';
 import { create } from 'simple-oauth2';
 import { name as pluginName } from '../package.json';
 
-const log = require('@openapi/core/log').createLogger('kitsu:auth');
+const log = require('@openapi/core').createLogger('kitsu:auth');
 const {
   auth: { clientId, clientSecret, username, password },
 } = pluginUtils.getOptions(pluginName);

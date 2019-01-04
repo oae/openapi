@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-import { getOptions } from '@openapi/core/pluginUtils';
+import { pluginUtils } from '@openapi/core';
 
 import { name as pluginName } from '../package.json';
 
 const {
   auth: { apiKey },
-} = getOptions(pluginName);
+} = pluginUtils.getOptions(pluginName);
 
 const client = axios.create({
   baseURL: 'http://www.omdbapi.com',

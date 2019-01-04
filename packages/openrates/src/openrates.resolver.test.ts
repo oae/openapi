@@ -1,5 +1,4 @@
-import { createServer, destroyServer } from '@openapi/core/testUtils';
-import { gql } from '@openapi/core/utils';
+import { gql, testUtils } from '@openapi/core';
 import { request } from 'graphql-request';
 
 import { name as pluginName } from '../package.json';
@@ -7,11 +6,11 @@ import { name as pluginName } from '../package.json';
 let server = null;
 
 beforeAll(async () => {
-  server = await createServer([pluginName]);
+  server = await testUtils.createServer([pluginName]);
 });
 
 afterAll(async () => {
-  await destroyServer(server);
+  await testUtils.destroyServer(server);
 });
 
 describe('openrates', () => {

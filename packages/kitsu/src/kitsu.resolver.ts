@@ -1,9 +1,11 @@
-import { resolveAlias } from '@openapi/core/utils';
-import * as format from 'date-fns/format';
+import { utils } from '@openapi/core';
+import { format } from 'date-fns';
 import * as _ from 'lodash';
 import * as fp from 'lodash/fp';
 import client from './client';
 import { DEFAULT_LIMIT } from './constants';
+
+const { resolveAlias } = utils;
 
 const createAnimesResolver = () => async (
   obj,

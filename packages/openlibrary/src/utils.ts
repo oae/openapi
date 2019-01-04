@@ -10,17 +10,25 @@ export const normalizeKey = fp.curry((type, rawKey) => {
   return `/${type}/${id}.json`;
 });
 
-export const extractKeys = fp.flow(
-  fp.map(key => {
-    if (fp.isObject(key) && !fp.isEmpty(key.key)) {
-      return key.key;
-    }
+export const extractKeys = (keys: Array<string | { key: string }>): string[] => {
+  const extractedKeys = fp.flow(
+    fp.map((key: string | { key: string }) => {
+      if (!key) {
+        return null;
+      }
 
-    if (!fp.isEmpty(key)) {
-      return key;
-    }
+      if (typeof key === 'string') {
+        return key;
+      }
 
-    return null;
-  }),
-  fp.compact
-);
+      if (!fp.isEmpty(key.key)) {
+        return key.key;
+      }
+
+      return null;
+    }),
+    fp.compact
+  )(keys);
+
+  return extractedKeys as string[];
+};

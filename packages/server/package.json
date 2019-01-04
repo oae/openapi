@@ -2,6 +2,7 @@
   "name": "@openapi/server",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "src/index",
   "dependencies": {
     "@openapi/core": "1.0.0",
     "@openapi/plugin-common": "1.0.0",
@@ -11,7 +12,6 @@
     "@openapi/plugin-openweather": "1.0.0",
     "@openapi/plugin-tvdb": "1.0.0",
     "@openapi/plugin-kitsu": "1.0.0",
-    "ioredis": "^4.2.0",
     "graphql-yoga": "^1.16.7"
   }
 }

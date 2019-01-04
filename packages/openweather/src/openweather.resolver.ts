@@ -1,7 +1,9 @@
-import { resolveAlias } from '@openapi/core/utils';
+import { utils } from '@openapi/core';
 
 import client from './client';
 import { Unit } from './constants';
+
+const { resolveAlias } = utils;
 
 const createWeatherByCityIdResolver = () => async (
   obj,

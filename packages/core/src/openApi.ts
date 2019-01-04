@@ -1,25 +1,11 @@
 import * as fp from 'lodash/fp';
 import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
 
+import { IConfig } from './config';
 import * as pluginUtils from './pluginUtils';
 import { sleep } from './utils';
 
-const log = require('./log').createLogger('@openapi/core/openApi');
-
-export interface IConfig {
-  db?: {
-    redis?: {
-      main?: any;
-      queue?: any;
-    };
-    mongo?: any;
-    postgresql: {};
-  };
-  queue?: {
-    redisUrl: string;
-  };
-  enabledPlugins?: any[];
-}
+const log = require('./log').createLogger('@openapi/core/openeApi');
 
 let openApiConfig: IConfig = {};
 export const getConfig = () => openApiConfig;

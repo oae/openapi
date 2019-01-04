@@ -1,10 +1,10 @@
-import { loadResolvers, loadTypeDefs } from '@openapi/core/utils';
+import { utils } from '@openapi/core';
 import createContext from './createContext';
 
 export async function init() {
   return {
-    typeDefs: await loadTypeDefs(__dirname, ['./openlibrary.type.graphql']),
-    resolvers: await loadResolvers(__dirname, ['./openlibrary.resolver.ts']),
+    typeDefs: await utils.loadTypeDefs(__dirname, ['./openlibrary.type.graphql']),
+    resolvers: await utils.loadResolvers(__dirname, ['./openlibrary.resolver.ts']),
     context: createContext,
   };
 }

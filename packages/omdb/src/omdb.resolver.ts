@@ -1,10 +1,12 @@
-import { resolveAlias } from '@openapi/core/utils';
+import { utils } from '@openapi/core';
 import * as fp from 'lodash/fp';
 
 import { name as pluginName } from '../package.json';
 
 import client from './client';
 import { DEFAULT_LIMIT, PAGE_SIZE } from './constants';
+
+const { resolveAlias } = utils;
 
 const createMovieSearchResolver = () => async (
   obj,
@@ -35,7 +37,7 @@ const createMovieSearchResolver = () => async (
   const imdbIds = fp.flow(
     fp.flatten,
     fp.take(limit),
-    fp.map(movie => movie.imdbID)
+    fp.map((movie: { imdbID?: string }) => movie.imdbID)
   )(pages);
 
   return movieLoader.loadMany(imdbIds);

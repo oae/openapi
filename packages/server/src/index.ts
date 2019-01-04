@@ -1,9 +1,8 @@
 import { GraphQLServer } from 'graphql-yoga';
 
-import { openApi } from '@openapi/core';
-import { config } from './config';
+import { config, openApi } from '@openapi/core';
 
-const log = require('@openapi/core/log').createLogger('@openapi/server');
+const log = require('@openapi/core').createLogger('@openapi/server');
 
 (async () => {
   const { typeDefs, resolvers, context } = await openApi.init(config);

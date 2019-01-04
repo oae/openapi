@@ -1,5 +1,4 @@
-import { testUtils } from '@openapi/core';
-import { gql } from '@openapi/core/utils';
+import { gql, testUtils } from '@openapi/core';
 import { request } from 'graphql-request';
 
 import { name as pluginName } from '../package.json';
